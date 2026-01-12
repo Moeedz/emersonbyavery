@@ -66,7 +66,7 @@
         "products-per-page": 10,
         "desktop-products-per-row": 4,
         "mobile-products-per-row": "1",
-        "pagination_options": "pagination_default",
+        "pagination_options": "pagination_infinite_scrolling",
         "desktop_position": "topbar",
         "enable_collection_title": true,
         "enable_collection_description": true,
