@@ -154,37 +154,39 @@
 
   {% comment %}
   ============================================================
-  PAGE LOADER — DIRECT INSTALL VERSION
+  PAGE LOADER WITH IMAGE LOGO
   ============================================================
   
-  INSTALLATION (2 minutes):
+  INSTALLATION:
   
   1. Go to Online Store → Themes → Edit Code
   2. Open layout/theme.liquid
-  3. Find the opening <body> tag (around line 100-150)
+  3. Find the opening <body> tag
   4. Paste this ENTIRE code block right after <body ...>
-  5. Save and test!
+  5. Replace YOUR_LOGO_URL with your actual logo URL (see below)
+  6. Save and test!
   
-  To customize colors, edit the CSS variables at the top.
+  HOW TO GET YOUR LOGO URL:
+  - Go to Settings → Files
+  - Upload your logo (or find existing one)
+  - Click on the logo
+  - Copy the URL (looks like: https://cdn.shopify.com/s/files/...)
+  
   ============================================================
 {% endcomment %}
 
 <!-- ========== PAGE LOADER START ========== -->
 <style id="page-loader-styles">
-  /* === CUSTOMIZE THESE COLORS === */
   :root {
-    --loader-bg: #FDF9F6;           /* Background color */
-    --loader-text: #1F1A14;         /* Logo text color */
-    --loader-accent: #E85D75;       /* Progress bar + subtitle */
-    --loader-bar-bg: #E8E2DB;       /* Progress bar track */
-    --loader-duration: 1.5s;        /* How long the animation takes */
+    --loader-bg: #FDF9F6;
+    --loader-accent: #E85D75;
+    --loader-bar-bg: #E8E2DB;
+    --loader-duration: 1.5s;
   }
 
-  /* Prevent scroll during load */
   html.is-loading { overflow: hidden; }
   html.is-loading body { overflow: hidden; }
 
-  /* Loader Container */
   .page-loader {
     position: fixed;
     inset: 0;
@@ -206,23 +208,19 @@
     text-align: center;
   }
 
-  /* Logo */
+  /* Logo Image */
   .page-loader__logo {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: clamp(28px, 5vw, 36px);
-    font-weight: 500;
-    color: var(--loader-text);
-    margin-bottom: 24px;
+    margin-bottom: 28px;
     opacity: 0;
     animation: loaderFadeIn 0.6s ease forwards;
   }
 
-  .page-loader__logo span {
-    display: block;
-    font-family: 'Caveat', cursive;
-    font-size: clamp(16px, 3vw, 18px);
-    color: var(--loader-accent);
-    margin-top: 4px;
+  .page-loader__logo img {
+    max-width: 180px;  /* Adjust logo size here */
+    max-height: 80px;  /* Adjust max height here */
+    width: auto;
+    height: auto;
+    object-fit: contain;
   }
 
   /* Progress Bar */
@@ -245,7 +243,6 @@
     animation: loaderProgress var(--loader-duration) ease forwards;
   }
 
-  /* Keyframes */
   @keyframes loaderFadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
@@ -256,7 +253,6 @@
     to { width: 100%; }
   }
 
-  /* Reduced Motion */
   @media (prefers-reduced-motion: reduce) {
     .page-loader__logo,
     .page-loader__bar { animation: none; opacity: 1; }
@@ -268,8 +264,17 @@
 <div class="page-loader" id="pageLoader" aria-hidden="true">
   <div class="page-loader__content">
     <div class="page-loader__logo">
-      Emerson
-      <span>by Avery</span>
+      <!-- OPTION 1: Hardcoded URL (replace the URL below) -->
+      <img src="https://cdn.shopify.com/s/files/1/0741/8780/0826/files/EmersonByAvery_line_text_-_Brown.jpg?v=1744237912" alt="{{ shop.name }}" />
+      
+      <!-- OPTION 2: Use your theme's header logo (uncomment below, comment out Option 1) -->
+      <!-- 
+      {%- if settings.logo != blank -%}
+        {{ settings.logo | image_url: width: 360 | image_tag: alt: shop.name }}
+      {%- else -%}
+        <span style="font-family: Georgia, serif; font-size: 32px; color: #1F1A14;">{{ shop.name }}</span>
+      {%- endif -%}
+      -->
     </div>
     <div class="page-loader__bar">
       <div class="page-loader__progress"></div>
@@ -282,7 +287,7 @@
   document.documentElement.classList.add('is-loading');
   
   var loader = document.getElementById('pageLoader');
-  var minTime = 1800; // Matches animation duration + buffer
+  var minTime = 1800;
   var startTime = Date.now();
   
   function hideLoader() {
@@ -307,7 +312,6 @@
     window.addEventListener('load', checkAndHide);
   }
   
-  // Fallback for slow connections
   setTimeout(hideLoader, 5000);
 })();
 </script>
