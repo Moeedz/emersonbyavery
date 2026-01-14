@@ -152,6 +152,167 @@
 {% endcomment %}
 <body id="{{ page_title | handle }}" class="{% if template == 'page.contact' %}contact-page {% endif %}{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}{% unless settings.animations_enabled %} animations-disabled{% endunless %}{% if settings.page_fade_enabled %} page-fade{% endif %}{% if settings.color_body_bg == settings.header-bg-color %} white--match{% endif %}{% if settings.product-grid != 'natural' %} images-aspect-ratio{% endif %} ">
 
+  {% comment %}
+  ============================================================
+  PAGE LOADER — DIRECT INSTALL VERSION
+  ============================================================
+  
+  INSTALLATION (2 minutes):
+  
+  1. Go to Online Store → Themes → Edit Code
+  2. Open layout/theme.liquid
+  3. Find the opening <body> tag (around line 100-150)
+  4. Paste this ENTIRE code block right after <body ...>
+  5. Save and test!
+  
+  To customize colors, edit the CSS variables at the top.
+  ============================================================
+{% endcomment %}
+
+<!-- ========== PAGE LOADER START ========== -->
+<style id="page-loader-styles">
+  /* === CUSTOMIZE THESE COLORS === */
+  :root {
+    --loader-bg: #FDF9F6;           /* Background color */
+    --loader-text: #1F1A14;         /* Logo text color */
+    --loader-accent: #E85D75;       /* Progress bar + subtitle */
+    --loader-bar-bg: #E8E2DB;       /* Progress bar track */
+    --loader-duration: 1.5s;        /* How long the animation takes */
+  }
+
+  /* Prevent scroll during load */
+  html.is-loading { overflow: hidden; }
+  html.is-loading body { overflow: hidden; }
+
+  /* Loader Container */
+  .page-loader {
+    position: fixed;
+    inset: 0;
+    background: var(--loader-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+  }
+
+  .page-loader.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .page-loader__content {
+    text-align: center;
+  }
+
+  /* Logo */
+  .page-loader__logo {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(28px, 5vw, 36px);
+    font-weight: 500;
+    color: var(--loader-text);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: loaderFadeIn 0.6s ease forwards;
+  }
+
+  .page-loader__logo span {
+    display: block;
+    font-family: 'Caveat', cursive;
+    font-size: clamp(16px, 3vw, 18px);
+    color: var(--loader-accent);
+    margin-top: 4px;
+  }
+
+  /* Progress Bar */
+  .page-loader__bar {
+    width: min(200px, 60vw);
+    height: 3px;
+    background: var(--loader-bar-bg);
+    border-radius: 3px;
+    overflow: hidden;
+    margin: 0 auto;
+    opacity: 0;
+    animation: loaderFadeIn 0.6s ease 0.2s forwards;
+  }
+
+  .page-loader__progress {
+    height: 100%;
+    width: 0;
+    background: var(--loader-accent);
+    border-radius: 3px;
+    animation: loaderProgress var(--loader-duration) ease forwards;
+  }
+
+  /* Keyframes */
+  @keyframes loaderFadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes loaderProgress {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+
+  /* Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    .page-loader__logo,
+    .page-loader__bar { animation: none; opacity: 1; }
+    .page-loader__progress { animation: none; width: 100%; }
+    .page-loader { transition: none; }
+  }
+</style>
+
+<div class="page-loader" id="pageLoader" aria-hidden="true">
+  <div class="page-loader__content">
+    <div class="page-loader__logo">
+      Emerson
+      <span>by Avery</span>
+    </div>
+    <div class="page-loader__bar">
+      <div class="page-loader__progress"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  document.documentElement.classList.add('is-loading');
+  
+  var loader = document.getElementById('pageLoader');
+  var minTime = 1800; // Matches animation duration + buffer
+  var startTime = Date.now();
+  
+  function hideLoader() {
+    loader.classList.add('is-hidden');
+    document.documentElement.classList.remove('is-loading');
+    setTimeout(function() {
+      loader.remove();
+      var styles = document.getElementById('page-loader-styles');
+      if (styles) styles.remove();
+    }, 600);
+  }
+  
+  function checkAndHide() {
+    var elapsed = Date.now() - startTime;
+    var remaining = Math.max(0, minTime - elapsed);
+    setTimeout(hideLoader, remaining);
+  }
+  
+  if (document.readyState === 'complete') {
+    checkAndHide();
+  } else {
+    window.addEventListener('load', checkAndHide);
+  }
+  
+  // Fallback for slow connections
+  setTimeout(hideLoader, 5000);
+})();
+</script>
+<!-- ========== PAGE LOADER END ========== -->
+
   <noscript>{{ 'swiper.min.css' | asset_url | stylesheet_tag }}</noscript>
   <noscript>{{ 'photoswipe.min.css' | asset_url | stylesheet_tag }}</noscript>
   {% if settings.animations_enabled %}
