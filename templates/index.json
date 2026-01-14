@@ -9,46 +9,23 @@
  */
 {
   "sections": {
-    "image_slideshow_tAgibD": {
-      "type": "image--slideshow",
-      "blocks": {
-        "image_9BdwVB": {
-          "type": "image",
-          "settings": {
-            "title": "Make a great \nfirst impression",
-            "text": "Add images and text to give focus to your chosen product, collection, or blog post",
-            "first_button_label": "Shop now",
-            "first_button_link": "shopify://collections/all",
-            "second_button_label": "Learn more",
-            "second_button_link": "",
-            "desktop-caption-heading-size": 80,
-            "desktop-caption-body-text-size": 24,
-            "text_position": "center_left",
-            "mobile-caption-heading-size": 36,
-            "mobile-caption-body-text-size": 16,
-            "mobile_text_position": "center_left",
-            "image_overlay": "#262428",
-            "image_overlay_opacity": 0,
-            "caption-text": "#242424",
-            "button-text": "#ffffff",
-            "button-background": "#242424",
-            "hover-button-background": "#9F9F9F"
-          }
-        }
-      },
-      "block_order": [
-        "image_9BdwVB"
-      ],
-      "name": "t:sections.image--slideshow.presets.name",
+    "hero_banner_bmWw8c": {
+      "type": "hero-banner",
+      "name": "Hero Banner",
       "settings": {
-        "desktop_height": "full_screen",
-        "mobile_height": "extra_large",
-        "slide_navigation_style": "bars",
-        "slide_transition_delay": 7
+        "eyebrow": "Tiny Artist. Big Imagination.",
+        "heading": "Art Made with Heart",
+        "subheading": "Every piece in our shop brings a slice of 7-year-old Avery's colorful world into yours.",
+        "hero_image": "shopify://shop_images/rainbow_heart_without_background_2.webp",
+        "primary_text": "Shop Collection",
+        "primary_link": "",
+        "secondary_text": "Meet Avery",
+        "secondary_link": "",
+        "bg_color": "#FDF9F6"
       }
     }
   },
   "order": [
-    "image_slideshow_tAgibD"
+    "hero_banner_bmWw8c"
   ]
 }
