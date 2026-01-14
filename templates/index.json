@@ -11,6 +11,9 @@
   "sections": {
     "hero_banner_bmWw8c": {
       "type": "hero-banner",
+      "custom_css": [
+        ".btn--secondary {margin-top: 0 !important;}"
+      ],
       "name": "Hero Banner",
       "settings": {
         "eyebrow": "Tiny Artist. Big Imagination.",
