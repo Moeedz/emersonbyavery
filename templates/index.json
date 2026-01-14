@@ -20,7 +20,7 @@
         "primary_text": "Shop Now",
         "primary_link": "shopify://collections/rainbow-heart-collection",
         "secondary_text": "Meet Avery",
-        "secondary_link": "",
+        "secondary_link": "shopify://pages/about-us",
         "show_scroll_indicator": false,
         "scroll_text": "Scroll to explore",
         "bg_color": "#fdf9f6"
