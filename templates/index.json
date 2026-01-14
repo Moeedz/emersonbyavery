@@ -21,7 +21,9 @@
         "primary_link": "shopify://collections/rainbow-heart-collection",
         "secondary_text": "Meet Avery",
         "secondary_link": "",
-        "bg_color": "#FDF9F6"
+        "show_scroll_indicator": false,
+        "scroll_text": "Scroll to explore",
+        "bg_color": "#fdf9f6"
       }
     }
   },
