@@ -1,37 +1,48 @@
 {% comment %}
-  Hero Banner Section — Emerson by Avery
-  Premium Flow-Style Animations
-  
-  Features:
-  - Split text headline animation
-  - Staggered fade-up reveals
-  - Floating heart with pulse
-  - Sparkle animations
-  - Scroll indicator
-  - Mobile-first responsive
+  ════════════════════════════════════════════════════════════════
+  EMERSON BY AVERY — PREMIUM HERO BANNER
+  Flow-level animations with floating elements
+  ════════════════════════════════════════════════════════════════
 {% endcomment %}
 
-{{ 'section-hero-banner.css' | asset_url | stylesheet_tag }}
+{{ 'emerson-animations.css' | asset_url | stylesheet_tag }}
+{{ 'section-emerson-hero.css' | asset_url | stylesheet_tag }}
 
 <section 
-  class="hero-banner" 
+  class="emerson-hero"
   data-section-id="{{ section.id }}"
-  data-section-type="hero-banner"
-  style="--hero-bg: {{ section.settings.bg_color }};"
+  style="
+    --hero-bg: {{ section.settings.bg_color }};
+    --hero-blob-1: {{ section.settings.blob_color_1 }};
+    --hero-blob-2: {{ section.settings.blob_color_2 }};
+    --hero-blob-3: {{ section.settings.blob_color_3 }};
+  "
 >
-  <div class="hero-banner__bg"></div>
-  
-  <div class="hero-banner__container">
+  <!-- Animated Background Blobs -->
+  <div class="emerson-hero__bg" aria-hidden="true">
+    <div class="emerson-hero__blob emerson-hero__blob--1"></div>
+    <div class="emerson-hero__blob emerson-hero__blob--2"></div>
+    <div class="emerson-hero__blob emerson-hero__blob--3"></div>
+  </div>
+
+  <div class="emerson-hero__container">
     <!-- Content -->
-    <div class="hero-banner__content">
+    <div class="emerson-hero__content">
+      {%- if section.settings.show_badge -%}
+        <div class="emerson-hero__badge" data-animate="fade-up">
+          <span class="emerson-hero__badge-dot"></span>
+          <span>{{ section.settings.badge_text }}</span>
+        </div>
+      {%- endif -%}
+
       {%- if section.settings.eyebrow != blank -%}
-        <span class="hero-banner__eyebrow" data-animate="fade-up">
+        <span class="emerson-hero__eyebrow" data-animate="fade-up" data-delay="1">
           {{ section.settings.eyebrow }}
         </span>
       {%- endif -%}
 
       {%- if section.settings.heading != blank -%}
-        <h1 class="hero-banner__title" data-animate="split-text">
+        <h1 class="emerson-hero__title" data-animate="split-text">
           {%- assign words = section.settings.heading | split: ' ' -%}
           {%- for word in words -%}
             <span class="word"><span>{{ word }}</span></span>
@@ -40,14 +51,14 @@
       {%- endif -%}
 
       {%- if section.settings.subheading != blank -%}
-        <p class="hero-banner__subtitle" data-animate="fade-up" data-delay="2">
+        <p class="emerson-hero__subtitle" data-animate="fade-up" data-delay="2">
           {{ section.settings.subheading }}
         </p>
       {%- endif -%}
 
-      <div class="hero-banner__ctas" data-animate="fade-up" data-delay="3">
+      <div class="emerson-hero__ctas" data-animate="fade-up" data-delay="3">
         {%- if section.settings.primary_link != blank and section.settings.primary_text != blank -%}
-          <a href="{{ section.settings.primary_link }}" class="btn btn--primary">
+          <a href="{{ section.settings.primary_link }}" class="emerson-btn emerson-btn--primary">
             <span>{{ section.settings.primary_text }}</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -57,33 +68,53 @@
         {%- endif -%}
 
         {%- if section.settings.secondary_link != blank and section.settings.secondary_text != blank -%}
-          <a href="{{ section.settings.secondary_link }}" class="btn btn--secondary">
+          <a href="{{ section.settings.secondary_link }}" class="emerson-btn emerson-btn--secondary">
             <span>{{ section.settings.secondary_text }}</span>
           </a>
         {%- endif -%}
       </div>
+
+      {%- if section.settings.show_stats -%}
+        <div class="emerson-hero__stats" data-animate="fade-up" data-delay="4">
+          <div class="emerson-hero__stat">
+            <div class="emerson-hero__stat-number">
+              <span class="counter" data-target="{{ section.settings.stat_1_number }}">0</span>{{ section.settings.stat_1_suffix }}
+            </div>
+            <div class="emerson-hero__stat-label">{{ section.settings.stat_1_label }}</div>
+          </div>
+          <div class="emerson-hero__stat">
+            <div class="emerson-hero__stat-number">
+              <span class="counter" data-target="{{ section.settings.stat_2_number }}">0</span>{{ section.settings.stat_2_suffix }}
+            </div>
+            <div class="emerson-hero__stat-label">{{ section.settings.stat_2_label }}</div>
+          </div>
+          <div class="emerson-hero__stat">
+            <div class="emerson-hero__stat-number">{{ section.settings.stat_3_value }}</div>
+            <div class="emerson-hero__stat-label">{{ section.settings.stat_3_label }}</div>
+          </div>
+        </div>
+      {%- endif -%}
     </div>
 
     <!-- Visual -->
-    <div class="hero-banner__visual" data-animate="scale-up" data-delay="1">
-      <div class="hero-banner__image-wrapper">
+    <div class="emerson-hero__visual" data-animate="scale-up" data-delay="1">
+      <div class="emerson-hero__image-wrapper">
         {%- if section.settings.hero_image != blank -%}
-          <div class="hero-banner__image">
+          <div class="emerson-hero__image">
             {{
-              section.settings.hero_image | image_url: width: 900 | image_tag:
+              section.settings.hero_image | image_url: width: 1000 | image_tag:
               loading: 'eager',
               fetchpriority: 'high',
-              sizes: '(min-width: 1024px) 450px, (min-width: 768px) 380px, 280px',
-              widths: '280, 380, 450, 560, 760, 900',
-              class: 'hero-banner__img'
+              sizes: '(min-width: 1024px) 500px, (min-width: 768px) 400px, 300px',
+              widths: '300, 400, 500, 600, 800, 1000',
+              class: 'emerson-hero__img'
             }}
           </div>
         {%- else -%}
-          <!-- Animated Rainbow Heart SVG -->
-          <div class="hero-banner__heart">
+          <div class="emerson-hero__heart">
             <svg viewBox="0 0 200 200" class="heart-svg" aria-hidden="true">
               <defs>
-                <linearGradient id="rainbow-gradient-{{ section.id }}" x1="0%" y1="0%" x2="100%" y2="100%">
+                <linearGradient id="heroGradient-{{ section.id }}" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" stop-color="#E85D75"/>
                   <stop offset="25%" stop-color="#F4976C"/>
                   <stop offset="50%" stop-color="#F4C542"/>
@@ -93,7 +124,7 @@
               </defs>
               <path 
                 d="M100 180C60 140 20 110 20 70C20 40 45 20 75 20C90 20 100 35 100 35C100 35 110 20 125 20C155 20 180 40 180 70C180 110 140 140 100 180Z" 
-                fill="url(#rainbow-gradient-{{ section.id }})"
+                fill="url(#heroGradient-{{ section.id }})"
                 class="heart-path"
               />
             </svg>
@@ -101,21 +132,38 @@
         {%- endif -%}
 
         <!-- Floating Sparkles -->
-        <div class="hero-banner__sparkles" aria-hidden="true">
-          <span class="sparkle sparkle--1">✨</span>
-          <span class="sparkle sparkle--2">💖</span>
-          <span class="sparkle sparkle--3">🌟</span>
+        <div class="emerson-hero__sparkles" aria-hidden="true">
+          <span class="sparkle">✨</span>
+          <span class="sparkle">💖</span>
+          <span class="sparkle">🌟</span>
+          <span class="sparkle">🎨</span>
+          <span class="sparkle">🌈</span>
         </div>
+
+        <!-- Floating Product Cards -->
+        {%- if section.settings.show_floating_products -%}
+          <div class="emerson-hero__products" aria-hidden="true">
+            <div class="emerson-hero__product emerson-hero__product--1">
+              <div class="emerson-hero__product-img" style="background: linear-gradient(135deg, #FFE4E8, #FFF0F3);">🌈</div>
+            </div>
+            <div class="emerson-hero__product emerson-hero__product--2">
+              <div class="emerson-hero__product-img" style="background: linear-gradient(135deg, #FFF5E6, #FFFAED);">☀️</div>
+            </div>
+            <div class="emerson-hero__product emerson-hero__product--3">
+              <div class="emerson-hero__product-img" style="background: linear-gradient(135deg, #E8F4E8, #F0FAF0);">🌳</div>
+            </div>
+          </div>
+        {%- endif -%}
       </div>
     </div>
   </div>
 
   <!-- Scroll Indicator -->
   {%- if section.settings.show_scroll_indicator -%}
-    <div class="hero-banner__scroll-indicator" data-animate="fade-up" data-delay="4">
-      <span>{{ section.settings.scroll_text | default: 'Scroll to explore' }}</span>
-      <div class="scroll-line">
-        <div class="scroll-dot"></div>
+    <div class="emerson-hero__scroll" data-animate="fade-up" data-delay="5">
+      <span>Scroll to explore</span>
+      <div class="emerson-hero__scroll-line">
+        <div class="emerson-hero__scroll-dot"></div>
       </div>
     </div>
   {%- endif -%}
@@ -126,49 +174,69 @@
     const section = document.querySelector('[data-section-id="{{ section.id }}"]');
     if (!section) return;
 
-    // Intersection Observer for scroll animations
-    const observerOptions = {
-      threshold: 0.15,
-      rootMargin: '0px 0px -80px 0px'
-    };
-
+    // Animation Observer
+    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
+          entry.target.classList.add('in-view');
           observer.unobserve(entry.target);
         }
       });
     }, observerOptions);
 
-    // Observe all animated elements
-    section.querySelectorAll('[data-animate]').forEach(el => {
-      observer.observe(el);
+    // Trigger hero animations immediately (above fold)
+    setTimeout(() => {
+      section.querySelectorAll('[data-animate]').forEach(el => {
+        el.classList.add('in-view');
+      });
+    }, 100);
+
+    // Counter Animation
+    const counters = section.querySelectorAll('.counter');
+    counters.forEach(counter => {
+      const target = parseInt(counter.dataset.target);
+      const duration = 2000;
+      const step = target / (duration / 16);
+      let current = 0;
+
+      const updateCounter = () => {
+        current += step;
+        if (current < target) {
+          counter.textContent = Math.floor(current);
+          requestAnimationFrame(updateCounter);
+        } else {
+          counter.textContent = target;
+        }
+      };
+
+      setTimeout(updateCounter, 800);
     });
-
-    // Trigger hero animations on load (above the fold)
-    const triggerHeroAnimations = () => {
-      setTimeout(() => {
-        section.querySelectorAll('[data-animate]').forEach(el => {
-          el.classList.add('is-visible');
-        });
-      }, 100);
-    };
-
-    if (document.readyState === 'complete') {
-      triggerHeroAnimations();
-    } else {
-      window.addEventListener('load', triggerHeroAnimations);
-    }
   })();
 </script>
 
 {% schema %}
 {
-  "name": "Hero Banner",
+  "name": "🌟 Hero Banner",
   "tag": "section",
-  "class": "section-hero-banner",
+  "class": "section-emerson-hero",
   "settings": [
+    {
+      "type": "header",
+      "content": "Badge"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_badge",
+      "label": "Show badge",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge text",
+      "default": "Now Shipping Worldwide"
+    },
     {
       "type": "header",
       "content": "Content"
@@ -176,7 +244,7 @@
     {
       "type": "text",
       "id": "eyebrow",
-      "label": "Eyebrow Text",
+      "label": "Eyebrow text",
       "default": "Tiny Artist. Big Imagination."
     },
     {
@@ -190,7 +258,7 @@
       "type": "textarea",
       "id": "subheading",
       "label": "Subheading",
-      "default": "Every piece in our shop brings a slice of 7-year-old Avery's colorful world into yours."
+      "default": "Every piece in our shop brings a slice of 7-year-old Avery's colorful world into yours. Unique, joyful, and made with pure imagination."
     },
     {
       "type": "header",
@@ -199,8 +267,14 @@
     {
       "type": "image_picker",
       "id": "hero_image",
-      "label": "Hero Image",
-      "info": "Recommended: 900x900px. Leave empty to show animated rainbow heart."
+      "label": "Hero image",
+      "info": "Recommended: 1000x1000px. Leave empty for animated rainbow heart."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_floating_products",
+      "label": "Show floating product cards",
+      "default": true
     },
     {
       "type": "header",
@@ -209,13 +283,13 @@
     {
       "type": "text",
       "id": "primary_text",
-      "label": "Button Text",
+      "label": "Button text",
       "default": "Shop Collection"
     },
     {
       "type": "url",
       "id": "primary_link",
-      "label": "Button Link"
+      "label": "Button link"
     },
     {
       "type": "header",
@@ -224,29 +298,71 @@
     {
       "type": "text",
       "id": "secondary_text",
-      "label": "Button Text",
+      "label": "Button text",
       "default": "Meet Avery"
     },
     {
       "type": "url",
       "id": "secondary_link",
-      "label": "Button Link"
+      "label": "Button link"
     },
     {
       "type": "header",
-      "content": "Scroll Indicator"
+      "content": "Stats"
     },
     {
       "type": "checkbox",
-      "id": "show_scroll_indicator",
-      "label": "Show scroll indicator",
+      "id": "show_stats",
+      "label": "Show stats",
       "default": true
     },
     {
+      "type": "number",
+      "id": "stat_1_number",
+      "label": "Stat 1 number",
+      "default": 500
+    },
+    {
       "type": "text",
-      "id": "scroll_text",
-      "label": "Scroll Text",
-      "default": "Scroll to explore"
+      "id": "stat_1_suffix",
+      "label": "Stat 1 suffix",
+      "default": "+"
+    },
+    {
+      "type": "text",
+      "id": "stat_1_label",
+      "label": "Stat 1 label",
+      "default": "Happy Customers"
+    },
+    {
+      "type": "number",
+      "id": "stat_2_number",
+      "label": "Stat 2 number",
+      "default": 45
+    },
+    {
+      "type": "text",
+      "id": "stat_2_suffix",
+      "label": "Stat 2 suffix",
+      "default": "+"
+    },
+    {
+      "type": "text",
+      "id": "stat_2_label",
+      "label": "Stat 2 label",
+      "default": "Original Designs"
+    },
+    {
+      "type": "text",
+      "id": "stat_3_value",
+      "label": "Stat 3 value",
+      "default": "5.0"
+    },
+    {
+      "type": "text",
+      "id": "stat_3_label",
+      "label": "Stat 3 label",
+      "default": "Star Rating"
     },
     {
       "type": "header",
@@ -255,13 +371,37 @@
     {
       "type": "color",
       "id": "bg_color",
-      "label": "Background Color",
+      "label": "Background color",
       "default": "#FDF9F6"
+    },
+    {
+      "type": "color",
+      "id": "blob_color_1",
+      "label": "Blob 1 color",
+      "default": "#F8A5B5"
+    },
+    {
+      "type": "color",
+      "id": "blob_color_2",
+      "label": "Blob 2 color",
+      "default": "#F4C542"
+    },
+    {
+      "type": "color",
+      "id": "blob_color_3",
+      "label": "Blob 3 color",
+      "default": "#9CB69C"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_scroll_indicator",
+      "label": "Show scroll indicator",
+      "default": true
     }
   ],
   "presets": [
     {
-      "name": "Hero Banner"
+      "name": "🌟 Hero Banner"
     }
   ]
 }
