@@ -1,0 +1,250 @@
+/* =====================================================
+   EMERSON PRODUCTS — Premium Styles
+   ===================================================== */
+
+.emerson-products {
+  padding: 80px 24px;
+  background: var(--section-bg, white);
+}
+
+@media (min-width: 768px) {
+  .emerson-products {
+    padding: 120px 48px;
+  }
+}
+
+.emerson-products__container {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+/* Grid */
+.emerson-products__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+@media (min-width: 768px) {
+  .emerson-products__grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+  }
+}
+
+/* Product Card */
+.emerson-product-card {
+  position: relative;
+}
+
+.emerson-product-card__link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.emerson-product-card__media {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 24px;
+  overflow: hidden;
+  margin-bottom: 18px;
+  background: var(--emerson-cream);
+}
+
+/* Product Images */
+.emerson-product-image,
+.emerson-product-image-hover {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.6s var(--ease-out);
+}
+
+.emerson-product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.emerson-product-emoji {
+  font-size: 64px;
+  transition: transform 0.6s var(--ease-out);
+}
+
+@media (min-width: 768px) {
+  .emerson-product-emoji {
+    font-size: 80px;
+  }
+}
+
+.emerson-product-image-hover {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.emerson-product-card:hover .emerson-product-image {
+  opacity: 0;
+  transform: scale(1.1);
+}
+
+.emerson-product-card:hover .emerson-product-image-hover {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Badge */
+.emerson-product-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  padding: 8px 16px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: 100px;
+  z-index: 2;
+}
+
+.emerson-product-badge--bestseller {
+  background: var(--emerson-primary);
+  color: white;
+}
+
+.emerson-product-badge--new {
+  background: var(--emerson-accent);
+  color: var(--emerson-text);
+}
+
+.emerson-product-badge--sale {
+  background: var(--emerson-text);
+  color: white;
+}
+
+/* Wishlist Button */
+.emerson-product-wishlist {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 40px;
+  height: 40px;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.3s var(--ease-out);
+  z-index: 2;
+  cursor: pointer;
+  color: var(--emerson-text);
+}
+
+.emerson-product-card:hover .emerson-product-wishlist {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.emerson-product-wishlist:hover {
+  background: var(--emerson-primary);
+  color: white;
+}
+
+/* Product Info */
+.emerson-product-card__info {
+  padding: 0 6px;
+}
+
+.emerson-product-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--emerson-text);
+  margin: 0 0 6px 0;
+  line-height: 1.35;
+  transition: color 0.3s ease;
+}
+
+.emerson-product-card:hover .emerson-product-title {
+  color: var(--emerson-primary);
+}
+
+.emerson-product-price {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.emerson-product-price__current {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--emerson-text);
+}
+
+.emerson-product-price__compare {
+  font-size: 14px;
+  color: var(--emerson-text-muted);
+  text-decoration: line-through;
+}
+
+/* Quick Add Button */
+.emerson-quick-add {
+  position: absolute;
+  bottom: 85px;
+  left: 14px;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px;
+  background: var(--emerson-text);
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: all 0.4s var(--ease-out);
+  cursor: pointer;
+}
+
+.emerson-product-card:hover .emerson-quick-add {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.emerson-quick-add:hover:not(:disabled) {
+  background: var(--emerson-primary);
+}
+
+.emerson-quick-add:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.emerson-quick-add--soldout {
+  background: var(--emerson-text-muted);
+}
+
+/* Focus States */
+.emerson-product-card__link:focus-visible {
+  outline: 3px solid var(--emerson-primary);
+  outline-offset: 4px;
+  border-radius: 24px;
+}
+
+.emerson-product-wishlist:focus-visible,
+.emerson-quick-add:focus-visible {
+  outline: 2px solid var(--emerson-primary);
+  outline-offset: 2px;
+}
