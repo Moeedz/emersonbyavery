@@ -1,0 +1,238 @@
+/* =====================================================
+   EMERSON STORY (MEET AVERY) — Premium Styles
+   ===================================================== */
+
+.emerson-story {
+  padding: 80px 24px;
+  background: var(--section-bg, var(--emerson-cream));
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .emerson-story {
+    padding: 140px 48px;
+  }
+}
+
+.emerson-story__container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 56px;
+  max-width: 1300px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .emerson-story__container {
+    grid-template-columns: 1.1fr 1fr;
+    gap: 100px;
+  }
+}
+
+/* Visual Side */
+.emerson-story__visual {
+  position: relative;
+}
+
+.emerson-story__image-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.emerson-story__image {
+  border-radius: 20px;
+  overflow: hidden;
+  background: white;
+}
+
+.emerson-story__image--main {
+  grid-column: span 2;
+  aspect-ratio: 16 / 10;
+}
+
+.emerson-story__image--small {
+  aspect-ratio: 1;
+}
+
+.emerson-story__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.emerson-story__image-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 64px;
+}
+
+@media (min-width: 768px) {
+  .emerson-story__image-inner {
+    font-size: 80px;
+  }
+}
+
+/* Floating Badge */
+.emerson-story__badge {
+  position: absolute;
+  bottom: -20px;
+  right: 20px;
+  background: white;
+  padding: 16px 24px;
+  border-radius: 16px;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+@media (min-width: 768px) {
+  .emerson-story__badge {
+    bottom: 30px;
+    right: -30px;
+  }
+}
+
+.emerson-story__badge-icon {
+  width: 48px;
+  height: 48px;
+  background: var(--emerson-accent);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.emerson-story__badge-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--emerson-text);
+}
+
+.emerson-story__badge-text span {
+  display: block;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--emerson-text-muted);
+}
+
+/* Content Side */
+.emerson-story__content {
+  text-align: center;
+}
+
+@media (min-width: 1024px) {
+  .emerson-story__content {
+    text-align: left;
+  }
+}
+
+.emerson-story__text {
+  font-size: 17px;
+  line-height: 1.85;
+  color: var(--emerson-text-light);
+  margin-bottom: 24px;
+}
+
+@media (min-width: 768px) {
+  .emerson-story__text {
+    font-size: 18px;
+  }
+}
+
+/* Quote */
+.emerson-story__quote {
+  position: relative;
+  padding: 32px;
+  background: white;
+  border-radius: 24px;
+  margin: 32px 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.emerson-story__quote-mark {
+  position: absolute;
+  top: -20px;
+  left: 28px;
+  font-family: var(--font-display);
+  font-size: 120px;
+  color: var(--emerson-primary);
+  opacity: 0.12;
+  line-height: 1;
+}
+
+.emerson-story__quote p {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-style: italic;
+  color: var(--emerson-text);
+  margin: 0 0 12px 0;
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .emerson-story__quote p {
+    font-size: 28px;
+  }
+}
+
+.emerson-story__quote cite {
+  font-family: var(--font-accent);
+  font-size: 22px;
+  font-style: normal;
+  color: var(--emerson-primary);
+}
+
+/* Signature */
+.emerson-story__signature {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+@media (min-width: 1024px) {
+  .emerson-story__signature {
+    justify-content: flex-start;
+  }
+}
+
+.emerson-story__signature-avatar {
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, #FFE4E8, #FFF5E6);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  overflow: hidden;
+}
+
+.emerson-story__signature-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.emerson-story__signature-info {
+  text-align: left;
+}
+
+.emerson-story__signature-name {
+  font-family: var(--font-accent);
+  font-size: 22px;
+  color: var(--emerson-text);
+}
+
+.emerson-story__signature-title {
+  font-size: 13px;
+  color: var(--emerson-text-muted);
+}
