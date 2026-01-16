@@ -1,0 +1,250 @@
+{% comment %}
+  ════════════════════════════════════════════════════════════════
+  EMERSON BY AVERY — SHOP BY COLLECTION
+  Premium collection cards with hover effects
+  ════════════════════════════════════════════════════════════════
+{% endcomment %}
+
+{{ 'section-emerson-collections.css' | asset_url | stylesheet_tag }}
+
+<section 
+  class="emerson-collections"
+  data-section-id="{{ section.id }}"
+  style="--section-bg: {{ section.settings.bg_color }};"
+>
+  <div class="emerson-collections__container">
+    <!-- Section Header -->
+    <div class="emerson-section-header" data-animate="fade-up">
+      <div>
+        {%- if section.settings.tag != blank -%}
+          <span class="emerson-section-tag">{{ section.settings.tag }}</span>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 class="emerson-section-title">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.subheading != blank -%}
+          <p class="emerson-section-subtitle">{{ section.settings.subheading }}</p>
+        {%- endif -%}
+      </div>
+      {%- if section.settings.view_all_link != blank -%}
+        <a href="{{ section.settings.view_all_link }}" class="emerson-section-link">
+          {{ section.settings.view_all_text | default: 'View all collections' }}
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </a>
+      {%- endif -%}
+    </div>
+
+    <!-- Collections Grid -->
+    <div class="emerson-collections__grid">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'collection' -%}
+            {%- assign collection = collections[block.settings.collection] -%}
+            <a 
+              href="{{ collection.url | default: '#' }}" 
+              class="emerson-collection-card"
+              data-animate="fade-up"
+              data-delay="{{ forloop.index }}"
+              {{ block.shopify_attributes }}
+            >
+              <div 
+                class="emerson-collection-card__bg"
+                style="background: {{ block.settings.gradient | default: 'linear-gradient(135deg, #E85D75, #C94D63)' }};"
+              >
+                {%- if block.settings.image != blank -%}
+                  {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy', class: 'emerson-collection-card__img' }}
+                {%- endif -%}
+              </div>
+              <div class="emerson-collection-card__overlay"></div>
+              
+              {%- if block.settings.emoji != blank -%}
+                <span class="emerson-collection-card__emoji">{{ block.settings.emoji }}</span>
+              {%- endif -%}
+              
+              <div class="emerson-collection-card__content">
+                <h3>{{ block.settings.title | default: collection.title | default: 'Collection' }}</h3>
+                <span class="emerson-collection-card__count">
+                  {%- if collection != blank -%}
+                    {{ collection.products_count }} products
+                  {%- else -%}
+                    {{ block.settings.count | default: '0 products' }}
+                  {%- endif -%}
+                </span>
+              </div>
+              
+              <div class="emerson-collection-card__arrow">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+                </svg>
+              </div>
+            </a>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<script>
+  (function() {
+    const section = document.querySelector('[data-section-id="{{ section.id }}"]');
+    if (!section) return;
+
+    const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -80px 0px' };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+        }
+      });
+    }, observerOptions);
+
+    section.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "🎨 Shop by Collection",
+  "tag": "section",
+  "class": "section-emerson-collections",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "tag",
+      "label": "Tag",
+      "default": "Collections"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Shop by Collection"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Discover artwork organized by theme — from cheerful rainbows to whimsical nature scenes."
+    },
+    {
+      "type": "header",
+      "content": "Link"
+    },
+    {
+      "type": "text",
+      "id": "view_all_text",
+      "label": "View all text",
+      "default": "View all collections"
+    },
+    {
+      "type": "url",
+      "id": "view_all_link",
+      "label": "View all link"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#FFFFFF"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Custom title",
+          "info": "Leave blank to use collection title"
+        },
+        {
+          "type": "text",
+          "id": "count",
+          "label": "Custom count",
+          "default": "12 products",
+          "info": "Shown if no collection selected"
+        },
+        {
+          "type": "text",
+          "id": "emoji",
+          "label": "Emoji overlay",
+          "default": "🎨"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Background image",
+          "info": "Optional. Overrides gradient."
+        },
+        {
+          "type": "text",
+          "id": "gradient",
+          "label": "Background gradient",
+          "default": "linear-gradient(135deg, #E85D75, #C94D63)",
+          "info": "CSS gradient value"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "🎨 Shop by Collection",
+      "blocks": [
+        {
+          "type": "collection",
+          "settings": {
+            "title": "Note Cards",
+            "emoji": "💌",
+            "count": "12 products",
+            "gradient": "linear-gradient(135deg, #E85D75, #C94D63)"
+          }
+        },
+        {
+          "type": "collection",
+          "settings": {
+            "title": "Rainbow Heart",
+            "emoji": "🌈",
+            "count": "8 products",
+            "gradient": "linear-gradient(135deg, #F4C542, #D4A832)"
+          }
+        },
+        {
+          "type": "collection",
+          "settings": {
+            "title": "Fine Art Prints",
+            "emoji": "🎨",
+            "count": "15 products",
+            "gradient": "linear-gradient(135deg, #6B9AC4, #4A7AAA)"
+          }
+        },
+        {
+          "type": "collection",
+          "settings": {
+            "title": "Apparel",
+            "emoji": "👕",
+            "count": "10 products",
+            "gradient": "linear-gradient(135deg, #9CB69C, #7A9A7A)"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
