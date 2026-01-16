@@ -1,0 +1,227 @@
+{% comment %}
+  ════════════════════════════════════════════════════════════════
+  EMERSON BY AVERY — NEWSLETTER
+  Email signup with animated background shapes
+  ════════════════════════════════════════════════════════════════
+{% endcomment %}
+
+{{ 'section-emerson-newsletter.css' | asset_url | stylesheet_tag }}
+
+<section 
+  class="emerson-newsletter"
+  data-section-id="{{ section.id }}"
+  style="--section-bg: {{ section.settings.bg_color }};"
+>
+  <div class="emerson-newsletter__container" data-animate="fade-up">
+    <!-- Background Shapes -->
+    <div class="emerson-newsletter__shapes" aria-hidden="true">
+      <div class="emerson-newsletter__shape emerson-newsletter__shape--1"></div>
+      <div class="emerson-newsletter__shape emerson-newsletter__shape--2"></div>
+      <div class="emerson-newsletter__shape emerson-newsletter__shape--3"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="emerson-newsletter__content">
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="emerson-newsletter__eyebrow">{{ section.settings.eyebrow }}</span>
+      {%- endif -%}
+      
+      {%- if section.settings.heading != blank -%}
+        <h2 class="emerson-newsletter__title">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      
+      {%- if section.settings.text != blank -%}
+        <p class="emerson-newsletter__text">{{ section.settings.text }}</p>
+      {%- endif -%}
+
+      <!-- Newsletter Form -->
+      {%- form 'customer', class: 'emerson-newsletter__form' -%}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        
+        <div class="emerson-newsletter__input-group">
+          <input 
+            type="email" 
+            name="contact[email]" 
+            placeholder="{{ section.settings.placeholder | default: 'Enter your email' }}"
+            required
+            autocomplete="email"
+            aria-label="{{ section.settings.placeholder | default: 'Enter your email' }}"
+          >
+          <button type="submit" class="emerson-btn emerson-btn--white">
+            <span>{{ section.settings.button_text | default: 'Subscribe' }}</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </button>
+        </div>
+        
+        {%- if form.posted_successfully? -%}
+          <p class="emerson-newsletter__success">
+            {{ section.settings.success_message | default: '🎉 Thanks for subscribing!' }}
+          </p>
+        {%- endif -%}
+        
+        {%- if form.errors -%}
+          <p class="emerson-newsletter__error">
+            {{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}
+          </p>
+        {%- endif -%}
+      {%- endform -%}
+
+      <!-- Perks -->
+      {%- if section.settings.show_perks -%}
+        <div class="emerson-newsletter__perks">
+          {%- for block in section.blocks -%}
+            {%- case block.type -%}
+              {%- when 'perk' -%}
+                <span class="emerson-newsletter__perk" {{ block.shopify_attributes }}>
+                  <span class="emerson-newsletter__perk-icon">{{ block.settings.emoji }}</span>
+                  {{ block.settings.text }}
+                </span>
+            {%- endcase -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+<script>
+  (function() {
+    const section = document.querySelector('[data-section-id="{{ section.id }}"]');
+    if (!section) return;
+
+    const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -80px 0px' };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+        }
+      });
+    }, observerOptions);
+
+    section.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "📧 Newsletter",
+  "tag": "section",
+  "class": "section-emerson-newsletter",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Stay Connected"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Join Avery's Creative Club"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "Be the first to see new artwork, get exclusive offers, and peek behind the scenes at Avery's creative process."
+    },
+    {
+      "type": "header",
+      "content": "Form"
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Input placeholder",
+      "default": "Enter your email"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Subscribe"
+    },
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "Success message",
+      "default": "🎉 Thanks for subscribing!"
+    },
+    {
+      "type": "header",
+      "content": "Perks"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_perks",
+      "label": "Show perks",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#FFFFFF"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "perk",
+      "name": "Perk",
+      "settings": [
+        {
+          "type": "text",
+          "id": "emoji",
+          "label": "Emoji",
+          "default": "🎁"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "10% off first order"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "📧 Newsletter",
+      "blocks": [
+        {
+          "type": "perk",
+          "settings": {
+            "emoji": "🎁",
+            "text": "10% off first order"
+          }
+        },
+        {
+          "type": "perk",
+          "settings": {
+            "emoji": "📬",
+            "text": "Weekly inspiration"
+          }
+        },
+        {
+          "type": "perk",
+          "settings": {
+            "emoji": "🎨",
+            "text": "Early access"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
