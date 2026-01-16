@@ -1,0 +1,94 @@
+/* =====================================================
+   EMERSON TRUST BAR — Premium Styles
+   ===================================================== */
+
+.emerson-trust {
+  padding: 48px 24px;
+  background: var(--section-bg, var(--emerson-cream));
+  border-top: 1px solid var(--emerson-border);
+}
+
+@media (min-width: 768px) {
+  .emerson-trust {
+    padding: 64px 48px;
+  }
+}
+
+.emerson-trust__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .emerson-trust__grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 48px;
+  }
+}
+
+/* Trust Item */
+.emerson-trust__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+}
+
+.emerson-trust__item.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Icon */
+.emerson-trust__icon {
+  width: 56px;
+  height: 56px;
+  background: white;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s ease;
+}
+
+.emerson-trust__item:hover .emerson-trust__icon {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.emerson-trust__icon img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+/* Labels */
+.emerson-trust__label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--emerson-text);
+}
+
+.emerson-trust__sublabel {
+  font-size: 12px;
+  color: var(--emerson-text-muted);
+  margin-top: -4px;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .emerson-trust__item {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
