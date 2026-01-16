@@ -1,0 +1,203 @@
+{% comment %}
+  ════════════════════════════════════════════════════════════════
+  EMERSON BY AVERY — STATS IN-VIEW
+  Animated counters that count up when scrolled into view
+  ════════════════════════════════════════════════════════════════
+{% endcomment %}
+
+{{ 'section-emerson-stats.css' | asset_url | stylesheet_tag }}
+
+<section 
+  class="emerson-stats"
+  data-section-id="{{ section.id }}"
+  data-animate="fade-up"
+  style="
+    --stats-bg: {{ section.settings.bg_color }};
+    --stats-text: {{ section.settings.text_color }};
+    --stats-text-muted: {{ section.settings.text_muted_color }};
+  "
+>
+  <div class="emerson-stats__grid">
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when 'stat' -%}
+          <div class="emerson-stats__item" {{ block.shopify_attributes }}>
+            <div class="emerson-stats__number">
+              {%- if block.settings.animate_number -%}
+                <span class="counter" data-target="{{ block.settings.number }}">0</span>{{ block.settings.suffix }}
+              {%- else -%}
+                {{ block.settings.static_value | default: block.settings.number }}{{ block.settings.suffix }}
+              {%- endif -%}
+            </div>
+            <div class="emerson-stats__label">{{ block.settings.label }}</div>
+          </div>
+      {%- endcase -%}
+    {%- endfor -%}
+  </div>
+</section>
+
+<script>
+  (function() {
+    const section = document.querySelector('[data-section-id="{{ section.id }}"]');
+    if (!section) return;
+
+    let animated = false;
+
+    const observerOptions = { threshold: 0.5 };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          
+          // Trigger counter animation only once
+          if (!animated) {
+            animated = true;
+            animateCounters();
+          }
+        }
+      });
+    }, observerOptions);
+
+    observer.observe(section);
+
+    function animateCounters() {
+      const counters = section.querySelectorAll('.counter');
+      
+      counters.forEach(counter => {
+        const target = parseInt(counter.dataset.target);
+        const duration = 2000;
+        const startTime = performance.now();
+
+        const updateCounter = (currentTime) => {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          
+          // Easing function (ease-out)
+          const easeOut = 1 - Math.pow(1 - progress, 3);
+          const current = Math.floor(easeOut * target);
+          
+          counter.textContent = current.toLocaleString();
+          
+          if (progress < 1) {
+            requestAnimationFrame(updateCounter);
+          } else {
+            counter.textContent = target.toLocaleString();
+          }
+        };
+
+        requestAnimationFrame(updateCounter);
+      });
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "📊 Stats In-View",
+  "tag": "section",
+  "class": "section-emerson-stats",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#1F1A14"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_muted_color",
+      "label": "Label color",
+      "default": "rgba(255,255,255,0.6)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "animate_number",
+          "label": "Animate number",
+          "default": true
+        },
+        {
+          "type": "number",
+          "id": "number",
+          "label": "Number value",
+          "default": 500,
+          "info": "For animated counters"
+        },
+        {
+          "type": "text",
+          "id": "static_value",
+          "label": "Static value",
+          "info": "Use this for non-animated values like '100' or '5.0'"
+        },
+        {
+          "type": "text",
+          "id": "suffix",
+          "label": "Suffix",
+          "default": "+",
+          "info": "e.g. +, %, K"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Happy Customers"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "📊 Stats In-View",
+      "blocks": [
+        {
+          "type": "stat",
+          "settings": {
+            "animate_number": true,
+            "number": 500,
+            "suffix": "+",
+            "label": "Happy Customers"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "animate_number": true,
+            "number": 45,
+            "suffix": "+",
+            "label": "Original Designs"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "animate_number": true,
+            "number": 12,
+            "suffix": "",
+            "label": "Countries Shipped"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "animate_number": false,
+            "static_value": "100",
+            "suffix": "%",
+            "label": "5-Star Reviews"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
