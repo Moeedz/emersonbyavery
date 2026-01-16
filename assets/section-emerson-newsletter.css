@@ -1,0 +1,188 @@
+/* =====================================================
+   EMERSON NEWSLETTER — Premium Styles
+   ===================================================== */
+
+.emerson-newsletter {
+  padding: 80px 24px;
+  background: var(--section-bg, white);
+}
+
+@media (min-width: 768px) {
+  .emerson-newsletter {
+    padding: 120px 48px;
+  }
+}
+
+.emerson-newsletter__container {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 56px 32px;
+  background: linear-gradient(135deg, var(--emerson-primary) 0%, var(--emerson-primary-dark) 100%);
+  border-radius: 32px;
+  overflow: hidden;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .emerson-newsletter__container {
+    padding: 80px 72px;
+  }
+}
+
+/* Content */
+.emerson-newsletter__content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Eyebrow */
+.emerson-newsletter__eyebrow {
+  display: block;
+  font-family: var(--font-accent);
+  font-size: 22px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 8px;
+}
+
+/* Title */
+.emerson-newsletter__title {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 400;
+  color: white;
+  margin: 0 0 14px 0;
+}
+
+@media (min-width: 768px) {
+  .emerson-newsletter__title {
+    font-size: 48px;
+  }
+}
+
+/* Text */
+.emerson-newsletter__text {
+  font-size: 17px;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0 auto 36px auto;
+  max-width: 480px;
+  line-height: 1.6;
+}
+
+/* Form */
+.emerson-newsletter__form {
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.emerson-newsletter__input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+@media (min-width: 600px) {
+  .emerson-newsletter__input-group {
+    flex-direction: row;
+  }
+}
+
+.emerson-newsletter__form input[type="email"] {
+  flex: 1;
+  padding: 20px 26px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 100px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.emerson-newsletter__form input[type="email"]::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.emerson-newsletter__form input[type="email"]:focus {
+  outline: none;
+  border-color: white;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Success/Error Messages */
+.emerson-newsletter__success,
+.emerson-newsletter__error {
+  margin-top: 16px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.emerson-newsletter__success {
+  color: white;
+}
+
+.emerson-newsletter__error {
+  color: #FFE4E8;
+}
+
+/* Perks */
+.emerson-newsletter__perks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.emerson-newsletter__perk {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.emerson-newsletter__perk-icon {
+  font-size: 16px;
+}
+
+/* Background Shapes */
+.emerson-newsletter__shapes {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.emerson-newsletter__shape {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.emerson-newsletter__shape--1 {
+  width: 300px;
+  height: 300px;
+  top: -100px;
+  right: -50px;
+}
+
+.emerson-newsletter__shape--2 {
+  width: 200px;
+  height: 200px;
+  bottom: -80px;
+  left: -60px;
+}
+
+.emerson-newsletter__shape--3 {
+  width: 100px;
+  height: 100px;
+  top: 40%;
+  left: 10%;
+}
+
+/* Focus States */
+.emerson-newsletter__form input[type="email"]:focus-visible {
+  outline: 3px solid white;
+  outline-offset: 2px;
+}
