@@ -1,0 +1,148 @@
+{% comment %}
+  ════════════════════════════════════════════════════════════════
+  EMERSON BY AVERY — TRUST BAR IN-VIEW
+  Animated trust badges that appear on scroll
+  ════════════════════════════════════════════════════════════════
+{% endcomment %}
+
+{{ 'section-emerson-trust.css' | asset_url | stylesheet_tag }}
+
+<section 
+  class="emerson-trust"
+  data-section-id="{{ section.id }}"
+  data-animate="fade-up"
+  style="--section-bg: {{ section.settings.bg_color }};"
+>
+  <div class="emerson-trust__grid">
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when 'trust_item' -%}
+          <div class="emerson-trust__item" {{ block.shopify_attributes }}>
+            <div class="emerson-trust__icon">
+              {%- if block.settings.custom_icon != blank -%}
+                {{ block.settings.custom_icon | image_url: width: 60 | image_tag }}
+              {%- else -%}
+                {{ block.settings.emoji | default: '✓' }}
+              {%- endif -%}
+            </div>
+            <div class="emerson-trust__label">{{ block.settings.title }}</div>
+            {%- if block.settings.subtitle != blank -%}
+              <div class="emerson-trust__sublabel">{{ block.settings.subtitle }}</div>
+            {%- endif -%}
+          </div>
+      {%- endcase -%}
+    {%- endfor -%}
+  </div>
+</section>
+
+<script>
+  (function() {
+    const section = document.querySelector('[data-section-id="{{ section.id }}"]');
+    if (!section) return;
+
+    const observerOptions = { threshold: 0.3, rootMargin: '0px 0px -50px 0px' };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          
+          // Stagger animate items
+          const items = entry.target.querySelectorAll('.emerson-trust__item');
+          items.forEach((item, index) => {
+            item.style.transitionDelay = `${index * 0.1}s`;
+            item.classList.add('animate-in');
+          });
+        }
+      });
+    }, observerOptions);
+
+    observer.observe(section);
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "✓ Trust Bar",
+  "tag": "section",
+  "class": "section-emerson-trust",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#FDF9F6"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "trust_item",
+      "name": "Trust Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "emoji",
+          "label": "Emoji",
+          "default": "🚚"
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_icon",
+          "label": "Custom icon",
+          "info": "Optional. Overrides emoji."
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Free Shipping"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "On all orders"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "✓ Trust Bar",
+      "blocks": [
+        {
+          "type": "trust_item",
+          "settings": {
+            "emoji": "🚚",
+            "title": "Free Shipping",
+            "subtitle": "On all orders"
+          }
+        },
+        {
+          "type": "trust_item",
+          "settings": {
+            "emoji": "💝",
+            "title": "Made with Love",
+            "subtitle": "By a 7-year-old artist"
+          }
+        },
+        {
+          "type": "trust_item",
+          "settings": {
+            "emoji": "🔄",
+            "title": "Easy Returns",
+            "subtitle": "30-day guarantee"
+          }
+        },
+        {
+          "type": "trust_item",
+          "settings": {
+            "emoji": "🔒",
+            "title": "Secure Checkout",
+            "subtitle": "256-bit SSL"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
