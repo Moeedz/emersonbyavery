@@ -95,6 +95,9 @@
         "collection_Hkkxrf",
         "collection_dGnFbq"
       ],
+      "custom_css": [
+        ".emerson-collection-card[href=\"/collections/rainbow-heart-collection\"] img {object-fit: contain !important;}"
+      ],
       "name": "🎨 Shop by Collection",
       "settings": {
         "tag": "Collections",
