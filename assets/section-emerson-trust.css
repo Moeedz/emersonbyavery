@@ -3,125 +3,92 @@
    ===================================================== */
 
 .emerson-trust {
-  padding: var(--section-padding-top-mobile, 40px) 24px var(--section-padding-bottom-mobile, 40px);
-  background: var(--section-bg, white);
+  padding: 48px 24px;
+  background: var(--section-bg, var(--emerson-cream));
+  border-top: 1px solid var(--emerson-border);
 }
 
 @media (min-width: 768px) {
   .emerson-trust {
-    padding: var(--section-padding-top, 60px) 48px var(--section-padding-bottom, 60px);
+    padding: 64px 48px;
   }
 }
 
-.emerson-trust__container {
-  max-width: var(--section-max-width, 1200px);
-  margin: 0 auto;
-}
-
-/* Grid */
 .emerson-trust__grid {
   display: grid;
-  grid-template-columns: repeat(var(--grid-columns-mobile, 2), 1fr);
-  gap: var(--grid-gap-mobile, 16px);
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
 @media (min-width: 768px) {
   .emerson-trust__grid {
-    grid-template-columns: repeat(var(--grid-columns, 4), 1fr);
-    gap: var(--grid-gap, 24px);
+    grid-template-columns: repeat(4, 1fr);
+    gap: 48px;
   }
 }
 
-/* Card */
-.emerson-trust__card {
-  background: var(--card-bg, var(--emerson-cream));
-  border-radius: var(--card-border-radius, 20px);
-  padding: var(--card-padding-mobile, 24px);
-  text-align: var(--card-text-align, center);
-  border: var(--card-border-width, 0) solid var(--card-border, transparent);
-  box-shadow: var(--card-shadow, var(--shadow-sm));
-  transition: transform 0.4s var(--ease-out), box-shadow 0.4s ease;
+/* Trust Item */
+.emerson-trust__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
 }
 
-@media (min-width: 768px) {
-  .emerson-trust__card {
-    padding: var(--card-padding, 32px);
-  }
-}
-
-.emerson-trust__card:hover {
-  transform: translateY(calc(var(--hover-lift, 8px) * -1));
-  box-shadow: var(--hover-shadow, var(--shadow-lg));
+.emerson-trust__item.animate-in {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Icon */
 .emerson-trust__icon {
-  width: var(--icon-container-size, 64px);
-  height: var(--icon-container-size, 64px);
-  margin: 0 auto var(--icon-margin-bottom, 16px);
-  background: var(--icon-bg, white);
-  border-radius: var(--icon-border-radius, 50%);
+  width: 56px;
+  height: 56px;
+  background: white;
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 26px;
   box-shadow: var(--shadow-sm);
-  transition: transform 0.4s var(--ease-elastic);
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s ease;
 }
 
-.emerson-trust__card:hover .emerson-trust__icon {
-  transform: scale(1.1) rotate(5deg);
-}
-
-.emerson-trust__emoji {
-  font-size: var(--icon-size, 32px);
-  line-height: 1;
+.emerson-trust__item:hover .emerson-trust__icon {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
 }
 
 .emerson-trust__icon img {
-  width: var(--icon-size, 32px);
-  height: var(--icon-size, 32px);
+  width: 28px;
+  height: 28px;
   object-fit: contain;
 }
 
-/* Title */
-.emerson-trust__title {
-  font-family: var(--font-body);
-  font-size: var(--title-size-mobile, 15px);
-  font-weight: var(--title-weight, 600);
-  line-height: var(--title-line-height, 1.3);
-  letter-spacing: var(--title-letter-spacing, 0);
-  color: var(--title-color, var(--emerson-text));
-  margin: 0 0 var(--title-margin-bottom, 6px) 0;
+/* Labels */
+.emerson-trust__label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--emerson-text);
 }
 
-@media (min-width: 768px) {
-  .emerson-trust__title {
-    font-size: var(--title-size-desktop, 17px);
+.emerson-trust__sublabel {
+  font-size: 12px;
+  color: var(--emerson-text-muted);
+  margin-top: -4px;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .emerson-trust__item {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
-}
-
-/* Subtitle */
-.emerson-trust__subtitle {
-  font-size: var(--subtitle-size-mobile, 13px);
-  font-weight: var(--subtitle-weight, 400);
-  line-height: var(--subtitle-line-height, 1.5);
-  color: var(--subtitle-color, var(--emerson-text-light));
-  margin: 0;
-}
-
-@media (min-width: 768px) {
-  .emerson-trust__subtitle {
-    font-size: var(--subtitle-size-desktop, 14px);
-  }
-}
-
-/* Card alignment variations */
-.emerson-trust__card[style*="text-align: left"] .emerson-trust__icon {
-  margin-left: 0;
-  margin-right: auto;
-}
-
-.emerson-trust__card[style*="text-align: right"] .emerson-trust__icon {
-  margin-left: auto;
-  margin-right: 0;
 }
