@@ -1,4 +1,4 @@
-{% comment %}EMERSON BY AVERY — SHOP BY COLLECTION{% endcomment %}
+{% comment %}EMERSON BY AVERY — COLLECTIONS{% endcomment %}
 {{ 'section-emerson-collections.css' | asset_url | stylesheet_tag }}
 {{ 'emerson-animations.css' | asset_url | stylesheet_tag }}
 
@@ -34,7 +34,7 @@
 
 <section id="emerson-collections-{{ section.id }}" class="emerson-collections">
   <div class="emerson-collections__container">
-    <div class="emerson-section-header" style="text-align: {{ section.settings.header_alignment }};">
+    <div class="emerson-section-header" data-animate="fade-up" style="text-align: {{ section.settings.header_alignment }};">
       {%- if section.settings.tag != blank -%}<span class="emerson-section-tag">{{ section.settings.tag }}</span>{%- endif -%}
       {%- if section.settings.heading != blank -%}<h2 class="emerson-section-title">{{ section.settings.heading }}</h2>{%- endif -%}
       {%- if section.settings.subheading != blank -%}<p class="emerson-section-subtitle">{{ section.settings.subheading }}</p>{%- endif -%}
@@ -44,7 +44,7 @@
         {%- case block.type -%}
           {%- when 'collection' -%}
             {%- assign collection = block.settings.collection -%}
-            <a href="{{ collection.url | default: '#' }}" class="emerson-collections__card" style="{% if block.settings.bg_gradient != blank %}background: {{ block.settings.bg_gradient }};{% endif %}" {{ block.shopify_attributes }}>
+            <a href="{{ collection.url | default: '#' }}" class="emerson-collections__card" data-animate="fade-up" data-delay="{{ forloop.index | times: 100 }}" style="{% if block.settings.bg_gradient != blank %}background: {{ block.settings.bg_gradient }};{% endif %}" {{ block.shopify_attributes }}>
               <span class="emerson-collections__emoji">{{ block.settings.emoji }}</span>
               <h3 class="emerson-collections__card-title">{{ block.settings.custom_title | default: collection.title | default: 'Collection' }}</h3>
               <span class="emerson-collections__card-count">{{ block.settings.custom_count | default: collection.products_count | default: 0 }} products</span>
@@ -53,12 +53,28 @@
       {%- endfor -%}
     </div>
     {%- if section.settings.show_view_all and section.settings.view_all_link != blank -%}
-    <div class="emerson-collections__footer">
+    <div class="emerson-collections__footer" data-animate="fade-up">
       <a href="{{ section.settings.view_all_link }}" class="emerson-btn emerson-btn--secondary">{{ section.settings.view_all_text }}</a>
     </div>
     {%- endif -%}
   </div>
 </section>
+
+<script>
+(function() {
+  const section = document.querySelector('#emerson-collections-{{ section.id }}');
+  if (!section) return;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const delay = entry.target.dataset.delay || 0;
+        setTimeout(() => entry.target.classList.add('in-view'), delay);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  section.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+})();
+</script>
 
 {% schema %}
 {
