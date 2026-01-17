@@ -29,11 +29,11 @@
 
 <section id="emerson-faq-{{ section.id }}" class="emerson-faq">
   <div class="emerson-faq__container">
-    <div class="emerson-section-header" style="text-align: {{ section.settings.header_alignment }};">
+    <div class="emerson-section-header" data-animate="fade-up" style="text-align: {{ section.settings.header_alignment }};">
       {%- if section.settings.tag != blank -%}<span class="emerson-section-tag">{{ section.settings.tag }}</span>{%- endif -%}
       {%- if section.settings.heading != blank -%}<h2 class="emerson-section-title">{{ section.settings.heading }}</h2>{%- endif -%}
     </div>
-    <div class="emerson-faq__list">
+    <div class="emerson-faq__list" data-animate="fade-up" data-delay="100">
       {%- for block in section.blocks -%}
         {%- case block.type -%}
           {%- when 'faq_item' -%}
@@ -48,13 +48,29 @@
       {%- endfor -%}
     </div>
     {%- if section.settings.show_contact and section.settings.contact_text != blank -%}
-    <div class="emerson-faq__contact">
+    <div class="emerson-faq__contact" data-animate="fade-up" data-delay="200">
       <p>{{ section.settings.contact_text }}</p>
       {%- if section.settings.contact_link != blank -%}<a href="{{ section.settings.contact_link }}" class="emerson-btn emerson-btn--secondary">{{ section.settings.contact_btn_text }}</a>{%- endif -%}
     </div>
     {%- endif -%}
   </div>
 </section>
+
+<script>
+(function() {
+  const section = document.querySelector('#emerson-faq-{{ section.id }}');
+  if (!section) return;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const delay = entry.target.dataset.delay || 0;
+        setTimeout(() => entry.target.classList.add('in-view'), delay);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  section.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+})();
+</script>
 
 {% schema %}
 {
