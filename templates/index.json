@@ -292,8 +292,7 @@
       "type": "emerson-instagram",
       "name": "📸 Instagram Feed",
       "settings": {
-        "access_token": "",
-        "instagram_handle": "@emersonbyavery",
+        "instagram_handle": "emersonbyavery",
         "posts_count": 6,
         "eyebrow": "Follow Along",
         "heading": "Join Our Creative Journey",
