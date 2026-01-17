@@ -37,7 +37,7 @@
 
 <section id="emerson-products-{{ section.id }}" class="emerson-products">
   <div class="emerson-products__container">
-    <div class="emerson-section-header" style="text-align: {{ section.settings.header_alignment }};">
+    <div class="emerson-section-header" data-animate="fade-up" style="text-align: {{ section.settings.header_alignment }};">
       {%- if section.settings.tag != blank -%}<span class="emerson-section-tag">{{ section.settings.tag }}</span>{%- endif -%}
       {%- if section.settings.heading != blank -%}<h2 class="emerson-section-title">{{ section.settings.heading }}</h2>{%- endif -%}
       {%- if section.settings.subheading != blank -%}<p class="emerson-section-subtitle">{{ section.settings.subheading }}</p>{%- endif -%}
@@ -45,7 +45,7 @@
     <div class="emerson-products__grid">
       {%- assign products_to_show = section.settings.collection.products | default: collections.all.products -%}
       {%- for product in products_to_show limit: section.settings.products_limit -%}
-        <div class="emerson-products__card">
+        <div class="emerson-products__card" data-animate="fade-up" data-delay="{{ forloop.index | times: 100 }}">
           <a href="{{ product.url }}" class="emerson-products__image-wrapper">
             {%- if product.featured_image -%}
             {{ product.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', class: 'emerson-products__image' }}
@@ -68,7 +68,7 @@
         </div>
       {%- else -%}
         {%- for i in (1..4) -%}
-        <div class="emerson-products__card">
+        <div class="emerson-products__card" data-animate="fade-up" data-delay="{{ forloop.index | times: 100 }}">
           <a href="#" class="emerson-products__image-wrapper"><div class="emerson-products__image-placeholder"><span>🎨</span></div></a>
           <div class="emerson-products__details"><a href="#" class="emerson-products__title">Product Title</a><div class="emerson-products__price"><span class="emerson-products__price-current">$29.00</span></div></div>
         </div>
@@ -76,10 +76,26 @@
       {%- endfor -%}
     </div>
     {%- if section.settings.show_view_all and section.settings.view_all_link != blank -%}
-    <div class="emerson-products__footer"><a href="{{ section.settings.view_all_link }}" class="emerson-btn emerson-btn--secondary">{{ section.settings.view_all_text }}</a></div>
+    <div class="emerson-products__footer" data-animate="fade-up"><a href="{{ section.settings.view_all_link }}" class="emerson-btn emerson-btn--secondary">{{ section.settings.view_all_text }}</a></div>
     {%- endif -%}
   </div>
 </section>
+
+<script>
+(function() {
+  const section = document.querySelector('#emerson-products-{{ section.id }}');
+  if (!section) return;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const delay = entry.target.dataset.delay || 0;
+        setTimeout(() => entry.target.classList.add('in-view'), delay);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  section.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+})();
+</script>
 
 {% schema %}
 {
