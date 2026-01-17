@@ -29,7 +29,7 @@
 
 <section id="emerson-story-{{ section.id }}" class="emerson-story {% if section.settings.reverse_layout %}emerson-story--reverse{% endif %}">
   <div class="emerson-story__container">
-    <div class="emerson-story__images">
+    <div class="emerson-story__images" data-animate="fade-right">
       <div class="emerson-story__image-grid">
         <div class="emerson-story__image emerson-story__image--main">
           {%- if section.settings.image_main != blank -%}{{ section.settings.image_main | image_url: width: 800 | image_tag: loading: 'lazy' }}{%- else -%}<div class="emerson-story__image--placeholder"><span>🎨</span></div>{%- endif -%}
@@ -49,7 +49,7 @@
       </div>
       {%- endif -%}
     </div>
-    <div class="emerson-story__content">
+    <div class="emerson-story__content" data-animate="fade-left" data-delay="200">
       {%- if section.settings.tag != blank -%}<span class="emerson-story__tag">{{ section.settings.tag }}</span>{%- endif -%}
       {%- if section.settings.title != blank -%}<h2 class="emerson-story__title">{{ section.settings.title }}</h2>{%- endif -%}
       {%- if section.settings.text_1 != blank -%}<p class="emerson-story__text">{{ section.settings.text_1 }}</p>{%- endif -%}
@@ -66,6 +66,22 @@
     </div>
   </div>
 </section>
+
+<script>
+(function() {
+  const section = document.querySelector('#emerson-story-{{ section.id }}');
+  if (!section) return;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const delay = entry.target.dataset.delay || 0;
+        setTimeout(() => entry.target.classList.add('in-view'), delay);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  section.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+})();
+</script>
 
 {% schema %}
 {

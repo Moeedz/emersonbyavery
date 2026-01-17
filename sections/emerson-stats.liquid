@@ -31,9 +31,11 @@
       {%- for block in section.blocks -%}
         {%- case block.type -%}
           {%- when 'stat' -%}
-            <div class="emerson-stats__card" {{ block.shopify_attributes }}>
+            <div class="emerson-stats__card" data-animate="fade-up" data-delay="{{ forloop.index | times: 100 }}" {{ block.shopify_attributes }}>
               {%- if block.settings.emoji != blank -%}<div class="emerson-stats__emoji">{{ block.settings.emoji }}</div>{%- endif -%}
-              <div class="emerson-stats__number">{{ block.settings.prefix }}{{ block.settings.number }}{{ block.settings.suffix }}</div>
+              <div class="emerson-stats__number" {% if block.settings.animate_count %}data-count="{{ block.settings.number }}" data-prefix="{{ block.settings.prefix }}" data-suffix="{{ block.settings.suffix }}"{% endif %}>
+                {% if block.settings.animate_count %}{{ block.settings.prefix }}0{{ block.settings.suffix }}{% else %}{{ block.settings.prefix }}{{ block.settings.number }}{{ block.settings.suffix }}{% endif %}
+              </div>
               {%- if block.settings.label != blank -%}<div class="emerson-stats__label">{{ block.settings.label }}</div>{%- endif -%}
             </div>
         {%- endcase -%}
@@ -41,6 +43,47 @@
     </div>
   </div>
 </section>
+
+<script>
+(function() {
+  const section = document.querySelector('#emerson-stats-{{ section.id }}');
+  if (!section) return;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const delay = entry.target.dataset.delay || 0;
+        setTimeout(() => entry.target.classList.add('in-view'), delay);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  section.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+
+  // Counter animation
+  section.querySelectorAll('[data-count]').forEach(counter => {
+    const target = parseInt(counter.dataset.count);
+    const prefix = counter.dataset.prefix || '';
+    const suffix = counter.dataset.suffix || '';
+    let current = 0;
+    const increment = target / 60;
+    const updateCounter = () => {
+      current += increment;
+      if (current < target) {
+        counter.textContent = prefix + Math.floor(current) + suffix;
+        setTimeout(updateCounter, 30);
+      } else {
+        counter.textContent = prefix + target + suffix;
+      }
+    };
+    const statObserver = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        setTimeout(updateCounter, 500);
+        statObserver.disconnect();
+      }
+    }, { threshold: 0.5 });
+    statObserver.observe(counter);
+  });
+})();
+</script>
 
 {% schema %}
 {
@@ -78,7 +121,8 @@
       {"type":"text","id":"prefix","label":"Prefix"},
       {"type":"text","id":"number","label":"Number","default":"500"},
       {"type":"text","id":"suffix","label":"Suffix","default":"+"},
-      {"type":"text","id":"label","label":"Label","default":"Happy Customers"}
+      {"type":"text","id":"label","label":"Label","default":"Happy Customers"},
+      {"type":"checkbox","id":"animate_count","label":"Animate","default":true}
     ]}
   ],
   "presets":[{"name":"📊 Stats","blocks":[
