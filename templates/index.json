@@ -184,6 +184,9 @@
     },
     "emerson_products_VHH8bB": {
       "type": "emerson-products",
+      "custom_css": [
+        "img.emerson-product-img {object-fit: contain; background: white;}"
+      ],
       "name": "⭐ Customer Favorites",
       "settings": {
         "tag": "Best Sellers",
