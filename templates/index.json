@@ -82,11 +82,12 @@
         "collection_dGnFbq": {
           "type": "collection",
           "settings": {
-            "collection": "",
+            "collection": "apparel",
             "title": "Apparel",
             "count": "10 products",
-            "emoji": "👕",
-            "gradient": "linear-gradient(135deg, #9CB69C, #7A9A7A)"
+            "emoji": "",
+            "image": "shopify://shop_images/all-over-print-kids-leggings-white-front-67ba09b6e77de.webp",
+            "gradient": "white"
           }
         }
       },
