@@ -1,0 +1,420 @@
+/* =====================================================
+   EMERSON BY AVERY — PREMIUM MEGA MENU STYLES
+   Whimsical, playful, professional navigation
+   ===================================================== */
+
+/* ─────────────────────────────────────────────────────
+   CSS VARIABLES
+   ───────────────────────────────────────────────────── */
+:root {
+  --emerson-nav-font: 'DM Sans', -apple-system, sans-serif;
+  --emerson-nav-accent: 'Caveat', cursive;
+  --emerson-pink: #E85D75;
+  --emerson-pink-light: #FFE5EC;
+  --emerson-cream: #FDF9F6;
+  --emerson-text: #1F1A14;
+  --emerson-text-light: #756758;
+  --emerson-yellow: #F4C542;
+  --emerson-sage: #9CB69C;
+  --emerson-border: #E8E2DB;
+  --emerson-shadow: 0 20px 60px rgba(31, 26, 20, 0.15);
+  --emerson-shadow-sm: 0 4px 20px rgba(31, 26, 20, 0.08);
+  --emerson-radius: 20px;
+  --emerson-transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ─────────────────────────────────────────────────────
+   MAIN NAVIGATION BAR
+   ───────────────────────────────────────────────────── */
+.site-header {
+  background: var(--emerson-cream) !important;
+  border-bottom: 1px solid var(--emerson-border);
+}
+
+.site-nav > li > a,
+.site-nav > li > .site-nav__link {
+  font-family: var(--emerson-nav-font) !important;
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  color: var(--emerson-text) !important;
+  letter-spacing: 0.01em;
+  padding: 12px 20px !important;
+  position: relative;
+  transition: color var(--emerson-transition) !important;
+}
+
+.site-nav > li > a:hover,
+.site-nav > li > .site-nav__link:hover,
+.site-nav > li.active > a {
+  color: var(--emerson-pink) !important;
+}
+
+/* Animated underline effect */
+.site-nav > li > a::after,
+.site-nav > li > .site-nav__link::after {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  left: 20px;
+  right: 20px;
+  height: 2px;
+  background: var(--emerson-pink);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--emerson-transition);
+  border-radius: 2px;
+}
+
+.site-nav > li > a:hover::after,
+.site-nav > li > .site-nav__link:hover::after,
+.site-nav > li.active > a::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ─────────────────────────────────────────────────────
+   MEGA MENU DROPDOWN
+   ───────────────────────────────────────────────────── */
+.mega-menu-block {
+  background: white !important;
+  border-radius: var(--emerson-radius) !important;
+  box-shadow: var(--emerson-shadow) !important;
+  border: 1px solid var(--emerson-border) !important;
+  padding: 32px 40px !important;
+  margin-top: 12px !important;
+  animation: megaMenuFadeIn 0.35s var(--emerson-transition) forwards;
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+@keyframes megaMenuFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Links Grid */
+.mega-menu--links {
+  gap: 40px !important;
+}
+
+/* Category Titles */
+.mega-menu-link--title {
+  font-family: var(--emerson-nav-font) !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: var(--emerson-text) !important;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 16px !important;
+  padding-bottom: 12px !important;
+  border-bottom: 2px solid var(--emerson-pink-light);
+  position: relative;
+}
+
+.mega-menu-link--title::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 30px;
+  height: 2px;
+  background: var(--emerson-pink);
+}
+
+.mega-menu-link--title a {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+.mega-menu-link--title a:hover {
+  color: var(--emerson-pink) !important;
+}
+
+/* Sub Links */
+.mega-menu--links .menu-link {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.mega-menu--links .menu-link li {
+  margin-bottom: 10px !important;
+}
+
+.mega-menu--links .menu-link li a {
+  font-family: var(--emerson-nav-font) !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  color: var(--emerson-text-light) !important;
+  text-decoration: none !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  transition: all var(--emerson-transition) !important;
+  position: relative;
+}
+
+.mega-menu--links .menu-link li a:hover {
+  color: var(--emerson-pink) !important;
+  padding-left: 8px;
+}
+
+/* Emoji prefix for menu items (add via CSS or menu titles) */
+.mega-menu--links .menu-link li a[href*="apparel"]::before { content: '👕 '; }
+.mega-menu--links .menu-link li a[href*="note-cards"]::before { content: '💌 '; }
+.mega-menu--links .menu-link li a[href*="framed"]::before,
+.mega-menu--links .menu-link li a[href*="prints"]::before { content: '🖼️ '; }
+.mega-menu--links .menu-link li a[href*="tote"]::before { content: '👜 '; }
+.mega-menu--links .menu-link li a[href*="stickers"]::before { content: '⭐ '; }
+.mega-menu--links .menu-link li a[href*="gifts"]::before { content: '🎁 '; }
+.mega-menu--links .menu-link li a[href*="rainbow"]::before { content: '🌈 '; }
+.mega-menu--links .menu-link li a[href*="featured"]::before,
+.mega-menu--links .menu-link li a[href*="pick"]::before { content: '💖 '; }
+
+/* ─────────────────────────────────────────────────────
+   PROMO IMAGE CARDS
+   ───────────────────────────────────────────────────── */
+.mega-menu--image-wrapper {
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  position: relative;
+  transition: transform var(--emerson-transition), box-shadow var(--emerson-transition) !important;
+}
+
+.mega-menu--image-wrapper:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: var(--emerson-shadow-sm) !important;
+}
+
+.mega-menu--image {
+  border-radius: 16px !important;
+  overflow: hidden !important;
+}
+
+.mega-menu--image img {
+  transition: transform 0.5s var(--emerson-transition) !important;
+}
+
+.mega-menu--image-wrapper:hover .mega-menu--image img {
+  transform: scale(1.05) !important;
+}
+
+/* Promo Text Overlay */
+.mega-menu--text {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px !important;
+  background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%) !important;
+}
+
+.mega-menu--image-title {
+  font-family: var(--emerson-nav-font) !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  margin: 0 0 4px 0 !important;
+}
+
+.mega-menu--image-subtitle {
+  font-family: var(--emerson-nav-font) !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  opacity: 0.9;
+  margin: 0 !important;
+}
+
+/* ─────────────────────────────────────────────────────
+   SIMPLE DROPDOWN (Non-mega)
+   ───────────────────────────────────────────────────── */
+.site-nav__dropdown {
+  background: white !important;
+  border-radius: 16px !important;
+  box-shadow: var(--emerson-shadow) !important;
+  border: 1px solid var(--emerson-border) !important;
+  padding: 16px 0 !important;
+  min-width: 220px !important;
+  margin-top: 12px !important;
+  animation: dropdownFadeIn 0.25s var(--emerson-transition) forwards;
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+@keyframes dropdownFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.site-nav__dropdown li a {
+  font-family: var(--emerson-nav-font) !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  color: var(--emerson-text-light) !important;
+  padding: 10px 24px !important;
+  display: block;
+  transition: all var(--emerson-transition) !important;
+}
+
+.site-nav__dropdown li a:hover {
+  color: var(--emerson-pink) !important;
+  background: var(--emerson-pink-light) !important;
+  padding-left: 28px !important;
+}
+
+/* ─────────────────────────────────────────────────────
+   MOBILE NAVIGATION
+   ───────────────────────────────────────────────────── */
+.drawer {
+  background: var(--emerson-cream) !important;
+}
+
+.mobile-nav__link {
+  font-family: var(--emerson-nav-font) !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  color: var(--emerson-text) !important;
+  padding: 14px 20px !important;
+  border-bottom: 1px solid var(--emerson-border) !important;
+}
+
+.mobile-nav__item.top-level > .mobile-nav__has-sublist > .mobile-nav__link,
+.mobile-nav__item.top-level > .mobile-nav__link {
+  font-size: 18px !important;
+  font-weight: 600 !important;
+}
+
+.mobile-nav__sublist {
+  background: white !important;
+  padding: 8px 0 !important;
+}
+
+.mobile-nav__sublist .mobile-nav__link {
+  font-size: 15px !important;
+  font-weight: 400 !important;
+  color: var(--emerson-text-light) !important;
+  padding: 12px 32px !important;
+}
+
+.mobile-nav__sublist .mobile-nav__link:hover {
+  color: var(--emerson-pink) !important;
+  background: var(--emerson-pink-light) !important;
+}
+
+/* Mobile close button */
+.mobile-menu--close-btn {
+  background: white !important;
+  border-radius: 50% !important;
+  width: 40px !important;
+  height: 40px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: var(--emerson-shadow-sm) !important;
+  transition: all var(--emerson-transition) !important;
+}
+
+.mobile-menu--close-btn:hover {
+  background: var(--emerson-pink) !important;
+  color: white !important;
+}
+
+/* Mobile promo images */
+.mobile-promo--block .mega-menu--image-wrapper {
+  margin: 12px 20px !important;
+  border-radius: 12px !important;
+}
+
+/* ─────────────────────────────────────────────────────
+   FEATURED BADGE FOR MENU ITEMS
+   ───────────────────────────────────────────────────── */
+.menu-link li a[data-featured="true"]::after,
+.menu-link li a[href*="featured"]::after,
+.menu-link li a[href*="new-arrivals"]::after {
+  content: 'NEW';
+  font-size: 9px;
+  font-weight: 700;
+  background: var(--emerson-pink);
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ─────────────────────────────────────────────────────
+   ANNOUNCEMENT BAR SYNC
+   ───────────────────────────────────────────────────── */
+.announcement-bar {
+  background: var(--emerson-pink) !important;
+  font-family: var(--emerson-nav-font) !important;
+}
+
+/* ─────────────────────────────────────────────────────
+   CART ICON BADGE
+   ───────────────────────────────────────────────────── */
+.cart-item-count-bubble {
+  background: var(--emerson-pink) !important;
+  color: white !important;
+  font-family: var(--emerson-nav-font) !important;
+  font-weight: 600 !important;
+  font-size: 11px !important;
+  min-width: 18px !important;
+  height: 18px !important;
+  border-radius: 9px !important;
+}
+
+/* ─────────────────────────────────────────────────────
+   HOVER STATES & ANIMATIONS
+   ───────────────────────────────────────────────────── */
+.site-header__cart-toggle:hover,
+.search-button:hover,
+.account-button:hover,
+.log-in-button:hover {
+  color: var(--emerson-pink) !important;
+}
+
+/* Hamburger animation */
+.hamburger-nav-button {
+  transition: color var(--emerson-transition) !important;
+}
+
+.hamburger-nav-button:hover {
+  color: var(--emerson-pink) !important;
+}
+
+/* ─────────────────────────────────────────────────────
+   RESPONSIVE ADJUSTMENTS
+   ───────────────────────────────────────────────────── */
+@media (max-width: 989px) {
+  .mobile-nav-bar-wrapper {
+    background: var(--emerson-cream) !important;
+    border-bottom: 1px solid var(--emerson-border) !important;
+  }
+}
+
+@media (min-width: 990px) {
+  /* Ensure mega menu has nice spacing */
+  .mega-menu-block {
+    max-width: 1100px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  
+  /* Add subtle gradient to header */
+  .site-header::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.03), transparent);
+    pointer-events: none;
+  }
+}
