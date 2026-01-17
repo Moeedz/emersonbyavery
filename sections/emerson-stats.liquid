@@ -1,135 +1,203 @@
-{% comment %}EMERSON BY AVERY — STATS{% endcomment %}
+{% comment %}
+  ════════════════════════════════════════════════════════════════
+  EMERSON BY AVERY — STATS IN-VIEW
+  Animated counters that count up when scrolled into view
+  ════════════════════════════════════════════════════════════════
+{% endcomment %}
+
 {{ 'section-emerson-stats.css' | asset_url | stylesheet_tag }}
-{{ 'emerson-animations.css' | asset_url | stylesheet_tag }}
 
-{%- style -%}
-#emerson-stats-{{ section.id }} {
-  --section-padding-top: {{ section.settings.padding_top }}px;
-  --section-padding-bottom: {{ section.settings.padding_bottom }}px;
-  --section-padding-top-mobile: {{ section.settings.padding_top_mobile }}px;
-  --section-padding-bottom-mobile: {{ section.settings.padding_bottom_mobile }}px;
-  --section-max-width: {{ section.settings.section_max_width }}px;
-  --grid-columns: {{ section.settings.columns_desktop }};
-  --grid-gap: {{ section.settings.grid_gap }}px;
-  --section-bg: {{ section.settings.bg_color }};
-  --card-bg: {{ section.settings.card_bg_color }};
-  --card-border-radius: {{ section.settings.card_border_radius }}px;
-  --number-color: {{ section.settings.number_color }};
-  --label-color: {{ section.settings.label_color }};
-  --emoji-bg: {{ section.settings.emoji_bg_color }};
-  --number-size-desktop: {{ section.settings.number_size_desktop }}px;
-  --number-size-mobile: {{ section.settings.number_size_mobile }}px;
-  --label-size: {{ section.settings.label_size }}px;
-  --emoji-size: {{ section.settings.emoji_size }}px;
-  --card-padding: {{ section.settings.card_padding }}px;
-}
-{%- endstyle -%}
-
-<section id="emerson-stats-{{ section.id }}" class="emerson-stats">
-  <div class="emerson-stats__container">
-    <div class="emerson-stats__grid">
-      {%- for block in section.blocks -%}
-        {%- case block.type -%}
-          {%- when 'stat' -%}
-            <div class="emerson-stats__card" data-animate="fade-up" data-delay="{{ forloop.index | times: 100 }}" {{ block.shopify_attributes }}>
-              {%- if block.settings.emoji != blank -%}<div class="emerson-stats__emoji">{{ block.settings.emoji }}</div>{%- endif -%}
-              <div class="emerson-stats__number" {% if block.settings.animate_count %}data-count="{{ block.settings.number }}" data-prefix="{{ block.settings.prefix }}" data-suffix="{{ block.settings.suffix }}"{% endif %}>
-                {% if block.settings.animate_count %}{{ block.settings.prefix }}0{{ block.settings.suffix }}{% else %}{{ block.settings.prefix }}{{ block.settings.number }}{{ block.settings.suffix }}{% endif %}
-              </div>
-              {%- if block.settings.label != blank -%}<div class="emerson-stats__label">{{ block.settings.label }}</div>{%- endif -%}
+<section 
+  class="emerson-stats"
+  data-section-id="{{ section.id }}"
+  data-animate="fade-up"
+  style="
+    --stats-bg: {{ section.settings.bg_color }};
+    --stats-text: {{ section.settings.text_color }};
+    --stats-text-muted: {{ section.settings.text_muted_color }};
+  "
+>
+  <div class="emerson-stats__grid">
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when 'stat' -%}
+          <div class="emerson-stats__item" {{ block.shopify_attributes }}>
+            <div class="emerson-stats__number">
+              {%- if block.settings.animate_number -%}
+                <span class="counter" data-target="{{ block.settings.number }}">0</span>{{ block.settings.suffix }}
+              {%- else -%}
+                {{ block.settings.static_value | default: block.settings.number }}{{ block.settings.suffix }}
+              {%- endif -%}
             </div>
-        {%- endcase -%}
-      {%- endfor -%}
-    </div>
+            <div class="emerson-stats__label">{{ block.settings.label }}</div>
+          </div>
+      {%- endcase -%}
+    {%- endfor -%}
   </div>
 </section>
 
 <script>
-(function() {
-  const section = document.querySelector('#emerson-stats-{{ section.id }}');
-  if (!section) return;
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const delay = entry.target.dataset.delay || 0;
-        setTimeout(() => entry.target.classList.add('in-view'), delay);
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-  section.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+  (function() {
+    const section = document.querySelector('[data-section-id="{{ section.id }}"]');
+    if (!section) return;
 
-  // Counter animation
-  section.querySelectorAll('[data-count]').forEach(counter => {
-    const target = parseInt(counter.dataset.count);
-    const prefix = counter.dataset.prefix || '';
-    const suffix = counter.dataset.suffix || '';
-    let current = 0;
-    const increment = target / 60;
-    const updateCounter = () => {
-      current += increment;
-      if (current < target) {
-        counter.textContent = prefix + Math.floor(current) + suffix;
-        setTimeout(updateCounter, 30);
-      } else {
-        counter.textContent = prefix + target + suffix;
-      }
-    };
-    const statObserver = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        setTimeout(updateCounter, 500);
-        statObserver.disconnect();
-      }
-    }, { threshold: 0.5 });
-    statObserver.observe(counter);
-  });
-})();
+    let animated = false;
+
+    const observerOptions = { threshold: 0.5 };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          
+          // Trigger counter animation only once
+          if (!animated) {
+            animated = true;
+            animateCounters();
+          }
+        }
+      });
+    }, observerOptions);
+
+    observer.observe(section);
+
+    function animateCounters() {
+      const counters = section.querySelectorAll('.counter');
+      
+      counters.forEach(counter => {
+        const target = parseInt(counter.dataset.target);
+        const duration = 2000;
+        const startTime = performance.now();
+
+        const updateCounter = (currentTime) => {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          
+          // Easing function (ease-out)
+          const easeOut = 1 - Math.pow(1 - progress, 3);
+          const current = Math.floor(easeOut * target);
+          
+          counter.textContent = current.toLocaleString();
+          
+          if (progress < 1) {
+            requestAnimationFrame(updateCounter);
+          } else {
+            counter.textContent = target.toLocaleString();
+          }
+        };
+
+        requestAnimationFrame(updateCounter);
+      });
+    }
+  })();
 </script>
 
 {% schema %}
 {
-  "name": "📊 Stats",
+  "name": "📊 Stats In-View",
   "tag": "section",
   "class": "section-emerson-stats",
   "settings": [
-    {"type":"header","content":"Layout"},
-    {"type":"range","id":"section_max_width","label":"Max width","min":800,"max":1400,"step":100,"default":1000,"unit":"px"},
-    {"type":"range","id":"columns_desktop","label":"Columns","min":2,"max":5,"step":1,"default":4},
-    {"type":"range","id":"grid_gap","label":"Gap","min":12,"max":48,"step":4,"default":24,"unit":"px"},
-    {"type":"header","content":"Padding"},
-    {"type":"range","id":"padding_top","label":"Top — Desktop","min":0,"max":150,"step":10,"default":60,"unit":"px"},
-    {"type":"range","id":"padding_bottom","label":"Bottom — Desktop","min":0,"max":150,"step":10,"default":60,"unit":"px"},
-    {"type":"range","id":"padding_top_mobile","label":"Top — Mobile","min":0,"max":100,"step":10,"default":50,"unit":"px"},
-    {"type":"range","id":"padding_bottom_mobile","label":"Bottom — Mobile","min":0,"max":100,"step":10,"default":50,"unit":"px"},
-    {"type":"header","content":"Colors"},
-    {"type":"color","id":"bg_color","label":"Background","default":"#FFFFFF"},
-    {"type":"color","id":"card_bg_color","label":"Card bg","default":"#FDF9F6"},
-    {"type":"color","id":"number_color","label":"Number","default":"#1F1A14"},
-    {"type":"color","id":"label_color","label":"Label","default":"#756758"},
-    {"type":"color","id":"emoji_bg_color","label":"Emoji bg","default":"#FFFFFF"},
-    {"type":"header","content":"Card"},
-    {"type":"range","id":"card_border_radius","label":"Radius","min":0,"max":40,"step":4,"default":24,"unit":"px"},
-    {"type":"range","id":"card_padding","label":"Padding","min":16,"max":48,"step":4,"default":32,"unit":"px"},
-    {"type":"header","content":"Typography"},
-    {"type":"range","id":"emoji_size","label":"Emoji","min":20,"max":48,"step":4,"default":28,"unit":"px"},
-    {"type":"range","id":"number_size_desktop","label":"Number — Desktop","min":28,"max":64,"step":4,"default":44,"unit":"px"},
-    {"type":"range","id":"number_size_mobile","label":"Number — Mobile","min":24,"max":48,"step":4,"default":32,"unit":"px"},
-    {"type":"range","id":"label_size","label":"Label","min":10,"max":18,"step":1,"default":14,"unit":"px"}
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#1F1A14"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_muted_color",
+      "label": "Label color",
+      "default": "rgba(255,255,255,0.6)"
+    }
   ],
-  "blocks":[
-    {"type":"stat","name":"Stat","settings":[
-      {"type":"text","id":"emoji","label":"Emoji","default":"💖"},
-      {"type":"text","id":"prefix","label":"Prefix"},
-      {"type":"text","id":"number","label":"Number","default":"500"},
-      {"type":"text","id":"suffix","label":"Suffix","default":"+"},
-      {"type":"text","id":"label","label":"Label","default":"Happy Customers"},
-      {"type":"checkbox","id":"animate_count","label":"Animate","default":true}
-    ]}
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "animate_number",
+          "label": "Animate number",
+          "default": true
+        },
+        {
+          "type": "number",
+          "id": "number",
+          "label": "Number value",
+          "default": 500,
+          "info": "For animated counters"
+        },
+        {
+          "type": "text",
+          "id": "static_value",
+          "label": "Static value",
+          "info": "Use this for non-animated values like '100' or '5.0'"
+        },
+        {
+          "type": "text",
+          "id": "suffix",
+          "label": "Suffix",
+          "default": "+",
+          "info": "e.g. +, %, K"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Happy Customers"
+        }
+      ]
+    }
   ],
-  "presets":[{"name":"📊 Stats","blocks":[
-    {"type":"stat","settings":{"emoji":"💖","number":"500","suffix":"+","label":"Happy Customers"}},
-    {"type":"stat","settings":{"emoji":"🎨","number":"45","suffix":"+","label":"Unique Designs"}},
-    {"type":"stat","settings":{"emoji":"🌟","number":"5","label":"Star Reviews"}},
-    {"type":"stat","settings":{"emoji":"🚚","number":"12","label":"Countries"}}
-  ]}]
+  "presets": [
+    {
+      "name": "📊 Stats In-View",
+      "blocks": [
+        {
+          "type": "stat",
+          "settings": {
+            "animate_number": true,
+            "number": 500,
+            "suffix": "+",
+            "label": "Happy Customers"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "animate_number": true,
+            "number": 45,
+            "suffix": "+",
+            "label": "Original Designs"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "animate_number": true,
+            "number": 12,
+            "suffix": "",
+            "label": "Countries Shipped"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "animate_number": false,
+            "static_value": "100",
+            "suffix": "%",
+            "label": "5-Star Reviews"
+          }
+        }
+      ]
+    }
+  ]
 }
 {% endschema %}
