@@ -42,9 +42,406 @@
         "blob_color_3": "#9cb69c",
         "show_scroll_indicator": false
       }
+    },
+    "emerson_collections_naGemf": {
+      "type": "emerson-collections",
+      "blocks": {
+        "collection_hzcCJd": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "title": "Note Cards",
+            "count": "12 products",
+            "emoji": "💌",
+            "gradient": "linear-gradient(135deg, #E85D75, #C94D63)"
+          }
+        },
+        "collection_UQgwJN": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "title": "Rainbow Heart",
+            "count": "8 products",
+            "emoji": "🌈",
+            "gradient": "linear-gradient(135deg, #F4C542, #D4A832)"
+          }
+        },
+        "collection_Hkkxrf": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "title": "Fine Art Prints",
+            "count": "15 products",
+            "emoji": "🎨",
+            "gradient": "linear-gradient(135deg, #6B9AC4, #4A7AAA)"
+          }
+        },
+        "collection_dGnFbq": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "title": "Apparel",
+            "count": "10 products",
+            "emoji": "👕",
+            "gradient": "linear-gradient(135deg, #9CB69C, #7A9A7A)"
+          }
+        }
+      },
+      "block_order": [
+        "collection_hzcCJd",
+        "collection_UQgwJN",
+        "collection_Hkkxrf",
+        "collection_dGnFbq"
+      ],
+      "name": "🎨 Shop by Collection",
+      "settings": {
+        "tag": "Collections",
+        "heading": "Shop by Collection",
+        "subheading": "Discover artwork organized by theme — from cheerful rainbows to whimsical nature scenes.",
+        "view_all_text": "View all collections",
+        "view_all_link": "",
+        "bg_color": "#FFFFFF"
+      }
+    },
+    "emerson_story_3QytMe": {
+      "type": "emerson-story",
+      "name": "👧 Meet Avery",
+      "settings": {
+        "show_badge": true,
+        "badge_emoji": "⭐",
+        "badge_text": "500+ Happy Customers",
+        "badge_subtext": "Since 2023",
+        "tag": "Our Story",
+        "heading": "Meet Avery",
+        "text_1": "What started as doodles on a napkin has blossomed into a world of colorful creations. At just 7 years old, Avery sees magic in everyday moments and transforms that wonder into art that makes people smile.",
+        "text_2": "Every brushstroke is filled with imagination, every color chosen with joy. This isn't just art — it's a window into a child's pure, unfiltered creativity.",
+        "quote": "I draw what makes me happy, and I hope it makes you happy too!",
+        "quote_author": "Avery, Age 7",
+        "show_signature": true,
+        "signature_name": "Avery",
+        "signature_title": "Chief Imagination Officer",
+        "button_text": "",
+        "button_link": "",
+        "bg_color": "#FDF9F6"
+      }
+    },
+    "emerson_stats_wNRPBU": {
+      "type": "emerson-stats",
+      "blocks": {
+        "stat_gmrb6T": {
+          "type": "stat",
+          "settings": {
+            "animate_number": true,
+            "number": 500,
+            "static_value": "",
+            "suffix": "+",
+            "label": "Happy Customers"
+          }
+        },
+        "stat_wdmA64": {
+          "type": "stat",
+          "settings": {
+            "animate_number": true,
+            "number": 45,
+            "static_value": "",
+            "suffix": "+",
+            "label": "Original Designs"
+          }
+        },
+        "stat_J7e9qR": {
+          "type": "stat",
+          "settings": {
+            "animate_number": true,
+            "number": 12,
+            "static_value": "",
+            "suffix": "+",
+            "label": "Countries Shipped"
+          }
+        },
+        "stat_FTH4cJ": {
+          "type": "stat",
+          "settings": {
+            "animate_number": false,
+            "number": 500,
+            "static_value": "100",
+            "suffix": "%",
+            "label": "5-Star Reviews"
+          }
+        }
+      },
+      "block_order": [
+        "stat_gmrb6T",
+        "stat_wdmA64",
+        "stat_J7e9qR",
+        "stat_FTH4cJ"
+      ],
+      "name": "📊 Stats In-View",
+      "settings": {
+        "bg_color": "#1F1A14",
+        "text_color": "#FFFFFF",
+        "text_muted_color": "rgba(255,255,255,0.6)"
+      }
+    },
+    "emerson_products_VHH8bB": {
+      "type": "emerson-products",
+      "name": "⭐ Customer Favorites",
+      "settings": {
+        "tag": "Best Sellers",
+        "heading": "Customer Favorites",
+        "subheading": "The pieces our customers can't stop talking about. Each one hand-picked for spreading joy.",
+        "collection": "",
+        "products_count": 4,
+        "view_all_text": "View all products",
+        "view_all_link": "",
+        "bg_color": "#FFFFFF"
+      }
+    },
+    "emerson_testimonials_xXEVpF": {
+      "type": "emerson-testimonials",
+      "blocks": {
+        "testimonial_iYcUaT": {
+          "type": "testimonial",
+          "settings": {
+            "author": "Sarah M.",
+            "subtitle": "Verified Buyer",
+            "quote": "The quality is absolutely amazing! My daughter loves that another kid made these. We've already ordered more for birthday gifts!",
+            "product_name": "Rainbow Heart Tote",
+            "product_price": "$28.00",
+            "product_emoji": "🌈"
+          }
+        },
+        "testimonial_QYDfCj": {
+          "type": "testimonial",
+          "settings": {
+            "author": "Mike R.",
+            "subtitle": "Verified Buyer",
+            "quote": "Bought cards for everyone on my holiday list. They're so unique and heartfelt — nothing like them anywhere else. Will definitely be back!",
+            "product_name": "Happy Sun Cards",
+            "product_price": "$18.00",
+            "product_emoji": "☀️"
+          }
+        },
+        "testimonial_Vqj3QR": {
+          "type": "testimonial",
+          "settings": {
+            "author": "Lisa K.",
+            "subtitle": "Verified Buyer",
+            "quote": "Beautiful artwork that brings so much joy! You can feel the happiness in every piece. It's hanging proudly in our living room now.",
+            "product_name": "Purple Tree Print",
+            "product_price": "$35.00",
+            "product_emoji": "🌳"
+          }
+        },
+        "testimonial_FnGMNe": {
+          "type": "testimonial",
+          "settings": {
+            "author": "Jessica W.",
+            "subtitle": "Verified Buyer",
+            "quote": "I'm obsessed with my new tote! It's colorful, well-made, and I get compliments every time I use it. Supporting young artists is the best!",
+            "product_name": "Rainbow Heart Tote",
+            "product_price": "$28.00",
+            "product_emoji": "🌈"
+          }
+        },
+        "testimonial_WBgPdw": {
+          "type": "testimonial",
+          "settings": {
+            "author": "David T.",
+            "subtitle": "Verified Buyer",
+            "quote": "Perfect gift for my mom! She was so touched by the story behind the art. Fast shipping and beautiful packaging too.",
+            "product_name": "Note Card Set",
+            "product_price": "$18.00",
+            "product_emoji": "💌"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_iYcUaT",
+        "testimonial_QYDfCj",
+        "testimonial_Vqj3QR",
+        "testimonial_FnGMNe",
+        "testimonial_WBgPdw"
+      ],
+      "name": "💬 Testimonials",
+      "settings": {
+        "eyebrow": "Love Notes",
+        "heading": "What Our Customers Say",
+        "show_rating_badge": true,
+        "rating_text": "100% 5-Star Reviews",
+        "bg_color": "#FDF9F6",
+        "scroll_speed": 30
+      }
+    },
+    "emerson_instagram_AV4P49": {
+      "type": "emerson-instagram",
+      "name": "📸 Instagram Feed",
+      "settings": {
+        "access_token": "",
+        "instagram_handle": "@emersonbyavery",
+        "posts_count": 6,
+        "eyebrow": "Follow Along",
+        "heading": "Join Our Creative Journey",
+        "button_text": "Follow on Instagram",
+        "bg_color": "#FFFFFF"
+      }
+    },
+    "emerson_faq_GGQ6Tj": {
+      "type": "emerson-faq",
+      "blocks": {
+        "faq_8BnYAj": {
+          "type": "faq",
+          "settings": {
+            "question": "Who is Avery?",
+            "answer": "<p>Avery is our 7-year-old artist extraordinaire! She's been drawing since she could hold a crayon, and her colorful creations have brought joy to homes across the world. Every design in our shop is her original artwork.</p>"
+          }
+        },
+        "faq_U4b6kc": {
+          "type": "faq",
+          "settings": {
+            "question": "How long does shipping take?",
+            "answer": "<p>Standard shipping within the US takes 3-5 business days. International orders typically arrive within 7-14 business days. All orders ship free — because spreading joy shouldn't cost extra!</p>"
+          }
+        },
+        "faq_b7c4a6": {
+          "type": "faq",
+          "settings": {
+            "question": "What is your return policy?",
+            "answer": "<p>We want you to love your purchase! If something isn't right, we accept returns within 30 days of delivery. Items must be unused and in original packaging. Contact us and we'll make it right.</p>"
+          }
+        },
+        "faq_4Dbjjx": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you offer custom orders?",
+            "answer": "<p>Yes! Avery loves creating custom pieces. Whether it's a personalized gift or a special request, reach out through our contact form and we'll work with you to create something magical.</p>"
+          }
+        },
+        "faq_jtYXHP": {
+          "type": "faq",
+          "settings": {
+            "question": "Are products eco-friendly?",
+            "answer": "<p>We care about the planet! Our packaging is made from recycled materials, and we partner with print-on-demand suppliers who use sustainable practices. Art that's good for the soul and the Earth.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_8BnYAj",
+        "faq_U4b6kc",
+        "faq_b7c4a6",
+        "faq_4Dbjjx",
+        "faq_jtYXHP"
+      ],
+      "name": "❓ FAQ",
+      "settings": {
+        "tag": "FAQs",
+        "heading": "Common Questions",
+        "subheading": "Everything you need to know about shopping with us. Can't find what you're looking for? Reach out!",
+        "button_text": "Contact Us",
+        "button_link": "",
+        "first_open": true,
+        "bg_color": "#FDF9F6"
+      }
+    },
+    "emerson_newsletter_C6HAWD": {
+      "type": "emerson-newsletter",
+      "blocks": {
+        "perk_XRwkgR": {
+          "type": "perk",
+          "settings": {
+            "emoji": "🎁",
+            "text": "10% off first order"
+          }
+        },
+        "perk_nUwYdm": {
+          "type": "perk",
+          "settings": {
+            "emoji": "📬",
+            "text": "Weekly inspiration"
+          }
+        },
+        "perk_RyeUd3": {
+          "type": "perk",
+          "settings": {
+            "emoji": "🎨",
+            "text": "Early access"
+          }
+        }
+      },
+      "block_order": [
+        "perk_XRwkgR",
+        "perk_nUwYdm",
+        "perk_RyeUd3"
+      ],
+      "name": "📧 Newsletter",
+      "settings": {
+        "eyebrow": "Stay Connected",
+        "heading": "Join Avery's Creative Club",
+        "text": "Be the first to see new artwork, get exclusive offers, and peek behind the scenes at Avery's creative process.",
+        "placeholder": "Enter your email",
+        "button_text": "Subscribe",
+        "success_message": "🎉 Thanks for subscribing!",
+        "show_perks": true,
+        "bg_color": "#FFFFFF"
+      }
+    },
+    "emerson_trust_xABaN9": {
+      "type": "emerson-trust",
+      "blocks": {
+        "trust_item_jFKyWh": {
+          "type": "trust_item",
+          "settings": {
+            "emoji": "🚚",
+            "title": "Free Shipping",
+            "subtitle": "On all orders"
+          }
+        },
+        "trust_item_nrE9hV": {
+          "type": "trust_item",
+          "settings": {
+            "emoji": "💝",
+            "title": "Made with Love",
+            "subtitle": "By a 7-year-old artist"
+          }
+        },
+        "trust_item_Mht9HC": {
+          "type": "trust_item",
+          "settings": {
+            "emoji": "🔄",
+            "title": "Easy Returns",
+            "subtitle": "30-day guarantee"
+          }
+        },
+        "trust_item_URdrxc": {
+          "type": "trust_item",
+          "settings": {
+            "emoji": "🔒",
+            "title": "Secure Checkout",
+            "subtitle": "256-bit SSL"
+          }
+        }
+      },
+      "block_order": [
+        "trust_item_jFKyWh",
+        "trust_item_nrE9hV",
+        "trust_item_Mht9HC",
+        "trust_item_URdrxc"
+      ],
+      "name": "✓ Trust Bar",
+      "settings": {
+        "bg_color": "#FDF9F6"
+      }
     }
   },
   "order": [
-    "hero_banner_bmWw8c"
+    "hero_banner_bmWw8c",
+    "emerson_collections_naGemf",
+    "emerson_story_3QytMe",
+    "emerson_stats_wNRPBU",
+    "emerson_products_VHH8bB",
+    "emerson_testimonials_xXEVpF",
+    "emerson_instagram_AV4P49",
+    "emerson_faq_GGQ6Tj",
+    "emerson_newsletter_C6HAWD",
+    "emerson_trust_xABaN9"
   ]
 }
