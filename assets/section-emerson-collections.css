@@ -3,161 +3,150 @@
    ===================================================== */
 
 .emerson-collections {
-  padding: var(--section-padding-top-mobile, 60px) 24px var(--section-padding-bottom-mobile, 60px);
+  padding: 80px 24px;
   background: var(--section-bg, white);
 }
 
 @media (min-width: 768px) {
   .emerson-collections {
-    padding: var(--section-padding-top, 80px) 48px var(--section-padding-bottom, 80px);
+    padding: 120px 48px;
   }
 }
 
 .emerson-collections__container {
-  max-width: var(--section-max-width, 1200px);
+  max-width: 1440px;
   margin: 0 auto;
-}
-
-/* Header Override */
-.emerson-collections .emerson-section-header {
-  margin-bottom: 48px;
-}
-
-.emerson-collections .emerson-section-tag {
-  color: var(--tag-color, var(--emerson-primary));
-  font-size: var(--tag-size, 22px);
-}
-
-.emerson-collections .emerson-section-title {
-  color: var(--title-color, var(--emerson-text));
-  font-size: var(--title-size-mobile, 32px);
-  font-weight: var(--title-weight, 400);
-}
-
-@media (min-width: 768px) {
-  .emerson-collections .emerson-section-title {
-    font-size: var(--title-size-desktop, 48px);
-  }
-}
-
-.emerson-collections .emerson-section-subtitle {
-  color: var(--subtitle-color, var(--emerson-text-light));
-  font-size: var(--subtitle-size-mobile, 16px);
-}
-
-@media (min-width: 768px) {
-  .emerson-collections .emerson-section-subtitle {
-    font-size: var(--subtitle-size-desktop, 18px);
-  }
 }
 
 /* Grid */
 .emerson-collections__grid {
   display: grid;
-  grid-template-columns: repeat(var(--grid-columns-mobile, 2), 1fr);
-  gap: var(--grid-gap, 20px);
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
 }
 
 @media (min-width: 768px) {
   .emerson-collections__grid {
-    grid-template-columns: repeat(var(--grid-columns-desktop, 4), 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
   }
 }
 
-/* Card */
-.emerson-collections__card {
+/* Collection Card */
+.emerson-collection-card {
   position: relative;
-  min-height: var(--card-min-height, 220px);
-  border-radius: var(--card-border-radius, 24px);
+  aspect-ratio: 1 / 1.2;
+  border-radius: 24px;
   overflow: hidden;
+  cursor: pointer;
   text-decoration: none;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: var(--card-padding, 28px);
-  transition: transform 0.4s var(--ease-out), box-shadow 0.4s ease;
+  display: block;
 }
 
-.emerson-collections__card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-lg);
-}
-
-/* Card Background */
-.emerson-collections__card-bg {
+.emerson-collection-card__bg {
   position: absolute;
   inset: 0;
-  background: var(--card-bg-image, none), var(--card-gradient, var(--card-bg, var(--emerson-cream)));
-  background-size: cover;
-  background-position: center;
-  transition: transform 0.6s var(--ease-out);
+  transition: transform 0.7s var(--ease-out);
 }
 
-.emerson-collections__card:hover .emerson-collections__card-bg {
+.emerson-collection-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.emerson-collection-card:hover .emerson-collection-card__bg {
   transform: scale(1.1);
 }
 
-/* Card Content */
-.emerson-collections__card-content {
-  position: relative;
-  z-index: 1;
+.emerson-collection-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 100%);
 }
 
-.emerson-collections__emoji {
-  font-size: var(--card-emoji-size, 40px);
-  display: block;
-  margin-bottom: 12px;
-  transition: transform 0.4s var(--ease-elastic);
+/* Emoji */
+.emerson-collection-card__emoji {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -65%);
+  font-size: 56px;
+  opacity: 0.5;
+  transition: all 0.5s var(--ease-out);
 }
 
-.emerson-collections__card:hover .emerson-collections__emoji {
-  transform: scale(1.2) rotate(10deg);
+@media (min-width: 768px) {
+  .emerson-collection-card__emoji {
+    font-size: 80px;
+  }
 }
 
-.emerson-collections__card-title {
-  font-family: var(--font-display);
-  font-size: var(--card-title-size, 20px);
-  font-weight: var(--card-title-weight, 600);
-  color: var(--card-title-color, var(--emerson-text));
+.emerson-collection-card:hover .emerson-collection-card__emoji {
+  transform: translate(-50%, -75%) scale(1.15);
+  opacity: 0.7;
+}
+
+/* Content */
+.emerson-collection-card__content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px;
+  color: white;
+  transform: translateY(10px);
+  transition: transform 0.4s var(--ease-out);
+}
+
+.emerson-collection-card:hover .emerson-collection-card__content {
+  transform: translateY(0);
+}
+
+.emerson-collection-card__content h3 {
+  font-size: 18px;
+  font-weight: 600;
   margin: 0 0 4px 0;
 }
 
-.emerson-collections__card-count {
-  font-size: var(--card-count-size, 13px);
-  color: var(--card-count-color, var(--emerson-text-light));
+@media (min-width: 768px) {
+  .emerson-collection-card__content h3 {
+    font-size: 20px;
+  }
+}
+
+.emerson-collection-card__count {
+  font-size: 14px;
+  opacity: 0.8;
 }
 
 /* Arrow */
-.emerson-collections__card-arrow {
+.emerson-collection-card__arrow {
   position: absolute;
-  top: var(--card-padding, 28px);
-  right: var(--card-padding, 28px);
-  width: 36px;
-  height: 36px;
-  background: white;
+  top: 16px;
+  right: 16px;
+  width: 44px;
+  height: 44px;
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  color: white;
   opacity: 0;
-  transform: translateX(-10px);
-  transition: all 0.3s var(--ease-out);
-  color: var(--emerson-text);
+  transform: translateX(-10px) rotate(-45deg);
+  transition: all 0.4s var(--ease-out);
 }
 
-.emerson-collections__card:hover .emerson-collections__card-arrow {
+.emerson-collection-card:hover .emerson-collection-card__arrow {
   opacity: 1;
-  transform: translateX(0);
-}
-
-/* Footer */
-.emerson-collections__footer {
-  text-align: center;
-  margin-top: 48px;
+  transform: translateX(0) rotate(0deg);
 }
 
 /* Focus States */
-.emerson-collections__card:focus-visible {
-  outline: 2px solid var(--emerson-primary);
-  outline-offset: 3px;
+.emerson-collection-card:focus-visible {
+  outline: 3px solid var(--emerson-primary);
+  outline-offset: 4px;
 }
