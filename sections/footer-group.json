@@ -17,6 +17,7 @@
         "image_AfYyEh": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_utbe81utbe81utbe-removebg-preview.png",
             "link": "",
             "title": ""
           }
@@ -24,21 +25,21 @@
         "menu": {
           "type": "menu",
           "settings": {
-            "menu_title": "Shop",
+            "menu_title": "SHOP",
             "footer_linklist": "footer"
           }
         },
         "5c637888-418b-4cc8-baea-a83083df2e8c": {
           "type": "menu",
           "settings": {
-            "menu_title": "Help",
+            "menu_title": "HELP",
             "footer_linklist": "footer"
           }
         },
         "social_nDGBrJ": {
           "type": "social",
           "settings": {
-            "social_title": "Get connected"
+            "social_title": "Follow Us"
           }
         }
       },
