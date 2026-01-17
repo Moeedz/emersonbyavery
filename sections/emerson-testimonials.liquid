@@ -32,7 +32,7 @@
 
 <section id="emerson-testimonials-{{ section.id }}" class="emerson-testimonials">
   <div class="emerson-testimonials__container">
-    <div class="emerson-section-header" style="text-align: {{ section.settings.header_alignment }};">
+    <div class="emerson-section-header" data-animate="fade-up" style="text-align: {{ section.settings.header_alignment }};">
       {%- if section.settings.tag != blank -%}<span class="emerson-section-tag">{{ section.settings.tag }}</span>{%- endif -%}
       {%- if section.settings.heading != blank -%}<h2 class="emerson-section-title">{{ section.settings.heading }}</h2>{%- endif -%}
     </div>
@@ -41,7 +41,7 @@
         {%- for block in section.blocks -%}
           {%- case block.type -%}
             {%- when 'testimonial' -%}
-              <div class="emerson-testimonials__card" {{ block.shopify_attributes }}>
+              <div class="emerson-testimonials__card" data-animate="fade-up" data-delay="{{ forloop.index | times: 100 }}" {{ block.shopify_attributes }}>
                 {%- if section.settings.show_stars -%}
                 <div class="emerson-testimonials__stars">
                   {%- for i in (1..5) -%}
@@ -65,7 +65,7 @@
       </div>
     </div>
     {%- if section.settings.show_navigation and section.blocks.size > 3 -%}
-    <div class="emerson-testimonials__nav">
+    <div class="emerson-testimonials__nav" data-animate="fade-up">
       <button type="button" class="emerson-testimonials__nav-btn" data-prev aria-label="Previous"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button>
       <button type="button" class="emerson-testimonials__nav-btn" data-next aria-label="Next"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
     </div>
@@ -77,6 +77,15 @@
 (function() {
   const section = document.querySelector('#emerson-testimonials-{{ section.id }}');
   if (!section) return;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const delay = entry.target.dataset.delay || 0;
+        setTimeout(() => entry.target.classList.add('in-view'), delay);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  section.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
   const track = section.querySelector('.emerson-testimonials__track');
   const prevBtn = section.querySelector('[data-prev]');
   const nextBtn = section.querySelector('[data-next]');
