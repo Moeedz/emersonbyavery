@@ -71,10 +71,11 @@
         "collection_Hkkxrf": {
           "type": "collection",
           "settings": {
-            "collection": "",
+            "collection": "framed-artwork",
             "title": "Fine Art Prints",
             "count": "15 products",
-            "emoji": "🎨",
+            "emoji": "",
+            "image": "shopify://shop_images/matte-paper-framed-poster-with-mat-_in_-black-12x18-front-67c44f750196f.png",
             "gradient": "linear-gradient(135deg, #6B9AC4, #4A7AAA)"
           }
         },
