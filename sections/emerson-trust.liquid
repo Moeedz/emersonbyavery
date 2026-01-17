@@ -1,118 +1,148 @@
-{% comment %}EMERSON BY AVERY — TRUST BAR{% endcomment %}
+{% comment %}
+  ════════════════════════════════════════════════════════════════
+  EMERSON BY AVERY — TRUST BAR IN-VIEW
+  Animated trust badges that appear on scroll
+  ════════════════════════════════════════════════════════════════
+{% endcomment %}
+
 {{ 'section-emerson-trust.css' | asset_url | stylesheet_tag }}
-{{ 'emerson-animations.css' | asset_url | stylesheet_tag }}
 
-{%- style -%}
-#emerson-trust-{{ section.id }} {
-  --section-padding-top: {{ section.settings.padding_top }}px;
-  --section-padding-bottom: {{ section.settings.padding_bottom }}px;
-  --section-padding-top-mobile: {{ section.settings.padding_top_mobile }}px;
-  --section-padding-bottom-mobile: {{ section.settings.padding_bottom_mobile }}px;
-  --section-max-width: {{ section.settings.section_max_width }}px;
-  --section-bg: {{ section.settings.bg_color }};
-  --card-bg: {{ section.settings.card_bg_color }};
-  --card-border: {{ section.settings.card_border_color }};
-  --card-border-radius: {{ section.settings.card_border_radius }}px;
-  --icon-color: {{ section.settings.icon_color }};
-  --icon-bg: {{ section.settings.icon_bg_color }};
-  --title-color: {{ section.settings.title_color }};
-  --subtitle-color: {{ section.settings.subtitle_color }};
-  --grid-columns: {{ section.settings.columns_desktop }};
-  --grid-columns-mobile: {{ section.settings.columns_mobile }};
-  --grid-gap: {{ section.settings.grid_gap }}px;
-  --icon-size: {{ section.settings.icon_size }}px;
-  --title-size: {{ section.settings.title_size }}px;
-  --subtitle-size: {{ section.settings.subtitle_size }}px;
-  --card-padding: {{ section.settings.card_padding }}px;
-}
-{%- endstyle -%}
-
-<section id="emerson-trust-{{ section.id }}" class="emerson-trust">
-  <div class="emerson-trust__container">
-    <div class="emerson-trust__grid">
-      {%- for block in section.blocks -%}
-        {%- case block.type -%}
-          {%- when 'trust_item' -%}
-            <div class="emerson-trust__card" data-animate="fade-up" data-delay="{{ forloop.index | times: 100 }}" {{ block.shopify_attributes }}>
-              <div class="emerson-trust__icon">
-                {%- if block.settings.custom_icon != blank -%}
-                {{ block.settings.custom_icon | image_url: width: 80 | image_tag }}
-                {%- else -%}
-                <span>{{ block.settings.emoji }}</span>
-                {%- endif -%}
-              </div>
-              <div class="emerson-trust__content">
-                {%- if block.settings.title != blank -%}<h3 class="emerson-trust__title">{{ block.settings.title }}</h3>{%- endif -%}
-                {%- if block.settings.subtitle != blank -%}<p class="emerson-trust__subtitle">{{ block.settings.subtitle }}</p>{%- endif -%}
-              </div>
+<section 
+  class="emerson-trust"
+  data-section-id="{{ section.id }}"
+  data-animate="fade-up"
+  style="--section-bg: {{ section.settings.bg_color }};"
+>
+  <div class="emerson-trust__grid">
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when 'trust_item' -%}
+          <div class="emerson-trust__item" {{ block.shopify_attributes }}>
+            <div class="emerson-trust__icon">
+              {%- if block.settings.custom_icon != blank -%}
+                {{ block.settings.custom_icon | image_url: width: 60 | image_tag }}
+              {%- else -%}
+                {{ block.settings.emoji | default: '✓' }}
+              {%- endif -%}
             </div>
-        {%- endcase -%}
-      {%- endfor -%}
-    </div>
+            <div class="emerson-trust__label">{{ block.settings.title }}</div>
+            {%- if block.settings.subtitle != blank -%}
+              <div class="emerson-trust__sublabel">{{ block.settings.subtitle }}</div>
+            {%- endif -%}
+          </div>
+      {%- endcase -%}
+    {%- endfor -%}
   </div>
 </section>
 
 <script>
-(function() {
-  const section = document.querySelector('#emerson-trust-{{ section.id }}');
-  if (!section) return;
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const delay = entry.target.dataset.delay || 0;
-        setTimeout(() => entry.target.classList.add('in-view'), delay);
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-  section.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
-})();
+  (function() {
+    const section = document.querySelector('[data-section-id="{{ section.id }}"]');
+    if (!section) return;
+
+    const observerOptions = { threshold: 0.3, rootMargin: '0px 0px -50px 0px' };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          
+          // Stagger animate items
+          const items = entry.target.querySelectorAll('.emerson-trust__item');
+          items.forEach((item, index) => {
+            item.style.transitionDelay = `${index * 0.1}s`;
+            item.classList.add('animate-in');
+          });
+        }
+      });
+    }, observerOptions);
+
+    observer.observe(section);
+  })();
 </script>
 
 {% schema %}
 {
-  "name": "✅ Trust Bar",
+  "name": "✓ Trust Bar",
   "tag": "section",
   "class": "section-emerson-trust",
   "settings": [
-    {"type":"header","content":"Layout"},
-    {"type":"range","id":"section_max_width","label":"Max width","min":1000,"max":1400,"step":100,"default":1200,"unit":"px"},
-    {"type":"range","id":"columns_desktop","label":"Columns desktop","min":2,"max":5,"step":1,"default":4},
-    {"type":"range","id":"columns_mobile","label":"Columns mobile","min":1,"max":2,"step":0.5,"default":2},
-    {"type":"range","id":"grid_gap","label":"Gap","min":12,"max":32,"step":4,"default":20,"unit":"px"},
-    {"type":"header","content":"Padding"},
-    {"type":"range","id":"padding_top","label":"Top — Desktop","min":0,"max":100,"step":10,"default":40,"unit":"px"},
-    {"type":"range","id":"padding_bottom","label":"Bottom — Desktop","min":0,"max":100,"step":10,"default":40,"unit":"px"},
-    {"type":"range","id":"padding_top_mobile","label":"Top — Mobile","min":0,"max":80,"step":10,"default":30,"unit":"px"},
-    {"type":"range","id":"padding_bottom_mobile","label":"Bottom — Mobile","min":0,"max":80,"step":10,"default":30,"unit":"px"},
-    {"type":"header","content":"Colors"},
-    {"type":"color","id":"bg_color","label":"Background","default":"#FFFFFF"},
-    {"type":"color","id":"card_bg_color","label":"Card bg","default":"#FDF9F6"},
-    {"type":"color","id":"card_border_color","label":"Card border","default":"#E5DDD5"},
-    {"type":"color","id":"icon_bg_color","label":"Icon bg","default":"#FFFFFF"},
-    {"type":"color","id":"icon_color","label":"Icon color","default":"#E85D75"},
-    {"type":"color","id":"title_color","label":"Title","default":"#1F1A14"},
-    {"type":"color","id":"subtitle_color","label":"Subtitle","default":"#756758"},
-    {"type":"header","content":"Cards"},
-    {"type":"range","id":"card_border_radius","label":"Radius","min":0,"max":24,"step":4,"default":16,"unit":"px"},
-    {"type":"range","id":"card_padding","label":"Padding","min":12,"max":32,"step":4,"default":20,"unit":"px"},
-    {"type":"header","content":"Typography"},
-    {"type":"range","id":"icon_size","label":"Icon size","min":24,"max":48,"step":4,"default":32,"unit":"px"},
-    {"type":"range","id":"title_size","label":"Title size","min":14,"max":20,"step":1,"default":15,"unit":"px"},
-    {"type":"range","id":"subtitle_size","label":"Subtitle size","min":12,"max":16,"step":1,"default":13,"unit":"px"}
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#FDF9F6"
+    }
   ],
-  "blocks":[
-    {"type":"trust_item","name":"Trust Item","settings":[
-      {"type":"text","id":"emoji","label":"Emoji","default":"🚚"},
-      {"type":"image_picker","id":"custom_icon","label":"Custom icon"},
-      {"type":"text","id":"title","label":"Title","default":"Free Shipping"},
-      {"type":"text","id":"subtitle","label":"Subtitle","default":"On orders over $50"}
-    ]}
+  "blocks": [
+    {
+      "type": "trust_item",
+      "name": "Trust Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "emoji",
+          "label": "Emoji",
+          "default": "🚚"
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_icon",
+          "label": "Custom icon",
+          "info": "Optional. Overrides emoji."
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Free Shipping"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "On all orders"
+        }
+      ]
+    }
   ],
-  "presets":[{"name":"✅ Trust Bar","blocks":[
-    {"type":"trust_item","settings":{"emoji":"🚚","title":"Free Shipping","subtitle":"On orders over $50"}},
-    {"type":"trust_item","settings":{"emoji":"💖","title":"Made with Love","subtitle":"By Avery"}},
-    {"type":"trust_item","settings":{"emoji":"🔒","title":"Secure Checkout","subtitle":"Safe payment"}},
-    {"type":"trust_item","settings":{"emoji":"↩️","title":"Easy Returns","subtitle":"30-day returns"}}
-  ]}]
+  "presets": [
+    {
+      "name": "✓ Trust Bar",
+      "blocks": [
+        {
+          "type": "trust_item",
+          "settings": {
+            "emoji": "🚚",
+            "title": "Free Shipping",
+            "subtitle": "On all orders"
+          }
+        },
+        {
+          "type": "trust_item",
+          "settings": {
+            "emoji": "💝",
+            "title": "Made with Love",
+            "subtitle": "By a 7-year-old artist"
+          }
+        },
+        {
+          "type": "trust_item",
+          "settings": {
+            "emoji": "🔄",
+            "title": "Easy Returns",
+            "subtitle": "30-day guarantee"
+          }
+        },
+        {
+          "type": "trust_item",
+          "settings": {
+            "emoji": "🔒",
+            "title": "Secure Checkout",
+            "subtitle": "256-bit SSL"
+          }
+        }
+      ]
+    }
+  ]
 }
 {% endschema %}
