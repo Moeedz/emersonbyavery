@@ -33,7 +33,7 @@
       {%- for block in section.blocks -%}
         {%- case block.type -%}
           {%- when 'trust_item' -%}
-            <div class="emerson-trust__card" {{ block.shopify_attributes }}>
+            <div class="emerson-trust__card" data-animate="fade-up" data-delay="{{ forloop.index | times: 100 }}" {{ block.shopify_attributes }}>
               <div class="emerson-trust__icon">
                 {%- if block.settings.custom_icon != blank -%}
                 {{ block.settings.custom_icon | image_url: width: 80 | image_tag }}
@@ -51,6 +51,22 @@
     </div>
   </div>
 </section>
+
+<script>
+(function() {
+  const section = document.querySelector('#emerson-trust-{{ section.id }}');
+  if (!section) return;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const delay = entry.target.dataset.delay || 0;
+        setTimeout(() => entry.target.classList.add('in-view'), delay);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  section.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+})();
+</script>
 
 {% schema %}
 {
