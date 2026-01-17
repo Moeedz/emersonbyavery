@@ -108,7 +108,7 @@
       "name": "👧 Meet Avery",
       "settings": {
         "main_image": "shopify://shop_images/BeFunky_Pic_of_Avery_8f7cf8f9-747a-4267-a088-f8fb0f063d54.jpg",
-        "show_badge": true,
+        "show_badge": false,
         "badge_emoji": "⭐",
         "badge_text": "500+ Happy Customers",
         "badge_subtext": "Since 2023",
