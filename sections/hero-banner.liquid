@@ -20,19 +20,14 @@
   --badge-text: {{ section.settings.badge_text_color }};
   --eyebrow-size-desktop: {{ section.settings.eyebrow_size_desktop }}px;
   --eyebrow-size-mobile: {{ section.settings.eyebrow_size_mobile }}px;
-  --eyebrow-weight: {{ section.settings.eyebrow_weight }};
   --heading-size-desktop: {{ section.settings.heading_size_desktop }}px;
   --heading-size-mobile: {{ section.settings.heading_size_mobile }}px;
-  --heading-weight: {{ section.settings.heading_weight }};
   --subheading-size-desktop: {{ section.settings.subheading_size_desktop }}px;
   --subheading-size-mobile: {{ section.settings.subheading_size_mobile }}px;
-  --subheading-weight: {{ section.settings.subheading_weight }};
   --subheading-max-width: {{ section.settings.subheading_max_width }}px;
   --btn-primary-bg: {{ section.settings.btn_primary_bg }};
   --btn-primary-text: {{ section.settings.btn_primary_text_color }};
-  --btn-primary-bg-hover: {{ section.settings.btn_primary_bg_hover }};
   --btn-font-size: {{ section.settings.btn_font_size }}px;
-  --btn-font-weight: {{ section.settings.btn_font_weight }};
   --btn-padding-x: {{ section.settings.btn_padding_x }}px;
   --btn-padding-y: {{ section.settings.btn_padding_y }}px;
   --btn-border-radius: {{ section.settings.btn_border_radius }}px;
@@ -46,7 +41,6 @@
   --blob-2-size: {{ section.settings.blob_2_size }}px;
   --blob-3-size: {{ section.settings.blob_3_size }}px;
   --stats-number-size: {{ section.settings.stats_number_size }}px;
-  --stats-number-weight: {{ section.settings.stats_number_weight }};
   --stats-number-color: {{ section.settings.stats_number_color }};
   --stats-label-size: {{ section.settings.stats_label_size }}px;
   --stats-label-color: {{ section.settings.stats_label_color }};
@@ -81,26 +75,26 @@
   <div class="emerson-hero__container">
     <div class="emerson-hero__content" style="text-align: {{ section.settings.content_alignment }};">
       {%- if section.settings.show_badge and section.settings.badge_text != blank -%}
-      <div class="emerson-hero__badge">
+      <div class="emerson-hero__badge" data-animate="fade-up">
         <span class="emerson-hero__badge-dot"></span>
         {{ section.settings.badge_text }}
       </div>
       {%- endif -%}
 
       {%- if section.settings.eyebrow != blank -%}
-      <span class="emerson-hero__eyebrow">{{ section.settings.eyebrow }}</span>
+      <span class="emerson-hero__eyebrow" data-animate="fade-up" data-delay="100">{{ section.settings.eyebrow }}</span>
       {%- endif -%}
 
       {%- if section.settings.heading != blank -%}
-      <h1 class="emerson-hero__title">{{ section.settings.heading }}</h1>
+      <h1 class="emerson-hero__title" data-animate="fade-up" data-delay="200">{{ section.settings.heading }}</h1>
       {%- endif -%}
 
       {%- if section.settings.subheading != blank -%}
-      <p class="emerson-hero__subtitle">{{ section.settings.subheading }}</p>
+      <p class="emerson-hero__subtitle" data-animate="fade-up" data-delay="300">{{ section.settings.subheading }}</p>
       {%- endif -%}
 
       {%- if section.settings.btn_primary_text != blank or section.settings.btn_secondary_text != blank -%}
-      <div class="emerson-hero__buttons">
+      <div class="emerson-hero__buttons" data-animate="fade-up" data-delay="400">
         {%- if section.settings.btn_primary_text != blank -%}
         <a href="{{ section.settings.btn_primary_link }}" class="emerson-hero__btn emerson-hero__btn--primary">
           <span>{{ section.settings.btn_primary_text }}</span>
@@ -120,7 +114,7 @@
       {%- if section.settings.show_stats -%}
       {%- assign stat_blocks = section.blocks | where: 'type', 'stat' -%}
       {%- if stat_blocks.size > 0 -%}
-      <div class="emerson-hero__stats">
+      <div class="emerson-hero__stats" data-animate="fade-up" data-delay="500">
         {%- for block in stat_blocks -%}
         <div class="emerson-hero__stat" {{ block.shopify_attributes }}>
           <span class="emerson-hero__stat-number">{{ block.settings.number }}{{ block.settings.suffix }}</span>
@@ -132,7 +126,7 @@
       {%- endif -%}
     </div>
 
-    <div class="emerson-hero__image-wrapper">
+    <div class="emerson-hero__image-wrapper" data-animate="fade-left" data-delay="300">
       {%- if section.settings.image != blank -%}
       {{ section.settings.image | image_url: width: 1200 | image_tag: class: 'emerson-hero__image', loading: 'eager' }}
       {%- else -%}
@@ -166,12 +160,28 @@
   </div>
 
   {%- if section.settings.show_scroll_indicator -%}
-  <div class="emerson-hero__scroll">
+  <div class="emerson-hero__scroll" data-animate="fade-up" data-delay="600">
     <span>{{ section.settings.scroll_text }}</span>
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
   </div>
   {%- endif -%}
 </section>
+
+<script>
+(function() {
+  const section = document.querySelector('#emerson-hero-{{ section.id }}');
+  if (!section) return;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const delay = entry.target.dataset.delay || 0;
+        setTimeout(() => entry.target.classList.add('in-view'), delay);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  section.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+})();
+</script>
 
 {% schema %}
 {
@@ -209,27 +219,22 @@
     {"type":"text","id":"eyebrow","label":"Text","default":"Art by Avery, Age 7"},
     {"type":"range","id":"eyebrow_size_desktop","label":"Size — Desktop","min":14,"max":36,"step":2,"default":24,"unit":"px"},
     {"type":"range","id":"eyebrow_size_mobile","label":"Size — Mobile","min":12,"max":28,"step":2,"default":20,"unit":"px"},
-    {"type":"select","id":"eyebrow_weight","label":"Weight","options":[{"value":"400","label":"Regular"},{"value":"500","label":"Medium"},{"value":"600","label":"Semibold"}],"default":"500"},
     {"type":"header","content":"Heading"},
     {"type":"textarea","id":"heading","label":"Text","default":"Where Imagination Becomes Art"},
     {"type":"range","id":"heading_size_desktop","label":"Size — Desktop","min":32,"max":120,"step":8,"default":72,"unit":"px"},
     {"type":"range","id":"heading_size_mobile","label":"Size — Mobile","min":24,"max":72,"step":8,"default":40,"unit":"px"},
-    {"type":"select","id":"heading_weight","label":"Weight","options":[{"value":"300","label":"Light"},{"value":"400","label":"Regular"},{"value":"500","label":"Medium"},{"value":"600","label":"Semibold"}],"default":"400"},
     {"type":"header","content":"Subheading"},
     {"type":"textarea","id":"subheading","label":"Text","default":"Discover wearable art created by a 7-year-old artist."},
     {"type":"range","id":"subheading_size_desktop","label":"Size — Desktop","min":14,"max":28,"step":2,"default":18,"unit":"px"},
     {"type":"range","id":"subheading_size_mobile","label":"Size — Mobile","min":12,"max":22,"step":2,"default":16,"unit":"px"},
-    {"type":"select","id":"subheading_weight","label":"Weight","options":[{"value":"400","label":"Regular"},{"value":"500","label":"Medium"}],"default":"400"},
     {"type":"range","id":"subheading_max_width","label":"Max width","min":300,"max":700,"step":100,"default":500,"unit":"px"},
     {"type":"header","content":"Primary Button"},
     {"type":"text","id":"btn_primary_text","label":"Text","default":"Shop Collection"},
     {"type":"url","id":"btn_primary_link","label":"Link"},
     {"type":"checkbox","id":"btn_show_arrow","label":"Show arrow","default":true},
     {"type":"color","id":"btn_primary_bg","label":"Background","default":"#E85D75"},
-    {"type":"color","id":"btn_primary_bg_hover","label":"Hover","default":"#D64D65"},
     {"type":"color","id":"btn_primary_text_color","label":"Text","default":"#FFFFFF"},
     {"type":"range","id":"btn_font_size","label":"Font size","min":12,"max":20,"step":1,"default":15,"unit":"px"},
-    {"type":"select","id":"btn_font_weight","label":"Weight","options":[{"value":"400","label":"Regular"},{"value":"500","label":"Medium"},{"value":"600","label":"Semibold"}],"default":"600"},
     {"type":"range","id":"btn_padding_x","label":"Padding X","min":16,"max":56,"step":8,"default":32,"unit":"px"},
     {"type":"range","id":"btn_padding_y","label":"Padding Y","min":10,"max":26,"step":4,"default":18,"unit":"px"},
     {"type":"range","id":"btn_border_radius","label":"Radius","min":0,"max":50,"step":10,"default":50,"unit":"px"},
@@ -248,7 +253,6 @@
     {"type":"header","content":"Stats"},
     {"type":"checkbox","id":"show_stats","label":"Show stats","default":true},
     {"type":"range","id":"stats_number_size","label":"Number size","min":20,"max":56,"step":4,"default":32,"unit":"px"},
-    {"type":"select","id":"stats_number_weight","label":"Number weight","options":[{"value":"500","label":"Medium"},{"value":"600","label":"Semibold"},{"value":"700","label":"Bold"}],"default":"600"},
     {"type":"color","id":"stats_number_color","label":"Number color","default":"#1F1A14"},
     {"type":"range","id":"stats_label_size","label":"Label size","min":10,"max":18,"step":1,"default":13,"unit":"px"},
     {"type":"color","id":"stats_label_color","label":"Label color","default":"#756758"},
