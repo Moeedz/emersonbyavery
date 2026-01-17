@@ -1,70 +1,51 @@
 {% comment %}
   EMERSON BY AVERY — PREMIUM MEGA MENU
-  Upgraded mega menu with emojis, better layout, and CTA banner
+  Optimized for flat menu structure (no nested sub-items)
 {% endcomment %}
 
 {% liquid 
   assign block = mega-menu
 
-  assign block_grid_cols = '1fr'
-  assign links_grid_cols = 'repeat(5, 1fr)'
-  assign has_promos = false
+  assign has_promo_1 = false
+  assign has_promo_2 = false
   
-  if block.settings.mega_image_1 != blank or block.settings.mega_image_2 != blank
-    assign has_promos = true
+  if block.settings.mega_image_1 != blank
+    assign has_promo_1 = true
   endif
   
-  if link.links.size > 0 and block.settings.mega_image_1 != blank and block.settings.mega_image_2 != blank
-    assign block_grid_cols = '2fr 1fr 1fr'
-    assign links_grid_cols = 'repeat(3, 1fr)'
-  elsif link.links.size > 0 and block.settings.mega_image_1 != blank or block.settings.mega_image_2 != blank
-    assign block_grid_cols = '2fr 1fr'
-    assign links_grid_cols = 'repeat(4, 1fr)'
-  elsif link.links.size == 0 and block.settings.mega_image_1 != blank or block.settings.mega_image_2 != blank
-    assign block_grid_cols = 'repeat(5, 1fr)'
+  if block.settings.mega_image_2 != blank
+    assign has_promo_2 = true
   endif
   
-  assign emojis = '🎨,🌈,💖,⭐,🦋,✨,🎁,👕' | split: ','
+  assign total_promos = 0
+  if has_promo_1
+    assign total_promos = total_promos | plus: 1
+  endif
+  if has_promo_2
+    assign total_promos = total_promos | plus: 1
+  endif
 %}
 
 {% style %}
-  /* Grid Layout */
-  [data-mega-menu-block-id="{{ block.id }}"] {
-    grid-template-columns: {{ block_grid_cols }};
-  }
-
-  [data-mega-menu-block-id="{{ block.id }}"] .mega-menu--links {
-    grid-template-columns: {{ links_grid_cols }};
-  }
-
-  /* Promo Text Colors */
-  .mega-menu-block .block-id-{{ block.id }} .overlay-text-on-image-promo-1,
-  .mega-menu-block .block-id-{{ block.id }} .overlay-text-on-image-promo-1 a:hover {
-    color: {{ block.settings.overlay_text_color_promo_1 }} !important;
-  }
-
-  .mega-menu-block .block-id-{{ block.id }} .overlay-text-on-image-promo-2,
-  .mega-menu-block .block-id-{{ block.id }} .overlay-text-on-image-promo-2 a:hover {
-    color: {{ block.settings.overlay_text_color_promo_2 }} !important;
-  }
-  
   /* ═══════════════════════════════════════════════════
-     EMERSON PREMIUM MEGA MENU STYLES
+     EMERSON PREMIUM MEGA MENU
      ═══════════════════════════════════════════════════ */
   
   [data-mega-menu-block-id="{{ block.id }}"] {
     background: white !important;
-    border-radius: 20px !important;
-    box-shadow: 0 20px 60px rgba(31, 26, 20, 0.15) !important;
-    border: 1px solid #E8E2DB !important;
-    padding: 32px 40px !important;
-    animation: emersonMegaFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    border-radius: 24px !important;
+    box-shadow: 0 25px 80px rgba(31, 26, 20, 0.18) !important;
+    border: none !important;
+    padding: 0 !important;
+    overflow: hidden;
+    animation: emersonMegaSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    display: block !important;
   }
   
-  @keyframes emersonMegaFadeIn {
+  @keyframes emersonMegaSlideIn {
     from {
       opacity: 0;
-      transform: translateY(-10px);
+      transform: translateY(-15px);
     }
     to {
       opacity: 1;
@@ -72,170 +53,92 @@
     }
   }
   
-  /* Links Grid Spacing */
-  [data-mega-menu-block-id="{{ block.id }}"] .mega-menu--links {
-    gap: 40px !important;
+  [data-mega-menu-block-id="{{ block.id }}"] .emerson-mega-inner {
+    display: grid;
+    {% if total_promos == 2 %}
+      grid-template-columns: 1fr 280px;
+    {% elsif total_promos == 1 %}
+      grid-template-columns: 1fr 240px;
+    {% else %}
+      grid-template-columns: 1fr;
+    {% endif %}
+    gap: 0;
   }
   
-  /* Column Header with Emoji */
-  [data-mega-menu-block-id="{{ block.id }}"] .emerson-column-header {
+  /* Links Section */
+  [data-mega-menu-block-id="{{ block.id }}"] .emerson-mega-links {
+    padding: 32px 36px;
+  }
+  
+  /* Links Grid - Clean Card Style */
+  [data-mega-menu-block-id="{{ block.id }}"] .emerson-links-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  
+  /* Individual Link Card */
+  [data-mega-menu-block-id="{{ block.id }}"] .emerson-link-card {
     display: flex;
     align-items: center;
-    gap: 8px;
-    margin-bottom: 16px;
-    padding-bottom: 12px;
-    border-bottom: 2px solid #FFE5EC;
-    position: relative;
+    gap: 12px;
+    padding: 14px 18px;
+    background: #FDF9F6;
+    border-radius: 12px;
+    text-decoration: none !important;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    border: 1px solid transparent;
   }
   
-  [data-mega-menu-block-id="{{ block.id }}"] .emerson-column-header::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 30px;
-    height: 2px;
-    background: #E85D75;
+  [data-mega-menu-block-id="{{ block.id }}"] .emerson-link-card:hover {
+    background: #FFF5F7;
+    border-color: #FFCCD5;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(232, 93, 117, 0.12);
   }
   
-  [data-mega-menu-block-id="{{ block.id }}"] .emerson-emoji {
-    font-size: 20px;
+  [data-mega-menu-block-id="{{ block.id }}"] .emerson-link-emoji {
+    font-size: 24px;
     line-height: 1;
+    flex-shrink: 0;
+    width: 32px;
+    text-align: center;
   }
   
-  /* Category Titles */
-  [data-mega-menu-block-id="{{ block.id }}"] .mega-menu-link--title {
-    font-family: 'DM Sans', -apple-system, sans-serif !important;
-    font-size: 14px !important;
-    font-weight: 600 !important;
-    color: #1F1A14 !important;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin: 0 !important;
-    padding: 0 !important;
-    border: none !important;
-  }
-  
-  [data-mega-menu-block-id="{{ block.id }}"] .mega-menu-link--title a {
-    color: inherit !important;
-    text-decoration: none !important;
-    transition: color 0.2s ease !important;
-  }
-  
-  [data-mega-menu-block-id="{{ block.id }}"] .mega-menu-link--title a:hover {
-    color: #E85D75 !important;
-  }
-  
-  /* Sub Links */
-  [data-mega-menu-block-id="{{ block.id }}"] .menu-link {
-    list-style: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
-  }
-  
-  [data-mega-menu-block-id="{{ block.id }}"] .menu-link li {
-    margin-bottom: 10px !important;
-  }
-  
-  [data-mega-menu-block-id="{{ block.id }}"] .menu-link li a {
-    font-family: 'DM Sans', -apple-system, sans-serif !important;
-    font-size: 14px !important;
-    font-weight: 400 !important;
-    color: #756758 !important;
-    text-decoration: none !important;
-    display: inline-block;
-    padding: 4px 0;
-    transition: all 0.2s ease !important;
-  }
-  
-  [data-mega-menu-block-id="{{ block.id }}"] .menu-link li a:hover {
-    color: #E85D75 !important;
-    padding-left: 6px;
-  }
-  
-  /* View All Link */
-  [data-mega-menu-block-id="{{ block.id }}"] .emerson-view-all {
-    margin-top: 12px;
-    padding-top: 12px;
-    border-top: 1px dashed #E8E2DB;
-  }
-  
-  [data-mega-menu-block-id="{{ block.id }}"] .emerson-view-all a {
-    font-weight: 500 !important;
-    color: #E85D75 !important;
-    font-size: 13px !important;
-  }
-  
-  [data-mega-menu-block-id="{{ block.id }}"] .emerson-view-all a:hover {
-    color: #1F1A14 !important;
-  }
-  
-  /* Promo Cards */
-  [data-mega-menu-block-id="{{ block.id }}"] .emerson-promo-card {
-    border-radius: 16px !important;
-    overflow: hidden !important;
-    position: relative;
-    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
-  }
-  
-  [data-mega-menu-block-id="{{ block.id }}"] .emerson-promo-card:hover {
-    transform: translateY(-4px) !important;
-    box-shadow: 0 8px 30px rgba(31, 26, 20, 0.12) !important;
-  }
-  
-  [data-mega-menu-block-id="{{ block.id }}"] .emerson-promo-card img {
-    transition: transform 0.5s ease !important;
-  }
-  
-  [data-mega-menu-block-id="{{ block.id }}"] .emerson-promo-card:hover img {
-    transform: scale(1.05) !important;
-  }
-  
-  [data-mega-menu-block-id="{{ block.id }}"] .emerson-promo-text {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 20px;
-    background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%);
-  }
-  
-  [data-mega-menu-block-id="{{ block.id }}"] .emerson-promo-title {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 18px;
-    font-weight: 600;
-    margin: 0 0 4px 0;
-  }
-  
-  [data-mega-menu-block-id="{{ block.id }}"] .emerson-promo-subtitle {
-    font-family: 'DM Sans', sans-serif;
+  [data-mega-menu-block-id="{{ block.id }}"] .emerson-link-text {
+    font-family: 'DM Sans', -apple-system, sans-serif;
     font-size: 14px;
-    margin: 0;
-    opacity: 0.9;
+    font-weight: 500;
+    color: #1F1A14;
+    line-height: 1.3;
+    transition: color 0.2s ease;
+  }
+  
+  [data-mega-menu-block-id="{{ block.id }}"] .emerson-link-card:hover .emerson-link-text {
+    color: #E85D75;
   }
   
   /* CTA Banner */
   [data-mega-menu-block-id="{{ block.id }}"] .emerson-cta-banner {
-    grid-column: 1 / -1;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 16px;
-    margin-top: 24px;
-    padding: 16px 24px;
+    gap: 14px;
+    margin-top: 20px;
+    padding: 14px 24px;
     background: linear-gradient(135deg, #FFF5F7 0%, #FDF9F6 100%);
     border-radius: 12px;
     border: 1px dashed #E85D75;
   }
   
   [data-mega-menu-block-id="{{ block.id }}"] .emerson-cta-emoji {
-    font-size: 24px;
-    animation: emersonBounce 2s infinite;
+    font-size: 20px;
+    animation: emersonSparkle 2s ease-in-out infinite;
   }
   
-  @keyframes emersonBounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-4px); }
+  @keyframes emersonSparkle {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.1) rotate(5deg); }
   }
   
   [data-mega-menu-block-id="{{ block.id }}"] .emerson-cta-text {
@@ -248,7 +151,7 @@
   [data-mega-menu-block-id="{{ block.id }}"] .emerson-cta-btn {
     display: inline-flex;
     align-items: center;
-    padding: 8px 20px;
+    padding: 10px 22px;
     background: #E85D75;
     color: white !important;
     font-family: 'DM Sans', sans-serif;
@@ -262,112 +165,257 @@
   [data-mega-menu-block-id="{{ block.id }}"] .emerson-cta-btn:hover {
     background: #D64D65;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(232, 93, 117, 0.3);
+    box-shadow: 0 6px 20px rgba(232, 93, 117, 0.35);
+  }
+  
+  /* Promo Section */
+  [data-mega-menu-block-id="{{ block.id }}"] .emerson-promos {
+    background: #FDF9F6;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  [data-mega-menu-block-id="{{ block.id }}"] .emerson-promo-card {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    flex: 1;
+    min-height: 140px;
+  }
+  
+  [data-mega-menu-block-id="{{ block.id }}"] .emerson-promo-card a {
+    display: block;
+    height: 100%;
+    text-decoration: none !important;
+  }
+  
+  [data-mega-menu-block-id="{{ block.id }}"] .emerson-promo-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  
+  [data-mega-menu-block-id="{{ block.id }}"] .emerson-promo-card:hover img {
+    transform: scale(1.08);
+  }
+  
+  [data-mega-menu-block-id="{{ block.id }}"] .emerson-promo-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px 16px 16px;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+    color: white;
+  }
+  
+  [data-mega-menu-block-id="{{ block.id }}"] .emerson-promo-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 2px 0;
+    color: {{ block.settings.overlay_text_color_promo_1 | default: '#FFFFFF' }};
+  }
+  
+  [data-mega-menu-block-id="{{ block.id }}"] .emerson-promo-card:nth-child(2) .emerson-promo-title {
+    color: {{ block.settings.overlay_text_color_promo_2 | default: '#FFFFFF' }};
+  }
+  
+  [data-mega-menu-block-id="{{ block.id }}"] .emerson-promo-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    margin: 0;
+    opacity: 0.9;
+    color: {{ block.settings.overlay_text_color_promo_1 | default: '#FFFFFF' }};
+  }
+  
+  [data-mega-menu-block-id="{{ block.id }}"] .emerson-promo-card:nth-child(2) .emerson-promo-subtitle {
+    color: {{ block.settings.overlay_text_color_promo_2 | default: '#FFFFFF' }};
+  }
+  
+  /* View All Link */
+  [data-mega-menu-block-id="{{ block.id }}"] .emerson-view-all-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px;
+    background: white;
+    border-radius: 10px;
+    text-decoration: none !important;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #E85D75 !important;
+    transition: all 0.2s ease;
+  }
+  
+  [data-mega-menu-block-id="{{ block.id }}"] .emerson-view-all-link:hover {
+    background: #E85D75;
+    color: white !important;
+  }
+  
+  [data-mega-menu-block-id="{{ block.id }}"] .emerson-view-all-link svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.2s ease;
+  }
+  
+  [data-mega-menu-block-id="{{ block.id }}"] .emerson-view-all-link:hover svg {
+    transform: translateX(3px);
+  }
+  
+  /* Empty State */
+  [data-mega-menu-block-id="{{ block.id }}"] .mega-menu--empty {
+    padding: 40px;
+    text-align: center;
+    color: #756758;
+  }
+  
+  /* Responsive */
+  @media (max-width: 1100px) {
+    [data-mega-menu-block-id="{{ block.id }}"] .emerson-links-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  @media (max-width: 900px) {
+    [data-mega-menu-block-id="{{ block.id }}"] .emerson-mega-inner {
+      grid-template-columns: 1fr;
+    }
+    
+    [data-mega-menu-block-id="{{ block.id }}"] .emerson-promos {
+      flex-direction: row;
+      padding: 16px;
+    }
+    
+    [data-mega-menu-block-id="{{ block.id }}"] .emerson-promo-card {
+      min-height: 120px;
+    }
   }
 {% endstyle %}
 
 <div class="mega-menu-block{% if link.links.size == 0 and block.settings.mega_image_1 == blank and block.settings.mega_image_2 == blank %} no--content{% endif %}" data-mega-menu-block-id="{{ block.id }}" {{ block.shopify_attributes }}>
   
   {% comment %} Empty State {% endcomment %}
-  {% if link.links.size == 0 %}
-    {% if block.settings.mega_image_1 == blank and block.settings.mega_image_2 == blank %}
-      <p class="mega-menu--empty" {% unless request.design_mode %}style="visibility:hidden;"{% endunless %}>
-        This megamenu doesn't currently have any content. Add content to the megamenu in the Shopify admin at: Online store > Menu.
-      </p>
-    {% endif %}
-  {% endif %}
-
-  {% comment %} ═══════════════════════════════════════════════════
-     NAVIGATION LINKS WITH EMOJIS
-     ═══════════════════════════════════════════════════ {% endcomment %}
-  {% if link.links.size > 0 %}
-    <div class="mega-menu--links">
-      {% for sub_link in link.links %}
-        <li class="dropdown-submenu nav-link-animated--custom" aria-haspopup="true" style="--column-index: {{ forloop.index }};">
-          <div class="inner">
-            
-            {% comment %} Column Header with Emoji {% endcomment %}
-            <div class="emerson-column-header">
-              <span class="emerson-emoji">
-                {% assign emoji_index = forloop.index0 | modulo: emojis.size %}
-                {{ emojis[emoji_index] }}
-              </span>
-              <p class="h4 mega-menu-link--title">
-                <a class="animated-link--item" href="{{ sub_link.url }}">{{ sub_link.title | escape }}</a>
-              </p>
-            </div>
-            
-            {% comment %} Sub Links {% endcomment %}
-            <ul class="menu-link">
-              {% for sub_sub_link in sub_link.links %}
-                <li>
-                  <a class="animated-link--item" href="{{ sub_sub_link.url }}">{{ sub_sub_link.title | escape }}</a>
-                </li>
-              {% endfor %}
+  {% if link.links.size == 0 and block.settings.mega_image_1 == blank and block.settings.mega_image_2 == blank %}
+    <p class="mega-menu--empty" {% unless request.design_mode %}style="visibility:hidden;"{% endunless %}>
+      Add menu items in Shopify Admin → Online Store → Navigation
+    </p>
+  {% else %}
+  
+  <div class="emerson-mega-inner">
+    
+    {% comment %} ═══════════════════════════════════════
+       LINKS SECTION
+       ═══════════════════════════════════════ {% endcomment %}
+    <div class="emerson-mega-links">
+      
+      {% if link.links.size > 0 %}
+        <div class="emerson-links-grid">
+          {% for sub_link in link.links %}
+            {% liquid
+              assign link_handle = sub_link.url | downcase
               
-              {% comment %} View All Link {% endcomment %}
-              {% if sub_link.links.size > 0 %}
-                <li class="emerson-view-all">
-                  <a href="{{ sub_link.url }}">View All →</a>
-                </li>
-              {% endif %}
-            </ul>
+              if link_handle contains 'note-card'
+                assign emoji = '💌'
+              elsif link_handle contains 'print' or link_handle contains 'art' or link_handle contains 'framed'
+                assign emoji = '🖼️'
+              elsif link_handle contains 'tote' or link_handle contains 'bag'
+                assign emoji = '👜'
+              elsif link_handle contains 'apparel' or link_handle contains 'shirt' or link_handle contains 'hoodie'
+                assign emoji = '👕'
+              elsif link_handle contains 'rainbow' or link_handle contains 'heart'
+                assign emoji = '🌈'
+              elsif link_handle contains 'sticker' or link_handle contains 'magnet' or link_handle contains 'pin' or link_handle contains 'button'
+                assign emoji = '⭐'
+              elsif link_handle contains 'gift' or link_handle contains 'accessor'
+                assign emoji = '🎁'
+              elsif link_handle contains 'pick' or link_handle contains 'featured' or link_handle contains 'best'
+                assign emoji = '💖'
+              elsif link_handle contains 'new'
+                assign emoji = '✨'
+              else
+                assign emoji_options = '🎨,🦋,🌸,🌟' | split: ','
+                assign emoji_index = forloop.index0 | modulo: 4
+                assign emoji = emoji_options[emoji_index]
+              endif
+            %}
             
+            <a href="{{ sub_link.url }}" class="emerson-link-card">
+              <span class="emerson-link-emoji">{{ emoji }}</span>
+              <span class="emerson-link-text">{{ sub_link.title | escape }}</span>
+            </a>
+          {% endfor %}
+        </div>
+        
+        {% comment %} CTA Banner {% endcomment %}
+        <div class="emerson-cta-banner">
+          <span class="emerson-cta-emoji">✨</span>
+          <span class="emerson-cta-text">Free shipping on all orders — Spread the joy!</span>
+          <a href="/collections/all" class="emerson-cta-btn">Shop All</a>
+        </div>
+      {% endif %}
+      
+    </div>
+    
+    {% comment %} ═══════════════════════════════════════
+       PROMO IMAGES SECTION
+       ═══════════════════════════════════════ {% endcomment %}
+    {% if has_promo_1 or has_promo_2 %}
+      <div class="emerson-promos">
+        
+        {% if has_promo_1 %}
+          <div class="emerson-promo-card">
+            {% if block.settings.mega_image_link_1 != blank %}<a href="{{ block.settings.mega_image_link_1 }}">{% endif %}
+              {{ block.settings.mega_image_1 | image_url: width: 600 | image_tag: loading: 'lazy' }}
+              {% if block.settings.mega_image_header_1 != blank or block.settings.mega_image_subheader_1 != blank %}
+                <div class="emerson-promo-overlay">
+                  {% if block.settings.mega_image_header_1 != blank %}
+                    <p class="emerson-promo-title">{{ block.settings.mega_image_header_1 }}</p>
+                  {% endif %}
+                  {% if block.settings.mega_image_subheader_1 != blank %}
+                    <p class="emerson-promo-subtitle">{{ block.settings.mega_image_subheader_1 }}</p>
+                  {% endif %}
+                </div>
+              {% endif %}
+            {% if block.settings.mega_image_link_1 != blank %}</a>{% endif %}
           </div>
-        </li>
-      {% endfor %}
-    </div>
+        {% endif %}
+        
+        {% if has_promo_2 %}
+          <div class="emerson-promo-card">
+            {% if block.settings.mega_image_link_2 != blank %}<a href="{{ block.settings.mega_image_link_2 }}">{% endif %}
+              {{ block.settings.mega_image_2 | image_url: width: 600 | image_tag: loading: 'lazy' }}
+              {% if block.settings.mega_image_header_2 != blank or block.settings.mega_image_subheader_2 != blank %}
+                <div class="emerson-promo-overlay">
+                  {% if block.settings.mega_image_header_2 != blank %}
+                    <p class="emerson-promo-title">{{ block.settings.mega_image_header_2 }}</p>
+                  {% endif %}
+                  {% if block.settings.mega_image_subheader_2 != blank %}
+                    <p class="emerson-promo-subtitle">{{ block.settings.mega_image_subheader_2 }}</p>
+                  {% endif %}
+                </div>
+              {% endif %}
+            {% if block.settings.mega_image_link_2 != blank %}</a>{% endif %}
+          </div>
+        {% endif %}
+        
+        {% comment %} View All Link {% endcomment %}
+        <a href="{{ link.url | default: '/collections/all' }}" class="emerson-view-all-link">
+          View All Collections
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+        
+      </div>
+    {% endif %}
+    
+  </div>
+  
   {% endif %}
-
-  {% comment %} ═══════════════════════════════════════════════════
-     PROMO IMAGE 1
-     ═══════════════════════════════════════════════════ {% endcomment %}
-  {% if block.settings.mega_image_1 %}
-    <div class="emerson-promo-card">
-      {% render 'mega-menu-promo-card' with 
-        promo_wrapper_classes: "dropdown-submenu",
-        promo_block_id: block.id,
-        promo_wrapper_attr: "aria-haspopup='true'",
-        promo_img: block.settings.mega_image_1,
-        promo_img_crop: block.settings.image_1_aspect_ratio,
-        promo_text_overlay: block.settings.overlay_text_on_image_promo_1,
-        promo_text_heading: block.settings.mega_image_header_1,
-        promo_text_subheading: block.settings.mega_image_subheader_1,
-        promo_text_color: block.settings.overlay_text_color_promo_1,
-        promo_link: block.settings.mega_image_link_1
-      %}
-    </div>
-  {% endif %}
-
-  {% comment %} ═══════════════════════════════════════════════════
-     PROMO IMAGE 2
-     ═══════════════════════════════════════════════════ {% endcomment %}
-  {% if block.settings.mega_image_2 %}
-    <div class="emerson-promo-card">
-      {% render 'mega-menu-promo-card' with 
-        promo_wrapper_classes: "dropdown-submenu",
-        promo_block_id: block.id,
-        promo_wrapper_attr: "aria-haspopup='true'",
-        promo_img: block.settings.mega_image_2,
-        promo_img_crop: block.settings.image_2_aspect_ratio,
-        promo_text_overlay: block.settings.overlay_text_on_image_promo_2,
-        promo_text_heading: block.settings.mega_image_header_2,
-        promo_text_subheading: block.settings.mega_image_subheader_2,
-        promo_text_color: block.settings.overlay_text_color_promo_2,
-        promo_link: block.settings.mega_image_link_2
-      %}
-    </div>
-  {% endif %}
-
-  {% comment %} ═══════════════════════════════════════════════════
-     CTA BANNER
-     ═══════════════════════════════════════════════════ {% endcomment %}
-  {% if link.links.size > 0 %}
-    <div class="emerson-cta-banner">
-      <span class="emerson-cta-emoji">✨</span>
-      <span class="emerson-cta-text">Free shipping on all orders — Spread the joy!</span>
-      <a href="/collections/all" class="emerson-cta-btn">Shop Now</a>
-    </div>
-  {% endif %}
-
 </div>
