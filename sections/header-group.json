@@ -66,7 +66,7 @@
         "logo": "shopify://shop_images/EmersonByAvery_line_text_-_Brown.jpg",
         "logo-placement": "center",
         "logo_max_width": 235,
-        "logo_max_width_mobile": 135,
+        "logo_max_width_mobile": 150,
         "logo_padding": 0,
         "mobile_social_icons": true,
         "show_icons": true,
