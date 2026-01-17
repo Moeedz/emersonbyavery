@@ -1,186 +1,218 @@
-{% comment %}EMERSON BY AVERY — HERO BANNER{% endcomment %}
-{{ 'section-emerson-hero.css' | asset_url | stylesheet_tag }}
+{% comment %}
+  ════════════════════════════════════════════════════════════════
+  EMERSON BY AVERY — PREMIUM HERO BANNER
+  Flow-level animations with floating elements
+  ════════════════════════════════════════════════════════════════
+{% endcomment %}
+
 {{ 'emerson-animations.css' | asset_url | stylesheet_tag }}
+{{ 'section-emerson-hero.css' | asset_url | stylesheet_tag }}
 
-{%- style -%}
-#emerson-hero-{{ section.id }} {
-  --section-padding-top: {{ section.settings.padding_top }}px;
-  --section-padding-bottom: {{ section.settings.padding_bottom }}px;
-  --section-padding-top-mobile: {{ section.settings.padding_top_mobile }}px;
-  --section-padding-bottom-mobile: {{ section.settings.padding_bottom_mobile }}px;
-  --content-max-width: {{ section.settings.content_max_width }}px;
-  --section-max-width: {{ section.settings.section_max_width }}px;
-  --section-min-height: {{ section.settings.section_min_height }}vh;
-  --content-gap: {{ section.settings.content_gap }}px;
-  --section-bg: {{ section.settings.bg_color }};
-  --heading-color: {{ section.settings.heading_color }};
-  --text-color: {{ section.settings.text_color }};
-  --eyebrow-color: {{ section.settings.eyebrow_color }};
-  --badge-bg: {{ section.settings.badge_bg_color }};
-  --badge-text: {{ section.settings.badge_text_color }};
-  --eyebrow-size-desktop: {{ section.settings.eyebrow_size_desktop }}px;
-  --eyebrow-size-mobile: {{ section.settings.eyebrow_size_mobile }}px;
-  --heading-size-desktop: {{ section.settings.heading_size_desktop }}px;
-  --heading-size-mobile: {{ section.settings.heading_size_mobile }}px;
-  --subheading-size-desktop: {{ section.settings.subheading_size_desktop }}px;
-  --subheading-size-mobile: {{ section.settings.subheading_size_mobile }}px;
-  --subheading-max-width: {{ section.settings.subheading_max_width }}px;
-  --btn-primary-bg: {{ section.settings.btn_primary_bg }};
-  --btn-primary-text: {{ section.settings.btn_primary_text_color }};
-  --btn-font-size: {{ section.settings.btn_font_size }}px;
-  --btn-padding-x: {{ section.settings.btn_padding_x }}px;
-  --btn-padding-y: {{ section.settings.btn_padding_y }}px;
-  --btn-border-radius: {{ section.settings.btn_border_radius }}px;
-  --btn-secondary-bg: {{ section.settings.btn_secondary_bg }};
-  --btn-secondary-text: {{ section.settings.btn_secondary_text_color }};
-  --btn-secondary-border: {{ section.settings.btn_secondary_border }};
-  --blob-1-color: {{ section.settings.blob_1_color }};
-  --blob-2-color: {{ section.settings.blob_2_color }};
-  --blob-3-color: {{ section.settings.blob_3_color }};
-  --blob-1-size: {{ section.settings.blob_1_size }}px;
-  --blob-2-size: {{ section.settings.blob_2_size }}px;
-  --blob-3-size: {{ section.settings.blob_3_size }}px;
-  --stats-number-size: {{ section.settings.stats_number_size }}px;
-  --stats-number-color: {{ section.settings.stats_number_color }};
-  --stats-label-size: {{ section.settings.stats_label_size }}px;
-  --stats-label-color: {{ section.settings.stats_label_color }};
-  --stats-gap: {{ section.settings.stats_gap }}px;
-  --image-max-width: {{ section.settings.image_max_width }}px;
-  --image-border-radius: {{ section.settings.image_border_radius }}px;
-  --badge-font-size: {{ section.settings.badge_font_size }}px;
-  --badge-padding-x: {{ section.settings.badge_padding_x }}px;
-  --badge-padding-y: {{ section.settings.badge_padding_y }}px;
-  --badge-border-radius: {{ section.settings.badge_border_radius }}px;
-}
-{%- endstyle -%}
-
-<section id="emerson-hero-{{ section.id }}" class="emerson-hero {% if section.settings.full_width %}emerson-hero--full-width{% endif %}">
-  {%- if section.settings.show_blobs -%}
-  <div class="emerson-hero__blobs" aria-hidden="true">
+<section 
+  class="emerson-hero"
+  data-section-id="{{ section.id }}"
+  style="
+    --hero-bg: {{ section.settings.bg_color }};
+    --hero-blob-1: {{ section.settings.blob_color_1 }};
+    --hero-blob-2: {{ section.settings.blob_color_2 }};
+    --hero-blob-3: {{ section.settings.blob_color_3 }};
+  "
+>
+  <!-- Animated Background Blobs -->
+  <div class="emerson-hero__bg" aria-hidden="true">
     <div class="emerson-hero__blob emerson-hero__blob--1"></div>
     <div class="emerson-hero__blob emerson-hero__blob--2"></div>
     <div class="emerson-hero__blob emerson-hero__blob--3"></div>
   </div>
-  {%- endif -%}
-
-  {%- if section.settings.show_sparkles -%}
-  <div class="emerson-hero__sparkles" aria-hidden="true">
-    {%- assign sparkles = section.settings.sparkle_emojis | split: ',' -%}
-    {%- for sparkle in sparkles -%}
-    <span class="emerson-hero__sparkle" style="--sparkle-index: {{ forloop.index }};">{{ sparkle | strip }}</span>
-    {%- endfor -%}
-  </div>
-  {%- endif -%}
 
   <div class="emerson-hero__container">
-    <div class="emerson-hero__content" style="text-align: {{ section.settings.content_alignment }};">
-      {%- if section.settings.show_badge and section.settings.badge_text != blank -%}
-      <div class="emerson-hero__badge" data-animate="fade-up">
-        <span class="emerson-hero__badge-dot"></span>
-        {{ section.settings.badge_text }}
-      </div>
+    <!-- Content -->
+    <div class="emerson-hero__content">
+      {%- if section.settings.show_badge -%}
+        <div class="emerson-hero__badge" data-animate="fade-up">
+          <span class="emerson-hero__badge-dot"></span>
+          <span>{{ section.settings.badge_text }}</span>
+        </div>
       {%- endif -%}
 
       {%- if section.settings.eyebrow != blank -%}
-      <span class="emerson-hero__eyebrow" data-animate="fade-up" data-delay="100">{{ section.settings.eyebrow }}</span>
+        <span class="emerson-hero__eyebrow" data-animate="fade-up" data-delay="1">
+          {{ section.settings.eyebrow }}
+        </span>
       {%- endif -%}
 
       {%- if section.settings.heading != blank -%}
-      <h1 class="emerson-hero__title" data-animate="fade-up" data-delay="200">{{ section.settings.heading }}</h1>
+        <h1 class="emerson-hero__title" data-animate="split-text">
+          {%- assign words = section.settings.heading | split: ' ' -%}
+          {%- for word in words -%}
+            <span class="word"><span>{{ word }}</span></span>
+          {%- endfor -%}
+        </h1>
       {%- endif -%}
 
       {%- if section.settings.subheading != blank -%}
-      <p class="emerson-hero__subtitle" data-animate="fade-up" data-delay="300">{{ section.settings.subheading }}</p>
+        <p class="emerson-hero__subtitle" data-animate="fade-up" data-delay="2">
+          {{ section.settings.subheading }}
+        </p>
       {%- endif -%}
 
-      {%- if section.settings.btn_primary_text != blank or section.settings.btn_secondary_text != blank -%}
-      <div class="emerson-hero__buttons" data-animate="fade-up" data-delay="400">
-        {%- if section.settings.btn_primary_text != blank -%}
-        <a href="{{ section.settings.btn_primary_link }}" class="emerson-hero__btn emerson-hero__btn--primary">
-          <span>{{ section.settings.btn_primary_text }}</span>
-          {%- if section.settings.btn_show_arrow -%}
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          {%- endif -%}
-        </a>
+      <div class="emerson-hero__ctas" data-animate="fade-up" data-delay="3">
+        {%- if section.settings.primary_link != blank and section.settings.primary_text != blank -%}
+          <a href="{{ section.settings.primary_link }}" class="emerson-btn emerson-btn--primary">
+            <span>{{ section.settings.primary_text }}</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
         {%- endif -%}
-        {%- if section.settings.btn_secondary_text != blank -%}
-        <a href="{{ section.settings.btn_secondary_link }}" class="emerson-hero__btn emerson-hero__btn--secondary">
-          <span>{{ section.settings.btn_secondary_text }}</span>
-        </a>
+
+        {%- if section.settings.secondary_link != blank and section.settings.secondary_text != blank -%}
+          <a href="{{ section.settings.secondary_link }}" class="emerson-btn emerson-btn--secondary">
+            <span>{{ section.settings.secondary_text }}</span>
+          </a>
         {%- endif -%}
       </div>
-      {%- endif -%}
 
       {%- if section.settings.show_stats -%}
-      {%- assign stat_blocks = section.blocks | where: 'type', 'stat' -%}
-      {%- if stat_blocks.size > 0 -%}
-      <div class="emerson-hero__stats" data-animate="fade-up" data-delay="500">
-        {%- for block in stat_blocks -%}
-        <div class="emerson-hero__stat" {{ block.shopify_attributes }}>
-          <span class="emerson-hero__stat-number">{{ block.settings.number }}{{ block.settings.suffix }}</span>
-          <span class="emerson-hero__stat-label">{{ block.settings.label }}</span>
+        <div class="emerson-hero__stats" data-animate="fade-up" data-delay="4">
+          <div class="emerson-hero__stat">
+            <div class="emerson-hero__stat-number">
+              <span class="counter" data-target="{{ section.settings.stat_1_number }}">0</span>{{ section.settings.stat_1_suffix }}
+            </div>
+            <div class="emerson-hero__stat-label">{{ section.settings.stat_1_label }}</div>
+          </div>
+          <div class="emerson-hero__stat">
+            <div class="emerson-hero__stat-number">
+              <span class="counter" data-target="{{ section.settings.stat_2_number }}">0</span>{{ section.settings.stat_2_suffix }}
+            </div>
+            <div class="emerson-hero__stat-label">{{ section.settings.stat_2_label }}</div>
+          </div>
+          <div class="emerson-hero__stat">
+            <div class="emerson-hero__stat-number">{{ section.settings.stat_3_value }}</div>
+            <div class="emerson-hero__stat-label">{{ section.settings.stat_3_label }}</div>
+          </div>
         </div>
-        {%- endfor -%}
-      </div>
-      {%- endif -%}
       {%- endif -%}
     </div>
 
-    <div class="emerson-hero__image-wrapper" data-animate="fade-left" data-delay="300">
-      {%- if section.settings.image != blank -%}
-      {{ section.settings.image | image_url: width: 1200 | image_tag: class: 'emerson-hero__image', loading: 'eager' }}
-      {%- else -%}
-      <div class="emerson-hero__image-placeholder">
-        <svg class="emerson-hero__heart-svg" viewBox="0 0 200 180">
-          <defs><linearGradient id="heartGradient-{{ section.id }}" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:{{ section.settings.heart_color_1 }}" /><stop offset="100%" style="stop-color:{{ section.settings.heart_color_2 }}" /></linearGradient></defs>
-          <path d="M100 170 C20 100 0 60 30 30 C60 0 100 20 100 50 C100 20 140 0 170 30 C200 60 180 100 100 170Z" fill="url(#heartGradient-{{ section.id }})"/>
-        </svg>
-      </div>
-      {%- endif -%}
+    <!-- Visual -->
+    <div class="emerson-hero__visual" data-animate="scale-up" data-delay="1">
+      <div class="emerson-hero__image-wrapper">
+        {%- if section.settings.hero_image != blank -%}
+          <div class="emerson-hero__image">
+            {{
+              section.settings.hero_image | image_url: width: 1000 | image_tag:
+              loading: 'eager',
+              fetchpriority: 'high',
+              sizes: '(min-width: 1024px) 500px, (min-width: 768px) 400px, 300px',
+              widths: '300, 400, 500, 600, 800, 1000',
+              class: 'emerson-hero__img'
+            }}
+          </div>
+        {%- else -%}
+          <div class="emerson-hero__heart">
+            <svg viewBox="0 0 200 200" class="heart-svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="heroGradient-{{ section.id }}" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#E85D75"/>
+                  <stop offset="25%" stop-color="#F4976C"/>
+                  <stop offset="50%" stop-color="#F4C542"/>
+                  <stop offset="75%" stop-color="#9CB69C"/>
+                  <stop offset="100%" stop-color="#6B9AC4"/>
+                </linearGradient>
+              </defs>
+              <path 
+                d="M100 180C60 140 20 110 20 70C20 40 45 20 75 20C90 20 100 35 100 35C100 35 110 20 125 20C155 20 180 40 180 70C180 110 140 140 100 180Z" 
+                fill="url(#heroGradient-{{ section.id }})"
+                class="heart-path"
+              />
+            </svg>
+          </div>
+        {%- endif -%}
 
-      {%- if section.settings.show_floating_products -%}
-      {%- assign product_blocks = section.blocks | where: 'type', 'floating_product' -%}
-      {%- if product_blocks.size > 0 -%}
-      <div class="emerson-hero__floating-products" aria-hidden="true">
-        {%- for block in product_blocks -%}
-        <div class="emerson-hero__floating-card emerson-hero__floating-card--{{ forloop.index }}" {{ block.shopify_attributes }}>
-          {%- if block.settings.product_image != blank -%}
-          {{ block.settings.product_image | image_url: width: 120 | image_tag }}
-          {%- else -%}
-          <span class="emerson-hero__floating-emoji">{{ block.settings.emoji }}</span>
-          {%- endif -%}
-          {%- if block.settings.product_name != blank -%}<span class="emerson-hero__floating-name">{{ block.settings.product_name }}</span>{%- endif -%}
-          {%- if block.settings.product_price != blank -%}<span class="emerson-hero__floating-price">{{ block.settings.product_price }}</span>{%- endif -%}
+        <!-- Floating Sparkles -->
+        <div class="emerson-hero__sparkles" aria-hidden="true">
+          <span class="sparkle">✨</span>
+          <span class="sparkle">💖</span>
+          <span class="sparkle">🌟</span>
+          <span class="sparkle">🎨</span>
+          <span class="sparkle">🌈</span>
         </div>
-        {%- endfor -%}
+
+        <!-- Floating Product Cards -->
+        {%- if section.settings.show_floating_products -%}
+          <div class="emerson-hero__products" aria-hidden="true">
+            <div class="emerson-hero__product emerson-hero__product--1">
+              <div class="emerson-hero__product-img" style="background: linear-gradient(135deg, #FFE4E8, #FFF0F3);">🌈</div>
+            </div>
+            <div class="emerson-hero__product emerson-hero__product--2">
+              <div class="emerson-hero__product-img" style="background: linear-gradient(135deg, #FFF5E6, #FFFAED);">☀️</div>
+            </div>
+            <div class="emerson-hero__product emerson-hero__product--3">
+              <div class="emerson-hero__product-img" style="background: linear-gradient(135deg, #E8F4E8, #F0FAF0);">🌳</div>
+            </div>
+          </div>
+        {%- endif -%}
       </div>
-      {%- endif -%}
-      {%- endif -%}
     </div>
   </div>
 
+  <!-- Scroll Indicator -->
   {%- if section.settings.show_scroll_indicator -%}
-  <div class="emerson-hero__scroll" data-animate="fade-up" data-delay="600">
-    <span>{{ section.settings.scroll_text }}</span>
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-  </div>
+    <div class="emerson-hero__scroll" data-animate="fade-up" data-delay="5">
+      <span>Scroll to explore</span>
+      <div class="emerson-hero__scroll-line">
+        <div class="emerson-hero__scroll-dot"></div>
+      </div>
+    </div>
   {%- endif -%}
 </section>
 
 <script>
-(function() {
-  const section = document.querySelector('#emerson-hero-{{ section.id }}');
-  if (!section) return;
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const delay = entry.target.dataset.delay || 0;
-        setTimeout(() => entry.target.classList.add('in-view'), delay);
-      }
+  (function() {
+    const section = document.querySelector('[data-section-id="{{ section.id }}"]');
+    if (!section) return;
+
+    // Animation Observer
+    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    // Trigger hero animations immediately (above fold)
+    setTimeout(() => {
+      section.querySelectorAll('[data-animate]').forEach(el => {
+        el.classList.add('in-view');
+      });
+    }, 100);
+
+    // Counter Animation
+    const counters = section.querySelectorAll('.counter');
+    counters.forEach(counter => {
+      const target = parseInt(counter.dataset.target);
+      const duration = 2000;
+      const step = target / (duration / 16);
+      let current = 0;
+
+      const updateCounter = () => {
+        current += step;
+        if (current < target) {
+          counter.textContent = Math.floor(current);
+          requestAnimationFrame(updateCounter);
+        } else {
+          counter.textContent = target;
+        }
+      };
+
+      setTimeout(updateCounter, 800);
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-  section.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
-})();
+  })();
 </script>
 
 {% schema %}
@@ -189,108 +221,188 @@
   "tag": "section",
   "class": "section-emerson-hero",
   "settings": [
-    {"type":"header","content":"Layout"},
-    {"type":"checkbox","id":"full_width","label":"Full width","default":true},
-    {"type":"range","id":"section_max_width","label":"Max width","min":1000,"max":1600,"step":200,"default":1400,"unit":"px"},
-    {"type":"range","id":"section_min_height","label":"Min height","min":50,"max":100,"step":10,"default":90,"unit":"vh"},
-    {"type":"range","id":"content_max_width","label":"Content max width","min":400,"max":800,"step":100,"default":600,"unit":"px"},
-    {"type":"range","id":"content_gap","label":"Content gap","min":20,"max":100,"step":20,"default":60,"unit":"px"},
-    {"type":"select","id":"content_alignment","label":"Alignment","options":[{"value":"left","label":"Left"},{"value":"center","label":"Center"}],"default":"left"},
-    {"type":"header","content":"Padding"},
-    {"type":"range","id":"padding_top","label":"Top — Desktop","min":0,"max":200,"step":10,"default":80,"unit":"px"},
-    {"type":"range","id":"padding_bottom","label":"Bottom — Desktop","min":0,"max":200,"step":10,"default":80,"unit":"px"},
-    {"type":"range","id":"padding_top_mobile","label":"Top — Mobile","min":0,"max":100,"step":10,"default":60,"unit":"px"},
-    {"type":"range","id":"padding_bottom_mobile","label":"Bottom — Mobile","min":0,"max":100,"step":10,"default":60,"unit":"px"},
-    {"type":"header","content":"Colors"},
-    {"type":"color","id":"bg_color","label":"Background","default":"#FDF9F6"},
-    {"type":"color","id":"heading_color","label":"Heading","default":"#1F1A14"},
-    {"type":"color","id":"text_color","label":"Text","default":"#756758"},
-    {"type":"color","id":"eyebrow_color","label":"Eyebrow","default":"#E85D75"},
-    {"type":"header","content":"Badge"},
-    {"type":"checkbox","id":"show_badge","label":"Show badge","default":true},
-    {"type":"text","id":"badge_text","label":"Text","default":"✨ New Collection"},
-    {"type":"color","id":"badge_bg_color","label":"Background","default":"#FFFFFF"},
-    {"type":"color","id":"badge_text_color","label":"Text color","default":"#1F1A14"},
-    {"type":"range","id":"badge_font_size","label":"Font size","min":10,"max":18,"step":1,"default":13,"unit":"px"},
-    {"type":"range","id":"badge_padding_x","label":"Padding X","min":8,"max":32,"step":4,"default":16,"unit":"px"},
-    {"type":"range","id":"badge_padding_y","label":"Padding Y","min":4,"max":20,"step":4,"default":8,"unit":"px"},
-    {"type":"range","id":"badge_border_radius","label":"Radius","min":0,"max":50,"step":10,"default":50,"unit":"px"},
-    {"type":"header","content":"Eyebrow"},
-    {"type":"text","id":"eyebrow","label":"Text","default":"Art by Avery, Age 7"},
-    {"type":"range","id":"eyebrow_size_desktop","label":"Size — Desktop","min":14,"max":36,"step":2,"default":24,"unit":"px"},
-    {"type":"range","id":"eyebrow_size_mobile","label":"Size — Mobile","min":12,"max":28,"step":2,"default":20,"unit":"px"},
-    {"type":"header","content":"Heading"},
-    {"type":"textarea","id":"heading","label":"Text","default":"Where Imagination Becomes Art"},
-    {"type":"range","id":"heading_size_desktop","label":"Size — Desktop","min":32,"max":120,"step":8,"default":72,"unit":"px"},
-    {"type":"range","id":"heading_size_mobile","label":"Size — Mobile","min":24,"max":72,"step":8,"default":40,"unit":"px"},
-    {"type":"header","content":"Subheading"},
-    {"type":"textarea","id":"subheading","label":"Text","default":"Discover wearable art created by a 7-year-old artist."},
-    {"type":"range","id":"subheading_size_desktop","label":"Size — Desktop","min":14,"max":28,"step":2,"default":18,"unit":"px"},
-    {"type":"range","id":"subheading_size_mobile","label":"Size — Mobile","min":12,"max":22,"step":2,"default":16,"unit":"px"},
-    {"type":"range","id":"subheading_max_width","label":"Max width","min":300,"max":700,"step":100,"default":500,"unit":"px"},
-    {"type":"header","content":"Primary Button"},
-    {"type":"text","id":"btn_primary_text","label":"Text","default":"Shop Collection"},
-    {"type":"url","id":"btn_primary_link","label":"Link"},
-    {"type":"checkbox","id":"btn_show_arrow","label":"Show arrow","default":true},
-    {"type":"color","id":"btn_primary_bg","label":"Background","default":"#E85D75"},
-    {"type":"color","id":"btn_primary_text_color","label":"Text","default":"#FFFFFF"},
-    {"type":"range","id":"btn_font_size","label":"Font size","min":12,"max":20,"step":1,"default":15,"unit":"px"},
-    {"type":"range","id":"btn_padding_x","label":"Padding X","min":16,"max":56,"step":8,"default":32,"unit":"px"},
-    {"type":"range","id":"btn_padding_y","label":"Padding Y","min":10,"max":26,"step":4,"default":18,"unit":"px"},
-    {"type":"range","id":"btn_border_radius","label":"Radius","min":0,"max":50,"step":10,"default":50,"unit":"px"},
-    {"type":"header","content":"Secondary Button"},
-    {"type":"text","id":"btn_secondary_text","label":"Text","default":"Meet Avery"},
-    {"type":"url","id":"btn_secondary_link","label":"Link"},
-    {"type":"color","id":"btn_secondary_bg","label":"Background","default":"#ffffff00"},
-    {"type":"color","id":"btn_secondary_text_color","label":"Text","default":"#1F1A14"},
-    {"type":"color","id":"btn_secondary_border","label":"Border","default":"#1F1A14"},
-    {"type":"header","content":"Image"},
-    {"type":"image_picker","id":"image","label":"Hero image"},
-    {"type":"range","id":"image_max_width","label":"Max width","min":300,"max":800,"step":100,"default":500,"unit":"px"},
-    {"type":"range","id":"image_border_radius","label":"Radius","min":0,"max":60,"step":12,"default":24,"unit":"px"},
-    {"type":"color","id":"heart_color_1","label":"Heart start","default":"#E85D75"},
-    {"type":"color","id":"heart_color_2","label":"Heart end","default":"#F4C542"},
-    {"type":"header","content":"Stats"},
-    {"type":"checkbox","id":"show_stats","label":"Show stats","default":true},
-    {"type":"range","id":"stats_number_size","label":"Number size","min":20,"max":56,"step":4,"default":32,"unit":"px"},
-    {"type":"color","id":"stats_number_color","label":"Number color","default":"#1F1A14"},
-    {"type":"range","id":"stats_label_size","label":"Label size","min":10,"max":18,"step":1,"default":13,"unit":"px"},
-    {"type":"color","id":"stats_label_color","label":"Label color","default":"#756758"},
-    {"type":"range","id":"stats_gap","label":"Gap","min":24,"max":96,"step":8,"default":48,"unit":"px"},
-    {"type":"header","content":"Blobs"},
-    {"type":"checkbox","id":"show_blobs","label":"Show blobs","default":true},
-    {"type":"color","id":"blob_1_color","label":"Blob 1","default":"#F8A5B5"},
-    {"type":"range","id":"blob_1_size","label":"Size 1","min":200,"max":600,"step":100,"default":400,"unit":"px"},
-    {"type":"color","id":"blob_2_color","label":"Blob 2","default":"#9CB69C"},
-    {"type":"range","id":"blob_2_size","label":"Size 2","min":200,"max":600,"step":100,"default":300,"unit":"px"},
-    {"type":"color","id":"blob_3_color","label":"Blob 3","default":"#F4C542"},
-    {"type":"range","id":"blob_3_size","label":"Size 3","min":100,"max":500,"step":100,"default":200,"unit":"px"},
-    {"type":"header","content":"Sparkles"},
-    {"type":"checkbox","id":"show_sparkles","label":"Show sparkles","default":true},
-    {"type":"text","id":"sparkle_emojis","label":"Emojis","default":"✨,🌟,💖,🎨,⭐"},
-    {"type":"header","content":"Floating Products"},
-    {"type":"checkbox","id":"show_floating_products","label":"Show floating","default":true},
-    {"type":"header","content":"Scroll Indicator"},
-    {"type":"checkbox","id":"show_scroll_indicator","label":"Show scroll","default":true},
-    {"type":"text","id":"scroll_text","label":"Text","default":"Scroll to explore"}
+    {
+      "type": "header",
+      "content": "Badge"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_badge",
+      "label": "Show badge",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge text",
+      "default": "Now Shipping Worldwide"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "Tiny Artist. Big Imagination."
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Art Made with Heart",
+      "info": "Each word animates separately"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Every piece in our shop brings a slice of 7-year-old Avery's colorful world into yours. Unique, joyful, and made with pure imagination."
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image",
+      "info": "Recommended: 1000x1000px. Leave empty for animated rainbow heart."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_floating_products",
+      "label": "Show floating product cards",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Primary Button"
+    },
+    {
+      "type": "text",
+      "id": "primary_text",
+      "label": "Button text",
+      "default": "Shop Collection"
+    },
+    {
+      "type": "url",
+      "id": "primary_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Secondary Button"
+    },
+    {
+      "type": "text",
+      "id": "secondary_text",
+      "label": "Button text",
+      "default": "Meet Avery"
+    },
+    {
+      "type": "url",
+      "id": "secondary_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Stats"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_stats",
+      "label": "Show stats",
+      "default": true
+    },
+    {
+      "type": "number",
+      "id": "stat_1_number",
+      "label": "Stat 1 number",
+      "default": 500
+    },
+    {
+      "type": "text",
+      "id": "stat_1_suffix",
+      "label": "Stat 1 suffix",
+      "default": "+"
+    },
+    {
+      "type": "text",
+      "id": "stat_1_label",
+      "label": "Stat 1 label",
+      "default": "Happy Customers"
+    },
+    {
+      "type": "number",
+      "id": "stat_2_number",
+      "label": "Stat 2 number",
+      "default": 45
+    },
+    {
+      "type": "text",
+      "id": "stat_2_suffix",
+      "label": "Stat 2 suffix",
+      "default": "+"
+    },
+    {
+      "type": "text",
+      "id": "stat_2_label",
+      "label": "Stat 2 label",
+      "default": "Original Designs"
+    },
+    {
+      "type": "text",
+      "id": "stat_3_value",
+      "label": "Stat 3 value",
+      "default": "5.0"
+    },
+    {
+      "type": "text",
+      "id": "stat_3_label",
+      "label": "Stat 3 label",
+      "default": "Star Rating"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#FDF9F6"
+    },
+    {
+      "type": "color",
+      "id": "blob_color_1",
+      "label": "Blob 1 color",
+      "default": "#F8A5B5"
+    },
+    {
+      "type": "color",
+      "id": "blob_color_2",
+      "label": "Blob 2 color",
+      "default": "#F4C542"
+    },
+    {
+      "type": "color",
+      "id": "blob_color_3",
+      "label": "Blob 3 color",
+      "default": "#9CB69C"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_scroll_indicator",
+      "label": "Show scroll indicator",
+      "default": true
+    }
   ],
-  "blocks":[
-    {"type":"stat","name":"Stat","settings":[
-      {"type":"text","id":"number","label":"Number","default":"500"},
-      {"type":"text","id":"suffix","label":"Suffix","default":"+"},
-      {"type":"text","id":"label","label":"Label","default":"Happy Customers"}
-    ]},
-    {"type":"floating_product","name":"Floating Product","settings":[
-      {"type":"image_picker","id":"product_image","label":"Image"},
-      {"type":"text","id":"emoji","label":"Emoji","default":"🎨"},
-      {"type":"text","id":"product_name","label":"Name","default":"Rainbow Dreams"},
-      {"type":"text","id":"product_price","label":"Price","default":"$29"}
-    ]}
-  ],
-  "presets":[{"name":"🌟 Hero Banner","blocks":[
-    {"type":"stat","settings":{"number":"500","suffix":"+","label":"Happy Customers"}},
-    {"type":"stat","settings":{"number":"45","suffix":"+","label":"Unique Designs"}},
-    {"type":"floating_product","settings":{"emoji":"🎨","product_name":"Rainbow Dreams","product_price":"$29"}}
-  ]}]
+  "presets": [
+    {
+      "name": "🌟 Hero Banner"
+    }
+  ]
 }
 {% endschema %}
