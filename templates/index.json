@@ -60,11 +60,12 @@
         "collection_UQgwJN": {
           "type": "collection",
           "settings": {
-            "collection": "",
+            "collection": "rainbow-heart-collection",
             "title": "Rainbow Heart",
             "count": "8 products",
-            "emoji": "🌈",
-            "gradient": "linear-gradient(135deg, #F4C542, #D4A832)"
+            "emoji": "",
+            "image": "shopify://shop_images/rainbow_heart_without_background_2.webp",
+            "gradient": "black"
           }
         },
         "collection_Hkkxrf": {
