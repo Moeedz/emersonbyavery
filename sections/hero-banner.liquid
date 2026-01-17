@@ -81,26 +81,26 @@
   <div class="emerson-hero__container">
     <div class="emerson-hero__content" style="text-align: {{ section.settings.content_alignment }};">
       {%- if section.settings.show_badge and section.settings.badge_text != blank -%}
-      <div class="emerson-hero__badge" data-animate="fade-up">
+      <div class="emerson-hero__badge">
         <span class="emerson-hero__badge-dot"></span>
         {{ section.settings.badge_text }}
       </div>
       {%- endif -%}
 
       {%- if section.settings.eyebrow != blank -%}
-      <span class="emerson-hero__eyebrow" data-animate="fade-up">{{ section.settings.eyebrow }}</span>
+      <span class="emerson-hero__eyebrow">{{ section.settings.eyebrow }}</span>
       {%- endif -%}
 
       {%- if section.settings.heading != blank -%}
-      <h1 class="emerson-hero__title" data-animate="fade-up">{{ section.settings.heading }}</h1>
+      <h1 class="emerson-hero__title">{{ section.settings.heading }}</h1>
       {%- endif -%}
 
       {%- if section.settings.subheading != blank -%}
-      <p class="emerson-hero__subtitle" data-animate="fade-up">{{ section.settings.subheading }}</p>
+      <p class="emerson-hero__subtitle">{{ section.settings.subheading }}</p>
       {%- endif -%}
 
       {%- if section.settings.btn_primary_text != blank or section.settings.btn_secondary_text != blank -%}
-      <div class="emerson-hero__buttons" data-animate="fade-up">
+      <div class="emerson-hero__buttons">
         {%- if section.settings.btn_primary_text != blank -%}
         <a href="{{ section.settings.btn_primary_link }}" class="emerson-hero__btn emerson-hero__btn--primary">
           <span>{{ section.settings.btn_primary_text }}</span>
@@ -120,7 +120,7 @@
       {%- if section.settings.show_stats -%}
       {%- assign stat_blocks = section.blocks | where: 'type', 'stat' -%}
       {%- if stat_blocks.size > 0 -%}
-      <div class="emerson-hero__stats" data-animate="fade-up">
+      <div class="emerson-hero__stats">
         {%- for block in stat_blocks -%}
         <div class="emerson-hero__stat" {{ block.shopify_attributes }}>
           <span class="emerson-hero__stat-number">{{ block.settings.number }}{{ block.settings.suffix }}</span>
@@ -132,7 +132,7 @@
       {%- endif -%}
     </div>
 
-    <div class="emerson-hero__image-wrapper" data-animate="fade-left">
+    <div class="emerson-hero__image-wrapper">
       {%- if section.settings.image != blank -%}
       {{ section.settings.image | image_url: width: 1200 | image_tag: class: 'emerson-hero__image', loading: 'eager' }}
       {%- else -%}
@@ -166,7 +166,7 @@
   </div>
 
   {%- if section.settings.show_scroll_indicator -%}
-  <div class="emerson-hero__scroll" data-animate="fade-up">
+  <div class="emerson-hero__scroll">
     <span>{{ section.settings.scroll_text }}</span>
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
   </div>
