@@ -19,12 +19,15 @@
           "settings": {
             "announcement_text": "✨ Free shipping on all orders — Spread the joy!",
             "announcement_bg_color": "#1f1a14",
-            "announcement_text_color": "#fff"
+            "announcement_text_color": "#ffffff"
           }
         }
       },
       "block_order": [
         "03-announcement"
+      ],
+      "custom_css": [
+        ".announcement_bar animated-background-text-colors .announcement_text {padding-top: 12px !important; padding-bottom: 12px !important; font-size: 14px !important; font-weight: 600 !important;}"
       ],
       "settings": {
         "desktop_social_icons": false
