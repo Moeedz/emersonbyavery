@@ -1,143 +1,89 @@
-{% comment %}
-  ════════════════════════════════════════════════════════════════
-  EMERSON BY AVERY — TESTIMONIALS
-  Auto-scrolling infinite carousel with pause on hover
-  ════════════════════════════════════════════════════════════════
-{% endcomment %}
-
+{% comment %}EMERSON BY AVERY — TESTIMONIALS{% endcomment %}
 {{ 'section-emerson-testimonials.css' | asset_url | stylesheet_tag }}
 
-<section 
-  class="emerson-testimonials"
-  data-section-id="{{ section.id }}"
-  style="--section-bg: {{ section.settings.bg_color }};"
->
-  <!-- Header -->
-  <div class="emerson-testimonials__header" data-animate="fade-up">
-    {%- if section.settings.eyebrow != blank -%}
-      <span class="emerson-section-eyebrow">{{ section.settings.eyebrow }}</span>
-    {%- endif -%}
-    {%- if section.settings.heading != blank -%}
-      <h2 class="emerson-section-title">{{ section.settings.heading }}</h2>
-    {%- endif -%}
-    
-    {%- if section.settings.show_rating_badge -%}
-      <div class="emerson-testimonials__rating-badge">
-        <span class="emerson-testimonials__stars">★★★★★</span>
-        <span class="emerson-testimonials__rating-text">{{ section.settings.rating_text | default: '100% 5-Star Reviews' }}</span>
-      </div>
-    {%- endif -%}
-  </div>
+{%- style -%}
+#emerson-testimonials-{{ section.id }} {
+  --section-padding-top: {{ section.settings.padding_top }}px;
+  --section-padding-bottom: {{ section.settings.padding_bottom }}px;
+  --section-padding-top-mobile: {{ section.settings.padding_top_mobile }}px;
+  --section-padding-bottom-mobile: {{ section.settings.padding_bottom_mobile }}px;
+  --section-max-width: {{ section.settings.section_max_width }}px;
+  --section-bg: {{ section.settings.bg_color }};
+  --card-bg: {{ section.settings.card_bg_color }};
+  --card-border-radius: {{ section.settings.card_border_radius }}px;
+  --quote-color: {{ section.settings.quote_color }};
+  --name-color: {{ section.settings.name_color }};
+  --title-color: {{ section.settings.title_color }};
+  --stars-color: {{ section.settings.stars_color }};
+  --tag-color: {{ section.settings.tag_color }};
+  --tag-size: {{ section.settings.tag_size }}px;
+  --heading-color: {{ section.settings.heading_color }};
+  --heading-size-desktop: {{ section.settings.heading_size_desktop }}px;
+  --heading-size-mobile: {{ section.settings.heading_size_mobile }}px;
+  --quote-size: {{ section.settings.quote_size }}px;
+  --name-size: {{ section.settings.name_size }}px;
+  --role-size: {{ section.settings.role_size }}px;
+  --card-padding: {{ section.settings.card_padding }}px;
+  --card-gap: {{ section.settings.card_gap }}px;
+  --avatar-size: {{ section.settings.avatar_size }}px;
+}
+{%- endstyle -%}
 
-  <!-- Slider -->
-  <div class="emerson-testimonials__slider">
-    <div class="emerson-testimonials__track">
-      {%- for block in section.blocks -%}
-        {%- case block.type -%}
-          {%- when 'testimonial' -%}
-            <div class="emerson-testimonial-card" {{ block.shopify_attributes }}>
-              <div class="emerson-testimonial__header">
-                <div class="emerson-testimonial__avatar">
-                  {%- if block.settings.avatar != blank -%}
-                    {{ block.settings.avatar | image_url: width: 120 | image_tag }}
-                  {%- else -%}
-                    {{ block.settings.author | slice: 0, 2 | upcase }}
-                  {%- endif -%}
-                </div>
-                <div class="emerson-testimonial__info">
-                  <h4>{{ block.settings.author }}</h4>
-                  <span>{{ block.settings.subtitle | default: 'Verified Buyer' }}</span>
-                </div>
-              </div>
-              
-              <div class="emerson-testimonial__rating">★★★★★</div>
-              
-              <p class="emerson-testimonial__text">{{ block.settings.quote }}</p>
-              
-              {%- if block.settings.product_name != blank -%}
-                <div class="emerson-testimonial__product">
-                  <div class="emerson-testimonial__product-img">
-                    {%- if block.settings.product_image != blank -%}
-                      {{ block.settings.product_image | image_url: width: 100 | image_tag }}
-                    {%- else -%}
-                      {{ block.settings.product_emoji | default: '🌈' }}
-                    {%- endif -%}
-                  </div>
-                  <div class="emerson-testimonial__product-info">
-                    <strong>{{ block.settings.product_name }}</strong>
-                    {%- if block.settings.product_price != blank -%}
-                      <span>{{ block.settings.product_price }}</span>
-                    {%- endif -%}
-                  </div>
-                </div>
-              {%- endif -%}
-            </div>
-        {%- endcase -%}
-      {%- endfor -%}
-      
-      <!-- Duplicate for infinite scroll -->
-      {%- for block in section.blocks -%}
-        {%- case block.type -%}
-          {%- when 'testimonial' -%}
-            <div class="emerson-testimonial-card" aria-hidden="true">
-              <div class="emerson-testimonial__header">
-                <div class="emerson-testimonial__avatar">
-                  {%- if block.settings.avatar != blank -%}
-                    {{ block.settings.avatar | image_url: width: 120 | image_tag }}
-                  {%- else -%}
-                    {{ block.settings.author | slice: 0, 2 | upcase }}
-                  {%- endif -%}
-                </div>
-                <div class="emerson-testimonial__info">
-                  <h4>{{ block.settings.author }}</h4>
-                  <span>{{ block.settings.subtitle | default: 'Verified Buyer' }}</span>
-                </div>
-              </div>
-              
-              <div class="emerson-testimonial__rating">★★★★★</div>
-              
-              <p class="emerson-testimonial__text">{{ block.settings.quote }}</p>
-              
-              {%- if block.settings.product_name != blank -%}
-                <div class="emerson-testimonial__product">
-                  <div class="emerson-testimonial__product-img">
-                    {%- if block.settings.product_image != blank -%}
-                      {{ block.settings.product_image | image_url: width: 100 | image_tag }}
-                    {%- else -%}
-                      {{ block.settings.product_emoji | default: '🌈' }}
-                    {%- endif -%}
-                  </div>
-                  <div class="emerson-testimonial__product-info">
-                    <strong>{{ block.settings.product_name }}</strong>
-                    {%- if block.settings.product_price != blank -%}
-                      <span>{{ block.settings.product_price }}</span>
-                    {%- endif -%}
-                  </div>
-                </div>
-              {%- endif -%}
-            </div>
-        {%- endcase -%}
-      {%- endfor -%}
+<section id="emerson-testimonials-{{ section.id }}" class="emerson-testimonials">
+  <div class="emerson-testimonials__container">
+    <div class="emerson-section-header" style="text-align: {{ section.settings.header_alignment }};">
+      {%- if section.settings.tag != blank -%}<span class="emerson-section-tag">{{ section.settings.tag }}</span>{%- endif -%}
+      {%- if section.settings.heading != blank -%}<h2 class="emerson-section-title">{{ section.settings.heading }}</h2>{%- endif -%}
     </div>
+    <div class="emerson-testimonials__carousel">
+      <div class="emerson-testimonials__track">
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when 'testimonial' -%}
+              <div class="emerson-testimonials__card" {{ block.shopify_attributes }}>
+                {%- if section.settings.show_stars -%}
+                <div class="emerson-testimonials__stars">
+                  {%- for i in (1..5) -%}
+                    {%- if i <= block.settings.rating -%}<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    {%- else -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>{%- endif -%}
+                  {%- endfor -%}
+                </div>
+                {%- endif -%}
+                {%- if block.settings.quote != blank -%}<p class="emerson-testimonials__quote">"{{ block.settings.quote }}"</p>{%- endif -%}
+                <div class="emerson-testimonials__author">
+                  {%- if block.settings.avatar != blank -%}<div class="emerson-testimonials__avatar">{{ block.settings.avatar | image_url: width: 120 | image_tag: loading: 'lazy' }}</div>
+                  {%- elsif block.settings.emoji != blank -%}<div class="emerson-testimonials__avatar emerson-testimonials__avatar--emoji">{{ block.settings.emoji }}</div>{%- endif -%}
+                  <div class="emerson-testimonials__author-info">
+                    {%- if block.settings.name != blank -%}<span class="emerson-testimonials__name">{{ block.settings.name }}</span>{%- endif -%}
+                    {%- if block.settings.title != blank -%}<span class="emerson-testimonials__title">{{ block.settings.title }}</span>{%- endif -%}
+                  </div>
+                </div>
+              </div>
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+    </div>
+    {%- if section.settings.show_navigation and section.blocks.size > 3 -%}
+    <div class="emerson-testimonials__nav">
+      <button type="button" class="emerson-testimonials__nav-btn" data-prev aria-label="Previous"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button>
+      <button type="button" class="emerson-testimonials__nav-btn" data-next aria-label="Next"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
+    </div>
+    {%- endif -%}
   </div>
 </section>
 
 <script>
-  (function() {
-    const section = document.querySelector('[data-section-id="{{ section.id }}"]');
-    if (!section) return;
-
-    const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -80px 0px' };
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
-        }
-      });
-    }, observerOptions);
-
-    section.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
-  })();
+(function() {
+  const section = document.querySelector('#emerson-testimonials-{{ section.id }}');
+  if (!section) return;
+  const track = section.querySelector('.emerson-testimonials__track');
+  const prevBtn = section.querySelector('[data-prev]');
+  const nextBtn = section.querySelector('[data-next]');
+  if (track && prevBtn && nextBtn) {
+    prevBtn.addEventListener('click', () => track.scrollBy({ left: -350, behavior: 'smooth' }));
+    nextBtn.addEventListener('click', () => track.scrollBy({ left: 350, behavior: 'smooth' }));
+  }
+})();
 </script>
 
 {% schema %}
@@ -146,174 +92,56 @@
   "tag": "section",
   "class": "section-emerson-testimonials",
   "settings": [
-    {
-      "type": "header",
-      "content": "Content"
-    },
-    {
-      "type": "text",
-      "id": "eyebrow",
-      "label": "Eyebrow",
-      "default": "Love Notes"
-    },
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": "What Our Customers Say"
-    },
-    {
-      "type": "header",
-      "content": "Rating Badge"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_rating_badge",
-      "label": "Show rating badge",
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "rating_text",
-      "label": "Rating text",
-      "default": "100% 5-Star Reviews"
-    },
-    {
-      "type": "header",
-      "content": "Style"
-    },
-    {
-      "type": "color",
-      "id": "bg_color",
-      "label": "Background color",
-      "default": "#FDF9F6"
-    },
-    {
-      "type": "range",
-      "id": "scroll_speed",
-      "label": "Scroll speed (seconds)",
-      "min": 20,
-      "max": 60,
-      "step": 5,
-      "default": 30
-    }
+    {"type":"header","content":"Layout"},
+    {"type":"range","id":"section_max_width","label":"Max width","min":1000,"max":1600,"step":200,"default":1200,"unit":"px"},
+    {"type":"header","content":"Padding"},
+    {"type":"range","id":"padding_top","label":"Top — Desktop","min":0,"max":200,"step":10,"default":80,"unit":"px"},
+    {"type":"range","id":"padding_bottom","label":"Bottom — Desktop","min":0,"max":200,"step":10,"default":80,"unit":"px"},
+    {"type":"range","id":"padding_top_mobile","label":"Top — Mobile","min":0,"max":100,"step":10,"default":60,"unit":"px"},
+    {"type":"range","id":"padding_bottom_mobile","label":"Bottom — Mobile","min":0,"max":100,"step":10,"default":60,"unit":"px"},
+    {"type":"header","content":"Colors"},
+    {"type":"color","id":"bg_color","label":"Background","default":"#FFFFFF"},
+    {"type":"color","id":"card_bg_color","label":"Card bg","default":"#FDF9F6"},
+    {"type":"color","id":"quote_color","label":"Quote","default":"#1F1A14"},
+    {"type":"color","id":"name_color","label":"Name","default":"#1F1A14"},
+    {"type":"color","id":"title_color","label":"Title","default":"#756758"},
+    {"type":"color","id":"stars_color","label":"Stars","default":"#F4C542"},
+    {"type":"header","content":"Header"},
+    {"type":"select","id":"header_alignment","label":"Alignment","options":[{"value":"left","label":"Left"},{"value":"center","label":"Center"}],"default":"center"},
+    {"type":"text","id":"tag","label":"Tag","default":"Reviews"},
+    {"type":"color","id":"tag_color","label":"Tag color","default":"#E85D75"},
+    {"type":"range","id":"tag_size","label":"Tag size","min":16,"max":32,"step":2,"default":22,"unit":"px"},
+    {"type":"text","id":"heading","label":"Heading","default":"What Parents Are Saying"},
+    {"type":"color","id":"heading_color","label":"Heading color","default":"#1F1A14"},
+    {"type":"range","id":"heading_size_desktop","label":"Heading — Desktop","min":28,"max":72,"step":4,"default":48,"unit":"px"},
+    {"type":"range","id":"heading_size_mobile","label":"Heading — Mobile","min":24,"max":48,"step":4,"default":32,"unit":"px"},
+    {"type":"header","content":"Cards"},
+    {"type":"range","id":"card_border_radius","label":"Radius","min":0,"max":40,"step":4,"default":24,"unit":"px"},
+    {"type":"range","id":"card_padding","label":"Padding","min":20,"max":48,"step":4,"default":32,"unit":"px"},
+    {"type":"range","id":"card_gap","label":"Gap","min":16,"max":48,"step":4,"default":24,"unit":"px"},
+    {"type":"checkbox","id":"show_stars","label":"Show stars","default":true},
+    {"type":"header","content":"Typography"},
+    {"type":"range","id":"quote_size","label":"Quote size","min":14,"max":22,"step":1,"default":17,"unit":"px"},
+    {"type":"range","id":"name_size","label":"Name size","min":14,"max":20,"step":1,"default":15,"unit":"px"},
+    {"type":"range","id":"role_size","label":"Role size","min":10,"max":16,"step":1,"default":13,"unit":"px"},
+    {"type":"range","id":"avatar_size","label":"Avatar size","min":40,"max":80,"step":8,"default":48,"unit":"px"},
+    {"type":"header","content":"Navigation"},
+    {"type":"checkbox","id":"show_navigation","label":"Show arrows","default":true}
   ],
-  "blocks": [
-    {
-      "type": "testimonial",
-      "name": "Testimonial",
-      "settings": [
-        {
-          "type": "text",
-          "id": "author",
-          "label": "Author name",
-          "default": "Sarah M."
-        },
-        {
-          "type": "text",
-          "id": "subtitle",
-          "label": "Subtitle",
-          "default": "Verified Buyer"
-        },
-        {
-          "type": "image_picker",
-          "id": "avatar",
-          "label": "Avatar image",
-          "info": "Optional. Initials used if blank."
-        },
-        {
-          "type": "textarea",
-          "id": "quote",
-          "label": "Quote",
-          "default": "The quality is absolutely amazing! My daughter loves that another kid made these. We've already ordered more for birthday gifts!"
-        },
-        {
-          "type": "header",
-          "content": "Product Reference"
-        },
-        {
-          "type": "text",
-          "id": "product_name",
-          "label": "Product name",
-          "default": "Rainbow Heart Tote"
-        },
-        {
-          "type": "text",
-          "id": "product_price",
-          "label": "Product price",
-          "default": "$28.00"
-        },
-        {
-          "type": "text",
-          "id": "product_emoji",
-          "label": "Product emoji",
-          "default": "🌈"
-        },
-        {
-          "type": "image_picker",
-          "id": "product_image",
-          "label": "Product image",
-          "info": "Optional. Emoji used if blank."
-        }
-      ]
-    }
+  "blocks":[
+    {"type":"testimonial","name":"Testimonial","settings":[
+      {"type":"range","id":"rating","label":"Rating","min":1,"max":5,"step":1,"default":5},
+      {"type":"textarea","id":"quote","label":"Quote","default":"My daughter loves her new t-shirt!"},
+      {"type":"image_picker","id":"avatar","label":"Avatar"},
+      {"type":"text","id":"emoji","label":"Emoji","default":"👩"},
+      {"type":"text","id":"name","label":"Name","default":"Sarah M."},
+      {"type":"text","id":"title","label":"Title","default":"Verified Buyer"}
+    ]}
   ],
-  "presets": [
-    {
-      "name": "💬 Testimonials",
-      "blocks": [
-        {
-          "type": "testimonial",
-          "settings": {
-            "author": "Sarah M.",
-            "quote": "The quality is absolutely amazing! My daughter loves that another kid made these. We've already ordered more for birthday gifts!",
-            "product_name": "Rainbow Heart Tote",
-            "product_price": "$28.00",
-            "product_emoji": "🌈"
-          }
-        },
-        {
-          "type": "testimonial",
-          "settings": {
-            "author": "Mike R.",
-            "quote": "Bought cards for everyone on my holiday list. They're so unique and heartfelt — nothing like them anywhere else. Will definitely be back!",
-            "product_name": "Happy Sun Cards",
-            "product_price": "$18.00",
-            "product_emoji": "☀️"
-          }
-        },
-        {
-          "type": "testimonial",
-          "settings": {
-            "author": "Lisa K.",
-            "quote": "Beautiful artwork that brings so much joy! You can feel the happiness in every piece. It's hanging proudly in our living room now.",
-            "product_name": "Purple Tree Print",
-            "product_price": "$35.00",
-            "product_emoji": "🌳"
-          }
-        },
-        {
-          "type": "testimonial",
-          "settings": {
-            "author": "Jessica W.",
-            "quote": "I'm obsessed with my new tote! It's colorful, well-made, and I get compliments every time I use it. Supporting young artists is the best!",
-            "product_name": "Rainbow Heart Tote",
-            "product_price": "$28.00",
-            "product_emoji": "🌈"
-          }
-        },
-        {
-          "type": "testimonial",
-          "settings": {
-            "author": "David T.",
-            "quote": "Perfect gift for my mom! She was so touched by the story behind the art. Fast shipping and beautiful packaging too.",
-            "product_name": "Note Card Set",
-            "product_price": "$18.00",
-            "product_emoji": "💌"
-          }
-        }
-      ]
-    }
-  ]
+  "presets":[{"name":"💬 Testimonials","blocks":[
+    {"type":"testimonial","settings":{"emoji":"👩","name":"Sarah M.","quote":"My daughter loves her new t-shirt!"}},
+    {"type":"testimonial","settings":{"emoji":"👨","name":"Mike T.","quote":"Bought matching shirts for the whole family!"}},
+    {"type":"testimonial","settings":{"emoji":"👩‍🦰","name":"Jennifer L.","quote":"The perfect gift for my granddaughter."}}
+  ]}]
 }
 {% endschema %}
