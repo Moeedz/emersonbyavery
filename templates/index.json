@@ -100,7 +100,7 @@
         "subheading": "Discover artwork organized by theme — from cheerful rainbows to whimsical nature scenes.",
         "view_all_text": "View all collections",
         "view_all_link": "",
-        "bg_color": "#FFFFFF"
+        "bg_color": "#ffffff"
       }
     },
     "emerson_story_3QytMe": {
@@ -122,7 +122,7 @@
         "signature_title": "Chief Imagination Officer",
         "button_text": "",
         "button_link": "",
-        "bg_color": "#FDF9F6"
+        "bg_color": "#fdf9f6"
       }
     },
     "emerson_stats_wNRPBU": {
@@ -177,9 +177,9 @@
       ],
       "name": "📊 Stats In-View",
       "settings": {
-        "bg_color": "#1F1A14",
-        "text_color": "#FFFFFF",
-        "text_muted_color": "rgba(255,255,255,0.6)"
+        "bg_color": "#1f1a14",
+        "text_color": "#ffffff",
+        "text_muted_color": "#ffffff99"
       }
     },
     "emerson_products_VHH8bB": {
@@ -189,11 +189,11 @@
         "tag": "Best Sellers",
         "heading": "Customer Favorites",
         "subheading": "The pieces our customers can't stop talking about. Each one hand-picked for spreading joy.",
-        "collection": "",
-        "products_count": 4,
+        "collection": "apparel",
+        "products_count": 8,
         "view_all_text": "View all products",
-        "view_all_link": "",
-        "bg_color": "#FFFFFF"
+        "view_all_link": "shopify://collections/apparel",
+        "bg_color": "#ffffff"
       }
     },
     "emerson_testimonials_xXEVpF": {
@@ -268,7 +268,7 @@
         "heading": "What Our Customers Say",
         "show_rating_badge": true,
         "rating_text": "100% 5-Star Reviews",
-        "bg_color": "#FDF9F6",
+        "bg_color": "#fdf9f6",
         "scroll_speed": 30
       }
     },
@@ -282,7 +282,7 @@
         "eyebrow": "Follow Along",
         "heading": "Join Our Creative Journey",
         "button_text": "Follow on Instagram",
-        "bg_color": "#FFFFFF"
+        "bg_color": "#ffffff"
       }
     },
     "emerson_faq_GGQ6Tj": {
@@ -339,7 +339,7 @@
         "button_text": "Contact Us",
         "button_link": "",
         "first_open": true,
-        "bg_color": "#FDF9F6"
+        "bg_color": "#fdf9f6"
       }
     },
     "emerson_newsletter_C6HAWD": {
@@ -381,7 +381,7 @@
         "button_text": "Subscribe",
         "success_message": "🎉 Thanks for subscribing!",
         "show_perks": true,
-        "bg_color": "#FFFFFF"
+        "bg_color": "#ffffff"
       }
     },
     "emerson_trust_xABaN9": {
@@ -428,7 +428,7 @@
       ],
       "name": "✓ Trust Bar",
       "settings": {
-        "bg_color": "#FDF9F6"
+        "bg_color": "#fdf9f6"
       }
     }
   },
