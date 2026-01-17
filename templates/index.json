@@ -54,7 +54,7 @@
             "count": "12 products",
             "emoji": "",
             "image": "shopify://shop_images/default_a01df4b3-1d69-4d0a-bc69-c6e6aa70685b.jpg",
-            "gradient": "linear-gradient(135deg, #E85D75, #C94D63)"
+            "gradient": "#00000030"
           }
         },
         "collection_UQgwJN": {
@@ -65,7 +65,7 @@
             "count": "8 products",
             "emoji": "",
             "image": "shopify://shop_images/rainbow_heart_without_background_2.webp",
-            "gradient": "black"
+            "gradient": "#00000030"
           }
         },
         "collection_Hkkxrf": {
