@@ -49,10 +49,11 @@
         "collection_hzcCJd": {
           "type": "collection",
           "settings": {
-            "collection": "",
+            "collection": "note-cards",
             "title": "Note Cards",
             "count": "12 products",
-            "emoji": "💌",
+            "emoji": "",
+            "image": "shopify://shop_images/default_a01df4b3-1d69-4d0a-bc69-c6e6aa70685b.jpg",
             "gradient": "linear-gradient(135deg, #E85D75, #C94D63)"
           }
         },
@@ -106,7 +107,7 @@
     "emerson_story_3QytMe": {
       "type": "emerson-story",
       "custom_css": [
-        "[data-animate=clip-up] {clip-path: inset(0 0 0 0) !important;}"
+        "[data-animate=\"clip-up\"] {clip-path: inset(0 0 0 0) !important;}"
       ],
       "name": "👧 Meet Avery",
       "settings": {
