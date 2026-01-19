@@ -15,7 +15,7 @@
         "custom_liquid_UiLLxL": {
           "type": "custom_liquid",
           "settings": {
-            "custom_liquid": "<div class=\"artist-tag\" style=\"\n    display: inline-flex;\n    align-items: center;\n    gap: 8px;\n    background: #FFF5F7;\n    padding: 8px 16px;\n    border-radius: 50px;\n    font-size: 13px;\n    font-weight: 500;\n    color: #E85D75;\n    margin-bottom: 16px;\n\">\n        <span>🎨</span>\n        Designed by Avery, Age 7\n      </div>",
+            "custom_liquid": "<div class=\"artist-tag\" style=\"\n    display: inline-flex;\n    align-items: center;\n    gap: 8px;\n    background: #FFF5F7;\n    padding: 8px 16px;\n    border-radius: 50px;\n    font-size: 13px;\n    font-weight: 500;\n    color: #E85D75;\n    margin-bottom: 8px;\n\">\n        <span>🎨</span>\n        Designed by Avery, Age 7\n      </div>",
             "margin_bottom": 0
           }
         },
@@ -190,7 +190,7 @@
         "button#AddToCart {font-size: 15px !important; font-weight: 600 !important; border-radius: 12px;}",
         "@media screen and (min-width: 768px) {.product-section {padding-top: 70px !important; }}",
         "@media screen and (max-width: 767px) {button#AddToCart {font-size: 11.5px !important; }}",
-        "h1.h2.product-details-product-title {font-family: 'GTStandard-M' !important;}"
+        "h1.h2.product-details-product-title {font-family: \"GTStandard-M\" !important;}"
       ],
       "settings": {
         "enable_sticky": true,
