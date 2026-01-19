@@ -1,0 +1,16 @@
+/* ═══════════════════════════════════════════════════════════════
+   EMERSON MEGA MENU — HOVER GAP FIX
+   Works WITH the theme's hover system, not against it
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Extend nav item's hover area downward to bridge the gap */
+.site-nav > li {
+  padding-bottom: 20px;
+  margin-bottom: -20px;
+}
+
+/* Ensure dropdown connects to nav item */
+.mega-menu-block {
+  margin-top: 0 !important;
+}
+
