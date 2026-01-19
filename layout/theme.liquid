@@ -151,6 +151,7 @@
   <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
 
   {{ 'emerson-mega-menu.css' | asset_url | stylesheet_tag }}
+  {{ 'emerson-mega-menu-hover-fix.css' | asset_url | stylesheet_tag }}
 
 </head>
 
@@ -257,5 +258,6 @@
     }
   </script>
   {% if request.design_mode %}<script src="{{ 'theme-editor.js' | asset_url }}" defer="defer"></script>{% endif %}
+  <script src="{{ 'emerson-mega-menu-hover-fix.js' | asset_url }}" defer></script>
 </body>
 </html>
