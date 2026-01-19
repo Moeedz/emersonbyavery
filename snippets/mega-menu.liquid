@@ -1,6 +1,6 @@
 {% comment %}
   EMERSON BY AVERY — PREMIUM MEGA MENU
-  Optimized for flat menu structure (no nested sub-items)
+  Clean version - doesn't override theme's hover behavior
 {% endcomment %}
 
 {% liquid 
@@ -28,35 +28,9 @@
 
 {% style %}
   /* ═══════════════════════════════════════════════════
-     EMERSON PREMIUM MEGA MENU
+     EMERSON PREMIUM MEGA MENU — STYLING ONLY
+     Does NOT override visibility/hover behavior
      ═══════════════════════════════════════════════════ */
-  
-  /* HOVER FIX - Works with JavaScript */
-  [data-mega-menu-block-id="{{ block.id }}"] {
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s ease;
-    transform: translateY(-10px);
-  }
-  
-  /* Show on parent hover OR when .is-visible class is added by JS */
-  .site-nav > li:hover [data-mega-menu-block-id="{{ block.id }}"],
-  [data-mega-menu-block-id="{{ block.id }}"].is-visible {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
-  
-  /* Invisible bridge above mega menu */
-  [data-mega-menu-block-id="{{ block.id }}"]::before {
-    content: '';
-    position: absolute;
-    top: -20px;
-    left: 0;
-    right: 0;
-    height: 20px;
-    background: transparent;
-  }
   
   [data-mega-menu-block-id="{{ block.id }}"] {
     background: white !important;
@@ -64,15 +38,9 @@
     box-shadow: 0 25px 80px rgba(31, 26, 20, 0.18) !important;
     border: none !important;
     padding: 0 !important;
-    overflow: visible !important;
-    display: block !important;
-    position: absolute;
-    margin-top: 0 !important;
+    overflow: hidden;
   }
   
-  /* Animation removed - using CSS transitions instead */
-  
-  /* Inner container keeps rounded corners */
   [data-mega-menu-block-id="{{ block.id }}"] .emerson-mega-wrapper {
     border-radius: 24px;
     overflow: hidden;
@@ -159,12 +127,6 @@
   
   [data-mega-menu-block-id="{{ block.id }}"] .emerson-cta-emoji {
     font-size: 20px;
-    animation: emersonSparkle 2s ease-in-out infinite;
-  }
-  
-  @keyframes emersonSparkle {
-    0%, 100% { transform: scale(1) rotate(0deg); }
-    50% { transform: scale(1.1) rotate(5deg); }
   }
   
   [data-mega-menu-block-id="{{ block.id }}"] .emerson-cta-text {
@@ -443,7 +405,7 @@
     {% endif %}
     
   </div>
-  
   </div><!-- .emerson-mega-wrapper -->
+  
   {% endif %}
 </div>
