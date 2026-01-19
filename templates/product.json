@@ -128,6 +128,7 @@
         "fbfe241f-1b44-41cd-ae22-e866bdad9aaf",
         "4fdb087c-4728-4785-b270-a71a092b7898"
       ],
+      "custom_css": [],
       "settings": {
         "enable_sticky": true,
         "show_out_of_stock_email": true,
