@@ -31,15 +31,45 @@
      EMERSON PREMIUM MEGA MENU
      ═══════════════════════════════════════════════════ */
   
+  /* HOVER BRIDGE FIX - Prevents menu from disappearing */
+  .site-nav > li.mega-menu--enabled {
+    position: relative;
+  }
+  
+  /* Invisible bridge that connects nav item to dropdown */
+  .site-nav > li.mega-menu--enabled::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: 30px; /* Bridge height to cover the gap */
+    background: transparent;
+    pointer-events: auto;
+  }
+  
+  /* Alternative: Add bridge on the mega menu itself */
+  [data-mega-menu-block-id="{{ block.id }}"]::before {
+    content: '';
+    position: absolute;
+    top: -25px;
+    left: 0;
+    right: 0;
+    height: 25px;
+    background: transparent;
+  }
+  
   [data-mega-menu-block-id="{{ block.id }}"] {
     background: white !important;
     border-radius: 24px !important;
     box-shadow: 0 25px 80px rgba(31, 26, 20, 0.18) !important;
     border: none !important;
     padding: 0 !important;
-    overflow: hidden;
+    overflow: visible !important; /* Changed from hidden to allow bridge */
     animation: emersonMegaSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     display: block !important;
+    position: relative;
+    margin-top: 0 !important; /* Remove gap */
   }
   
   @keyframes emersonMegaSlideIn {
@@ -51,6 +81,13 @@
       opacity: 1;
       transform: translateY(0);
     }
+  }
+  
+  /* Inner container keeps rounded corners */
+  [data-mega-menu-block-id="{{ block.id }}"] .emerson-mega-wrapper {
+    border-radius: 24px;
+    overflow: hidden;
+    background: white;
   }
   
   [data-mega-menu-block-id="{{ block.id }}"] .emerson-mega-inner {
@@ -307,6 +344,7 @@
     </p>
   {% else %}
   
+  <div class="emerson-mega-wrapper">
   <div class="emerson-mega-inner">
     
     {% comment %} ═══════════════════════════════════════
@@ -417,5 +455,6 @@
     
   </div>
   
+  </div><!-- .emerson-mega-wrapper -->
   {% endif %}
 </div>
