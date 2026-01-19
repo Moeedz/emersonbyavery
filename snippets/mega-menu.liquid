@@ -1,6 +1,6 @@
 {% comment %}
   EMERSON BY AVERY — PREMIUM MEGA MENU
-  Clean version - doesn't override theme's hover behavior
+  With JavaScript hover delay fix
 {% endcomment %}
 
 {% liquid 
@@ -28,27 +28,30 @@
 
 {% style %}
   /* ═══════════════════════════════════════════════════
-     EMERSON PREMIUM MEGA MENU — STYLING ONLY
-     Does NOT override visibility/hover behavior
+     EMERSON PREMIUM MEGA MENU STYLES
      ═══════════════════════════════════════════════════ */
   
-  /* HOVER GAP FIX - Invisible padding above menu creates hover bridge */
   [data-mega-menu-block-id="{{ block.id }}"] {
-    padding-top: 25px !important;
-    margin-top: -10px !important;
-    background: transparent !important;
+    background: white !important;
+    border-radius: 24px !important;
+    box-shadow: 0 25px 80px rgba(31, 26, 20, 0.18) !important;
     border: none !important;
-    box-shadow: none !important;
-    border-radius: 0 !important;
-    overflow: visible !important;
+    padding: 0 !important;
+    overflow: hidden;
   }
   
-  /* The actual visible menu container */
+  /* Force visible when JS adds this class */
+  [data-mega-menu-block-id="{{ block.id }}"].mega-menu--force-visible {
+    display: grid !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+  }
+  
   [data-mega-menu-block-id="{{ block.id }}"] .emerson-mega-wrapper {
-    background: white;
     border-radius: 24px;
-    box-shadow: 0 25px 80px rgba(31, 26, 20, 0.18);
     overflow: hidden;
+    background: white;
   }
   
   [data-mega-menu-block-id="{{ block.id }}"] .emerson-mega-inner {
@@ -68,14 +71,14 @@
     padding: 32px 36px;
   }
   
-  /* Links Grid - Clean Card Style */
+  /* Links Grid */
   [data-mega-menu-block-id="{{ block.id }}"] .emerson-links-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 12px;
   }
   
-  /* Individual Link Card */
+  /* Link Card */
   [data-mega-menu-block-id="{{ block.id }}"] .emerson-link-card {
     display: flex;
     align-items: center;
@@ -109,7 +112,6 @@
     font-weight: 500;
     color: #1F1A14;
     line-height: 1.3;
-    transition: color 0.2s ease;
   }
   
   [data-mega-menu-block-id="{{ block.id }}"] .emerson-link-card:hover .emerson-link-text {
@@ -187,7 +189,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.5s ease;
   }
   
   [data-mega-menu-block-id="{{ block.id }}"] .emerson-promo-card:hover img {
@@ -201,7 +203,6 @@
     right: 0;
     padding: 20px 16px 16px;
     background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
-    color: white;
   }
   
   [data-mega-menu-block-id="{{ block.id }}"] .emerson-promo-title {
@@ -253,18 +254,6 @@
   [data-mega-menu-block-id="{{ block.id }}"] .emerson-view-all-link svg {
     width: 16px;
     height: 16px;
-    transition: transform 0.2s ease;
-  }
-  
-  [data-mega-menu-block-id="{{ block.id }}"] .emerson-view-all-link:hover svg {
-    transform: translateX(3px);
-  }
-  
-  /* Empty State */
-  [data-mega-menu-block-id="{{ block.id }}"] .mega-menu--empty {
-    padding: 40px;
-    text-align: center;
-    color: #756758;
   }
   
   /* Responsive */
@@ -283,16 +272,11 @@
       flex-direction: row;
       padding: 16px;
     }
-    
-    [data-mega-menu-block-id="{{ block.id }}"] .emerson-promo-card {
-      min-height: 120px;
-    }
   }
 {% endstyle %}
 
 <div class="mega-menu-block{% if link.links.size == 0 and block.settings.mega_image_1 == blank and block.settings.mega_image_2 == blank %} no--content{% endif %}" data-mega-menu-block-id="{{ block.id }}" {{ block.shopify_attributes }}>
   
-  {% comment %} Empty State {% endcomment %}
   {% if link.links.size == 0 and block.settings.mega_image_1 == blank and block.settings.mega_image_2 == blank %}
     <p class="mega-menu--empty" {% unless request.design_mode %}style="visibility:hidden;"{% endunless %}>
       Add menu items in Shopify Admin → Online Store → Navigation
@@ -302,11 +286,7 @@
   <div class="emerson-mega-wrapper">
   <div class="emerson-mega-inner">
     
-    {% comment %} ═══════════════════════════════════════
-       LINKS SECTION
-       ═══════════════════════════════════════ {% endcomment %}
     <div class="emerson-mega-links">
-      
       {% if link.links.size > 0 %}
         <div class="emerson-links-grid">
           {% for sub_link in link.links %}
@@ -345,34 +325,24 @@
           {% endfor %}
         </div>
         
-        {% comment %} CTA Banner {% endcomment %}
         <div class="emerson-cta-banner">
           <span class="emerson-cta-emoji">✨</span>
           <span class="emerson-cta-text">Free shipping on all orders — Spread the joy!</span>
           <a href="/collections/all" class="emerson-cta-btn">Shop All</a>
         </div>
       {% endif %}
-      
     </div>
     
-    {% comment %} ═══════════════════════════════════════
-       PROMO IMAGES SECTION
-       ═══════════════════════════════════════ {% endcomment %}
     {% if has_promo_1 or has_promo_2 %}
       <div class="emerson-promos">
-        
         {% if has_promo_1 %}
           <div class="emerson-promo-card">
             {% if block.settings.mega_image_link_1 != blank %}<a href="{{ block.settings.mega_image_link_1 }}">{% endif %}
               {{ block.settings.mega_image_1 | image_url: width: 600 | image_tag: loading: 'lazy' }}
               {% if block.settings.mega_image_header_1 != blank or block.settings.mega_image_subheader_1 != blank %}
                 <div class="emerson-promo-overlay">
-                  {% if block.settings.mega_image_header_1 != blank %}
-                    <p class="emerson-promo-title">{{ block.settings.mega_image_header_1 }}</p>
-                  {% endif %}
-                  {% if block.settings.mega_image_subheader_1 != blank %}
-                    <p class="emerson-promo-subtitle">{{ block.settings.mega_image_subheader_1 }}</p>
-                  {% endif %}
+                  {% if block.settings.mega_image_header_1 != blank %}<p class="emerson-promo-title">{{ block.settings.mega_image_header_1 }}</p>{% endif %}
+                  {% if block.settings.mega_image_subheader_1 != blank %}<p class="emerson-promo-subtitle">{{ block.settings.mega_image_subheader_1 }}</p>{% endif %}
                 </div>
               {% endif %}
             {% if block.settings.mega_image_link_1 != blank %}</a>{% endif %}
@@ -385,31 +355,64 @@
               {{ block.settings.mega_image_2 | image_url: width: 600 | image_tag: loading: 'lazy' }}
               {% if block.settings.mega_image_header_2 != blank or block.settings.mega_image_subheader_2 != blank %}
                 <div class="emerson-promo-overlay">
-                  {% if block.settings.mega_image_header_2 != blank %}
-                    <p class="emerson-promo-title">{{ block.settings.mega_image_header_2 }}</p>
-                  {% endif %}
-                  {% if block.settings.mega_image_subheader_2 != blank %}
-                    <p class="emerson-promo-subtitle">{{ block.settings.mega_image_subheader_2 }}</p>
-                  {% endif %}
+                  {% if block.settings.mega_image_header_2 != blank %}<p class="emerson-promo-title">{{ block.settings.mega_image_header_2 }}</p>{% endif %}
+                  {% if block.settings.mega_image_subheader_2 != blank %}<p class="emerson-promo-subtitle">{{ block.settings.mega_image_subheader_2 }}</p>{% endif %}
                 </div>
               {% endif %}
             {% if block.settings.mega_image_link_2 != blank %}</a>{% endif %}
           </div>
         {% endif %}
         
-        {% comment %} View All Link {% endcomment %}
         <a href="{{ link.url | default: '/collections/all' }}" class="emerson-view-all-link">
-          View All Collections
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
-          </svg>
+          View All
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
-        
       </div>
     {% endif %}
     
   </div>
-  </div><!-- .emerson-mega-wrapper -->
+  </div>
   
   {% endif %}
 </div>
+
+{% comment %} ═══════════════════════════════════════════════════
+   JAVASCRIPT HOVER DELAY FIX
+   Keeps menu open for 400ms after leaving nav item
+   ═══════════════════════════════════════════════════ {% endcomment %}
+<script>
+(function() {
+  var menuId = '{{ block.id }}';
+  var megaMenu = document.querySelector('[data-mega-menu-block-id="' + menuId + '"]');
+  if (!megaMenu) return;
+  
+  var navItem = megaMenu.closest('li');
+  if (!navItem) return;
+  
+  var hideTimer = null;
+  var DELAY = 400; // milliseconds to wait before hiding
+  
+  function showMenu() {
+    clearTimeout(hideTimer);
+    megaMenu.classList.add('mega-menu--force-visible');
+  }
+  
+  function hideMenuWithDelay() {
+    hideTimer = setTimeout(function() {
+      megaMenu.classList.remove('mega-menu--force-visible');
+    }, DELAY);
+  }
+  
+  function cancelHide() {
+    clearTimeout(hideTimer);
+  }
+  
+  // Nav item events
+  navItem.addEventListener('mouseenter', showMenu);
+  navItem.addEventListener('mouseleave', hideMenuWithDelay);
+  
+  // Mega menu events - cancel hide if mouse enters menu
+  megaMenu.addEventListener('mouseenter', cancelHide);
+  megaMenu.addEventListener('mouseleave', hideMenuWithDelay);
+})();
+</script>
