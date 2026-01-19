@@ -181,7 +181,9 @@
         "collapsible_tab_QmYcxm",
         "4fdb087c-4728-4785-b270-a71a092b7898"
       ],
-      "custom_css": [],
+      "custom_css": [
+        "button#AddToCart {font-size: 16px !important; font-weight: 600 !important; padding: 13px 32px;}"
+      ],
       "settings": {
         "enable_sticky": true,
         "show_out_of_stock_email": true,
