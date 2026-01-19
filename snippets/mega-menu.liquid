@@ -38,14 +38,25 @@
     border: none !important;
     padding: 0 !important;
     overflow: hidden;
+    /* Smooth transitions for show/hide */
+    transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s ease !important;
   }
   
-  /* Force visible when JS adds this class */
+  /* DEFAULT STATE - Hidden */
+  [data-mega-menu-block-id="{{ block.id }}"] {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transform: translateY(-10px) !important;
+    pointer-events: none !important;
+  }
+  
+  /* VISIBLE STATE - When JS adds this class */
   [data-mega-menu-block-id="{{ block.id }}"].mega-menu--force-visible {
-    display: grid !important;
     opacity: 1 !important;
     visibility: visible !important;
+    transform: translateY(0) !important;
     pointer-events: auto !important;
+    display: block !important;
   }
   
   [data-mega-menu-block-id="{{ block.id }}"] .emerson-mega-wrapper {
@@ -378,7 +389,7 @@
 
 {% comment %} ═══════════════════════════════════════════════════
    JAVASCRIPT HOVER DELAY FIX
-   Keeps menu open for 400ms after leaving nav item
+   Completely controls visibility - overrides theme behavior
    ═══════════════════════════════════════════════════ {% endcomment %}
 <script>
 (function() {
@@ -389,30 +400,49 @@
   var navItem = megaMenu.closest('li');
   if (!navItem) return;
   
+  var navLink = navItem.querySelector('a');
   var hideTimer = null;
-  var DELAY = 400; // milliseconds to wait before hiding
+  var DELAY = 350; // milliseconds to wait before hiding
   
   function showMenu() {
     clearTimeout(hideTimer);
     megaMenu.classList.add('mega-menu--force-visible');
   }
   
+  function hideMenu() {
+    megaMenu.classList.remove('mega-menu--force-visible');
+  }
+  
   function hideMenuWithDelay() {
-    hideTimer = setTimeout(function() {
-      megaMenu.classList.remove('mega-menu--force-visible');
-    }, DELAY);
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(hideMenu, DELAY);
   }
   
   function cancelHide() {
     clearTimeout(hideTimer);
   }
   
-  // Nav item events
+  // Nav item hover
   navItem.addEventListener('mouseenter', showMenu);
   navItem.addEventListener('mouseleave', hideMenuWithDelay);
   
-  // Mega menu events - cancel hide if mouse enters menu
-  megaMenu.addEventListener('mouseenter', cancelHide);
+  // Nav link hover (backup)
+  if (navLink) {
+    navLink.addEventListener('mouseenter', showMenu);
+  }
+  
+  // Mega menu hover - cancel hide timer when mouse enters
+  megaMenu.addEventListener('mouseenter', function() {
+    cancelHide();
+    showMenu(); // Ensure it stays visible
+  });
+  
   megaMenu.addEventListener('mouseleave', hideMenuWithDelay);
+  
+  // Also handle focus for accessibility
+  if (navLink) {
+    navLink.addEventListener('focus', showMenu);
+    navLink.addEventListener('blur', hideMenuWithDelay);
+  }
 })();
 </script>
