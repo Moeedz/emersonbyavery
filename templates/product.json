@@ -41,6 +41,7 @@
         },
         "a55b9011-1b1a-4353-9d97-7bdcd60949f2": {
           "type": "product-description",
+          "disabled": true,
           "settings": {
             "collapsible_tab": false,
             "icon": "none",
