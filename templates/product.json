@@ -39,12 +39,6 @@
             "margin_bottom": 15
           }
         },
-        "f0f0e917-92a5-4957-a68e-2d0bb38d7819": {
-          "type": "separator",
-          "settings": {
-            "margin_bottom": 15
-          }
-        },
         "a55b9011-1b1a-4353-9d97-7bdcd60949f2": {
           "type": "product-description",
           "settings": {
@@ -53,6 +47,12 @@
             "heading": "Description",
             "open_close_icon": "plus_minus",
             "margin_bottom": 20
+          }
+        },
+        "f0f0e917-92a5-4957-a68e-2d0bb38d7819": {
+          "type": "separator",
+          "settings": {
+            "margin_bottom": 15
           }
         },
         "options": {
@@ -130,8 +130,8 @@
         "title",
         "star_rating_Uh8Wtb",
         "price",
-        "f0f0e917-92a5-4957-a68e-2d0bb38d7819",
         "a55b9011-1b1a-4353-9d97-7bdcd60949f2",
+        "f0f0e917-92a5-4957-a68e-2d0bb38d7819",
         "options",
         "quantity",
         "a7717974-ed85-4cde-80ef-4751178acf57",
