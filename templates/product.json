@@ -70,7 +70,7 @@
         "quantity": {
           "type": "quantity",
           "settings": {
-            "margin_bottom": 40
+            "margin_bottom": 10
           }
         },
         "a7717974-ed85-4cde-80ef-4751178acf57": {
