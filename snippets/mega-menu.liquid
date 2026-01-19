@@ -1,6 +1,6 @@
 {% comment %}
   EMERSON BY AVERY — PREMIUM MEGA MENU
-  With JavaScript hover delay fix
+  Targets ul.site-nav__dropdown.mega-menu-dropdown
 {% endcomment %}
 
 {% liquid 
@@ -31,6 +31,25 @@
      EMERSON PREMIUM MEGA MENU STYLES
      ═══════════════════════════════════════════════════ */
   
+  /* Target the dropdown container */
+  ul.site-nav__dropdown.mega-menu-dropdown {
+    transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s ease !important;
+  }
+  
+  /* Force visible state - applied by JS */
+  ul.site-nav__dropdown.mega-menu-dropdown.mega-menu--force-visible,
+  ul.site-nav__dropdown.mega-menu-dropdown.mega-menu--force-visible * {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+  }
+  
+  ul.site-nav__dropdown.mega-menu-dropdown.mega-menu--force-visible {
+    display: block !important;
+    transform: translateY(0) !important;
+  }
+  
+  /* Mega menu block styling */
   [data-mega-menu-block-id="{{ block.id }}"] {
     background: white !important;
     border-radius: 24px !important;
@@ -38,25 +57,6 @@
     border: none !important;
     padding: 0 !important;
     overflow: hidden;
-    /* Smooth transitions for show/hide */
-    transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s ease !important;
-  }
-  
-  /* DEFAULT STATE - Hidden */
-  [data-mega-menu-block-id="{{ block.id }}"] {
-    opacity: 0 !important;
-    visibility: hidden !important;
-    transform: translateY(-10px) !important;
-    pointer-events: none !important;
-  }
-  
-  /* VISIBLE STATE - When JS adds this class */
-  [data-mega-menu-block-id="{{ block.id }}"].mega-menu--force-visible {
-    opacity: 1 !important;
-    visibility: visible !important;
-    transform: translateY(0) !important;
-    pointer-events: auto !important;
-    display: block !important;
   }
   
   [data-mega-menu-block-id="{{ block.id }}"] .emerson-mega-wrapper {
@@ -388,29 +388,29 @@
 </div>
 
 {% comment %} ═══════════════════════════════════════════════════
-   JAVASCRIPT HOVER DELAY FIX
-   Completely controls visibility - overrides theme behavior
+   JAVASCRIPT - Targets ul.site-nav__dropdown.mega-menu-dropdown
    ═══════════════════════════════════════════════════ {% endcomment %}
 <script>
 (function() {
-  var menuId = '{{ block.id }}';
-  var megaMenu = document.querySelector('[data-mega-menu-block-id="' + menuId + '"]');
-  if (!megaMenu) return;
+  // Target the correct dropdown container
+  var dropdown = document.querySelector('ul.site-nav__dropdown.mega-menu-dropdown');
+  if (!dropdown) return;
   
-  var navItem = megaMenu.closest('li');
+  // Find the parent nav item (li)
+  var navItem = dropdown.closest('li');
   if (!navItem) return;
   
-  var navLink = navItem.querySelector('a');
+  var navLink = navItem.querySelector(':scope > a');
   var hideTimer = null;
-  var DELAY = 350; // milliseconds to wait before hiding
+  var DELAY = 350;
   
   function showMenu() {
     clearTimeout(hideTimer);
-    megaMenu.classList.add('mega-menu--force-visible');
+    dropdown.classList.add('mega-menu--force-visible');
   }
   
   function hideMenu() {
-    megaMenu.classList.remove('mega-menu--force-visible');
+    dropdown.classList.remove('mega-menu--force-visible');
   }
   
   function hideMenuWithDelay() {
@@ -418,31 +418,31 @@
     hideTimer = setTimeout(hideMenu, DELAY);
   }
   
-  function cancelHide() {
-    clearTimeout(hideTimer);
-  }
-  
-  // Nav item hover
+  // Nav item events
   navItem.addEventListener('mouseenter', showMenu);
   navItem.addEventListener('mouseleave', hideMenuWithDelay);
   
-  // Nav link hover (backup)
-  if (navLink) {
-    navLink.addEventListener('mouseenter', showMenu);
-  }
-  
-  // Mega menu hover - cancel hide timer when mouse enters
-  megaMenu.addEventListener('mouseenter', function() {
-    cancelHide();
-    showMenu(); // Ensure it stays visible
+  // Dropdown events
+  dropdown.addEventListener('mouseenter', function() {
+    clearTimeout(hideTimer);
+    showMenu();
   });
+  dropdown.addEventListener('mouseleave', hideMenuWithDelay);
   
-  megaMenu.addEventListener('mouseleave', hideMenuWithDelay);
-  
-  // Also handle focus for accessibility
+  // Focus events for accessibility
   if (navLink) {
     navLink.addEventListener('focus', showMenu);
     navLink.addEventListener('blur', hideMenuWithDelay);
   }
+  
+  // All focusable elements inside dropdown
+  var focusables = dropdown.querySelectorAll('a, button');
+  focusables.forEach(function(el) {
+    el.addEventListener('focus', function() {
+      clearTimeout(hideTimer);
+      showMenu();
+    });
+    el.addEventListener('blur', hideMenuWithDelay);
+  });
 })();
 </script>
