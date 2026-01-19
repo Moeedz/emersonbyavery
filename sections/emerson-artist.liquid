@@ -1,0 +1,228 @@
+{% comment %}
+  EMERSON BY AVERY — MEET THE ARTIST SECTION
+  Premium story section for product pages
+{% endcomment %}
+
+{{ 'section-emerson-artist.css' | asset_url | stylesheet_tag }}
+
+<section class="emerson-artist" id="meet-avery">
+  <div class="emerson-artist__container">
+    
+    <!-- Image Side -->
+    <div class="emerson-artist__image-wrapper" data-aos="fade-right">
+      {% if section.settings.image != blank %}
+        <div class="emerson-artist__image">
+          {{ section.settings.image | image_url: width: 800 | image_tag: 
+            loading: 'lazy',
+            class: 'emerson-artist__img',
+            alt: section.settings.image.alt | default: 'Avery the artist'
+          }}
+        </div>
+      {% else %}
+        <div class="emerson-artist__image emerson-artist__image--placeholder">
+          <div class="emerson-artist__placeholder">
+            <span class="emerson-artist__placeholder-emoji">👧🎨</span>
+            <span class="emerson-artist__placeholder-text">Avery in her studio</span>
+          </div>
+        </div>
+      {% endif %}
+      
+      <!-- Floating Badge -->
+      {% if section.settings.show_badge %}
+        <div class="emerson-artist__badge">
+          <span class="emerson-artist__badge-icon">{{ section.settings.badge_icon }}</span>
+          <div class="emerson-artist__badge-content">
+            <span class="emerson-artist__badge-title">{{ section.settings.badge_title }}</span>
+            <span class="emerson-artist__badge-subtitle">{{ section.settings.badge_subtitle }}</span>
+          </div>
+        </div>
+      {% endif %}
+      
+      <!-- Decorative Elements -->
+      <div class="emerson-artist__decor emerson-artist__decor--1">✨</div>
+      <div class="emerson-artist__decor emerson-artist__decor--2">🎨</div>
+    </div>
+    
+    <!-- Content Side -->
+    <div class="emerson-artist__content" data-aos="fade-left">
+      
+      {% if section.settings.tag != blank %}
+        <span class="emerson-artist__tag">{{ section.settings.tag }}</span>
+      {% endif %}
+      
+      {% if section.settings.heading != blank %}
+        <h2 class="emerson-artist__heading">{{ section.settings.heading }}</h2>
+      {% endif %}
+      
+      {% if section.settings.text_1 != blank %}
+        <p class="emerson-artist__text">{{ section.settings.text_1 }}</p>
+      {% endif %}
+      
+      {% if section.settings.text_2 != blank %}
+        <p class="emerson-artist__text">{{ section.settings.text_2 }}</p>
+      {% endif %}
+      
+      {% if section.settings.text_3 != blank %}
+        <p class="emerson-artist__text">{{ section.settings.text_3 }}</p>
+      {% endif %}
+      
+      {% if section.settings.signature != blank %}
+        <div class="emerson-artist__signature">{{ section.settings.signature }}</div>
+      {% endif %}
+      
+      {% if section.settings.button_label != blank %}
+        <a href="{{ section.settings.button_link }}" class="emerson-artist__btn">
+          {{ section.settings.button_label }}
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      {% endif %}
+      
+    </div>
+    
+  </div>
+</section>
+
+<script>
+  // Simple fade-in animation on scroll
+  document.addEventListener('DOMContentLoaded', function() {
+    const storySection = document.querySelector('.emerson-artist');
+    if (!storySection) return;
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('emerson-artist--visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    
+    observer.observe(storySection);
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Emerson Artist",
+  "tag": "section",
+  "class": "emerson-artist-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Artist Image"
+    },
+    {
+      "type": "header",
+      "content": "Badge"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_badge",
+      "label": "Show floating badge",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "badge_icon",
+      "label": "Badge Icon",
+      "default": "🌟"
+    },
+    {
+      "type": "text",
+      "id": "badge_title",
+      "label": "Badge Title",
+      "default": "500+ Happy Customers"
+    },
+    {
+      "type": "text",
+      "id": "badge_subtitle",
+      "label": "Badge Subtitle",
+      "default": "Spreading joy worldwide"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "tag",
+      "label": "Section Tag",
+      "default": "Meet the Artist"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Every Piece Tells Avery's Story"
+    },
+    {
+      "type": "textarea",
+      "id": "text_1",
+      "label": "Paragraph 1",
+      "default": "Hi! I'm Avery, and I'm 7 years old. I love to draw rainbows, hearts, butterflies, and anything that makes people smile!"
+    },
+    {
+      "type": "textarea",
+      "id": "text_2",
+      "label": "Paragraph 2",
+      "default": "My mom and dad help me turn my drawings into real things you can hang on your wall, wear, or give to someone you love. When you buy something from my shop, you're getting a piece of my imagination!"
+    },
+    {
+      "type": "textarea",
+      "id": "text_3",
+      "label": "Paragraph 3",
+      "default": "Thank you for believing in my art. You make me feel like a real artist! 💖"
+    },
+    {
+      "type": "text",
+      "id": "signature",
+      "label": "Signature",
+      "default": "— Avery ✨"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Read Our Story"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#FFF5F7"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#E85D75"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Emerson Artist",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

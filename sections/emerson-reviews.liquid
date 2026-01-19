@@ -1,0 +1,306 @@
+{% comment %}
+  EMERSON BY AVERY — REVIEWS SECTION
+  Premium customer reviews display
+{% endcomment %}
+
+{{ 'section-emerson-reviews.css' | asset_url | stylesheet_tag }}
+
+<section class="emerson-reviews">
+  <div class="emerson-reviews__container">
+    
+    <!-- Header -->
+    <div class="emerson-reviews__header">
+      <div class="emerson-reviews__header-left">
+        {% if section.settings.heading != blank %}
+          <h2 class="emerson-reviews__heading">{{ section.settings.heading }}</h2>
+        {% endif %}
+        <div class="emerson-reviews__summary">
+          <div class="emerson-reviews__stars">
+            {% for i in (1..5) %}
+              <span class="emerson-reviews__star">★</span>
+            {% endfor %}
+          </div>
+          <span class="emerson-reviews__rating">{{ section.settings.rating }}</span>
+          <span class="emerson-reviews__count">based on {{ section.settings.review_count }} reviews</span>
+        </div>
+      </div>
+      {% if section.settings.button_label != blank %}
+        <a href="{{ section.settings.button_link }}" class="emerson-reviews__btn">
+          {{ section.settings.button_label }}
+        </a>
+      {% endif %}
+    </div>
+    
+    <!-- Reviews Grid -->
+    <div class="emerson-reviews__grid">
+      {% for block in section.blocks %}
+        <div class="emerson-reviews__card" {{ block.shopify_attributes }} style="--delay: {{ forloop.index0 | times: 0.15 }}s">
+          
+          <div class="emerson-reviews__card-header">
+            <div class="emerson-reviews__reviewer">
+              <div class="emerson-reviews__avatar" style="background: {{ block.settings.avatar_color | default: '#FFD6DD' }};">
+                {{ block.settings.reviewer_name | slice: 0 }}
+              </div>
+              <div class="emerson-reviews__reviewer-info">
+                <span class="emerson-reviews__reviewer-name">{{ block.settings.reviewer_name }}</span>
+                {% if block.settings.verified %}
+                  <span class="emerson-reviews__verified">✓ Verified Buyer</span>
+                {% endif %}
+              </div>
+            </div>
+            <div class="emerson-reviews__card-stars">
+              {% assign star_count = block.settings.stars | default: 5 %}
+              {% for i in (1..star_count) %}
+                <span class="emerson-reviews__star emerson-reviews__star--filled">★</span>
+              {% endfor %}
+            </div>
+          </div>
+          
+          {% if block.settings.review_text != blank %}
+            <p class="emerson-reviews__text">"{{ block.settings.review_text }}"</p>
+          {% endif %}
+          
+          {% if block.settings.product_name != blank %}
+            <div class="emerson-reviews__product">
+              <div class="emerson-reviews__product-img">
+                {% if block.settings.product_image != blank %}
+                  {{ block.settings.product_image | image_url: width: 100 | image_tag: loading: 'lazy' }}
+                {% else %}
+                  {{ block.settings.product_emoji | default: '🌈❤️' }}
+                {% endif %}
+              </div>
+              <div class="emerson-reviews__product-info">
+                <span class="emerson-reviews__product-name">{{ block.settings.product_name }}</span>
+                {% if block.settings.product_variant != blank %}
+                  <span class="emerson-reviews__product-variant">{{ block.settings.product_variant }}</span>
+                {% endif %}
+              </div>
+            </div>
+          {% endif %}
+          
+        </div>
+      {% endfor %}
+    </div>
+    
+    <!-- View All Link -->
+    {% if section.settings.view_all_link != blank %}
+      <div class="emerson-reviews__footer">
+        <a href="{{ section.settings.view_all_link }}" class="emerson-reviews__view-all">
+          View All Reviews
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    {% endif %}
+    
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const reviewsSection = document.querySelector('.emerson-reviews');
+    if (!reviewsSection) return;
+    
+    const cards = reviewsSection.querySelectorAll('.emerson-reviews__card');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('emerson-reviews__card--visible');
+        }
+      });
+    }, { threshold: 0.15 });
+    
+    cards.forEach(card => observer.observe(card));
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Emerson Reviews",
+  "tag": "section",
+  "class": "emerson-reviews-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Header"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Customer Reviews"
+    },
+    {
+      "type": "text",
+      "id": "rating",
+      "label": "Overall Rating",
+      "default": "5.0"
+    },
+    {
+      "type": "text",
+      "id": "review_count",
+      "label": "Review Count",
+      "default": "128"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Write a Review"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Footer"
+    },
+    {
+      "type": "url",
+      "id": "view_all_link",
+      "label": "View All Reviews Link"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#FDFBF9"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card Background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "label": "Star Color",
+      "default": "#FFB800"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "text",
+          "id": "reviewer_name",
+          "label": "Reviewer Name",
+          "default": "Sarah M."
+        },
+        {
+          "type": "checkbox",
+          "id": "verified",
+          "label": "Verified Buyer",
+          "default": true
+        },
+        {
+          "type": "color",
+          "id": "avatar_color",
+          "label": "Avatar Background",
+          "default": "#FFD6DD"
+        },
+        {
+          "type": "range",
+          "id": "stars",
+          "label": "Star Rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "textarea",
+          "id": "review_text",
+          "label": "Review Text",
+          "default": "Absolutely precious! Bought this for my daughter's nursery and it's the perfect touch of color and joy."
+        },
+        {
+          "type": "header",
+          "content": "Product Info"
+        },
+        {
+          "type": "text",
+          "id": "product_emoji",
+          "label": "Product Emoji",
+          "default": "🌈❤️"
+        },
+        {
+          "type": "image_picker",
+          "id": "product_image",
+          "label": "Product Image (optional)"
+        },
+        {
+          "type": "text",
+          "id": "product_name",
+          "label": "Product Name",
+          "default": "Rainbow Heart Art Print"
+        },
+        {
+          "type": "text",
+          "id": "product_variant",
+          "label": "Product Variant",
+          "default": "8×10\" · Natural Wood Frame"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Emerson Reviews",
+      "category": "Custom",
+      "blocks": [
+        {
+          "type": "review",
+          "settings": {
+            "reviewer_name": "Sarah M.",
+            "verified": true,
+            "avatar_color": "#FFD6DD",
+            "stars": 5,
+            "review_text": "Absolutely precious! Bought this for my daughter's nursery and it's the perfect touch of color and joy. The quality is amazing!",
+            "product_emoji": "🌈❤️",
+            "product_name": "Rainbow Heart Art Print",
+            "product_variant": "8×10\" · Natural Wood Frame"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "reviewer_name": "Jennifer K.",
+            "verified": true,
+            "avatar_color": "#D6E8FF",
+            "stars": 5,
+            "review_text": "This print brought tears to my eyes! Such pure, joyful art. Fast shipping and it arrived perfectly packaged.",
+            "product_emoji": "🌈❤️",
+            "product_name": "Rainbow Heart Art Print",
+            "product_variant": "11×14\" · Print Only"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "reviewer_name": "Mike T.",
+            "verified": true,
+            "avatar_color": "#D6FFD6",
+            "stars": 5,
+            "review_text": "Bought this for my wife for Valentine's Day. She absolutely loved it! The colors are even more vibrant in person. Great job, Avery! 🌈",
+            "product_emoji": "🌈❤️",
+            "product_name": "Rainbow Heart Art Print",
+            "product_variant": "16×20\" · Black Frame"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

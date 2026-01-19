@@ -1,0 +1,290 @@
+/* ═══════════════════════════════════════════════════════════════
+   EMERSON BY AVERY — MEET THE ARTIST SECTION
+   Premium styling with animations
+   ═══════════════════════════════════════════════════════════════ */
+
+.emerson-artist {
+  background: linear-gradient(135deg, #FFF5F7 0%, #FDF9F6 100%);
+  padding: 80px 20px;
+  overflow: hidden;
+}
+
+.emerson-artist__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+/* ═══ IMAGE SIDE ═══ */
+.emerson-artist__image-wrapper {
+  position: relative;
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.emerson-artist--visible .emerson-artist__image-wrapper {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.emerson-artist__image {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(232, 93, 117, 0.15);
+}
+
+.emerson-artist__img {
+  width: 100%;
+  height: auto;
+  display: block;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+}
+
+.emerson-artist__image--placeholder {
+  aspect-ratio: 4/5;
+  background: linear-gradient(135deg, #FFE8ED 0%, #FDFBF9 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.emerson-artist__placeholder {
+  text-align: center;
+}
+
+.emerson-artist__placeholder-emoji {
+  font-size: 80px;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.emerson-artist__placeholder-text {
+  font-size: 14px;
+  color: #756758;
+}
+
+/* Floating Badge */
+.emerson-artist__badge {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  background: white;
+  padding: 16px 24px;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(31, 26, 20, 0.12);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 2;
+  animation: emersonBadgeFloat 3s ease-in-out infinite;
+}
+
+@keyframes emersonBadgeFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.emerson-artist__badge-icon {
+  font-size: 32px;
+}
+
+.emerson-artist__badge-title {
+  display: block;
+  font-family: 'DM Sans', -apple-system, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1F1A14;
+}
+
+.emerson-artist__badge-subtitle {
+  display: block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  color: #756758;
+}
+
+/* Decorative Elements */
+.emerson-artist__decor {
+  position: absolute;
+  font-size: 24px;
+  opacity: 0.6;
+  animation: emersonDecorPulse 2s ease-in-out infinite;
+}
+
+.emerson-artist__decor--1 {
+  top: 10%;
+  right: 10%;
+  animation-delay: 0s;
+}
+
+.emerson-artist__decor--2 {
+  bottom: 20%;
+  left: -10px;
+  animation-delay: 0.5s;
+}
+
+@keyframes emersonDecorPulse {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.2); opacity: 1; }
+}
+
+/* ═══ CONTENT SIDE ═══ */
+.emerson-artist__content {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: 0.2s;
+}
+
+.emerson-artist--visible .emerson-artist__content {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.emerson-artist__tag {
+  display: inline-block;
+  background: #E85D75;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
+}
+
+.emerson-artist__heading {
+  font-family: 'DM Sans', -apple-system, sans-serif;
+  font-size: clamp(28px, 5vw, 40px);
+  font-weight: 700;
+  color: #1F1A14;
+  line-height: 1.2;
+  margin: 0 0 24px 0;
+}
+
+.emerson-artist__text {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  color: #5A5047;
+  line-height: 1.8;
+  margin: 0 0 16px 0;
+}
+
+.emerson-artist__signature {
+  font-family: 'DM Sans', sans-serif;
+  font-style: italic;
+  font-size: 24px;
+  color: #E85D75;
+  margin-top: 24px;
+}
+
+.emerson-artist__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 28px;
+  padding: 14px 28px;
+  background: #1F1A14;
+  color: white;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.emerson-artist__btn:hover {
+  background: #E85D75;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(232, 93, 117, 0.35);
+}
+
+.emerson-artist__btn svg {
+  transition: transform 0.3s ease;
+}
+
+.emerson-artist__btn:hover svg {
+  transform: translateX(4px);
+}
+
+/* ═══ MOBILE RESPONSIVE ═══ */
+@media (max-width: 968px) {
+  .emerson-artist {
+    padding: 60px 20px;
+  }
+  
+  .emerson-artist__container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .emerson-artist__image-wrapper {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .emerson-artist__badge {
+    bottom: -15px;
+    right: 10px;
+    padding: 12px 16px;
+  }
+  
+  .emerson-artist__badge-icon {
+    font-size: 24px;
+  }
+  
+  .emerson-artist__badge-title {
+    font-size: 13px;
+  }
+  
+  .emerson-artist__badge-subtitle {
+    font-size: 11px;
+  }
+  
+  .emerson-artist__content {
+    text-align: center;
+  }
+  
+  .emerson-artist__heading {
+    font-size: 28px;
+  }
+  
+  .emerson-artist__text {
+    font-size: 15px;
+  }
+  
+  .emerson-artist__signature {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .emerson-artist {
+    padding: 48px 16px;
+  }
+  
+  .emerson-artist__placeholder-emoji {
+    font-size: 60px;
+  }
+  
+  .emerson-artist__decor {
+    display: none;
+  }
+  
+  .emerson-artist__badge {
+    position: relative;
+    bottom: auto;
+    right: auto;
+    margin-top: 20px;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,164 @@
+{% comment %}
+  EMERSON BY AVERY — FEATURES SECTION
+  Premium feature cards with icons
+{% endcomment %}
+
+{{ 'section-emerson-features.css' | asset_url | stylesheet_tag }}
+
+<section class="emerson-features">
+  <div class="emerson-features__container">
+    
+    {% if section.settings.heading != blank or section.settings.subheading != blank %}
+      <div class="emerson-features__header">
+        {% if section.settings.heading != blank %}
+          <h2 class="emerson-features__heading">{{ section.settings.heading }}</h2>
+        {% endif %}
+        {% if section.settings.subheading != blank %}
+          <p class="emerson-features__subheading">{{ section.settings.subheading }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+    
+    <div class="emerson-features__grid">
+      {% for block in section.blocks %}
+        <div class="emerson-features__card" {{ block.shopify_attributes }} style="--delay: {{ forloop.index0 | times: 0.1 }}s">
+          <div class="emerson-features__icon">
+            {{ block.settings.icon }}
+          </div>
+          {% if block.settings.title != blank %}
+            <h3 class="emerson-features__title">{{ block.settings.title }}</h3>
+          {% endif %}
+          {% if block.settings.text != blank %}
+            <p class="emerson-features__text">{{ block.settings.text }}</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+    
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const featuresSection = document.querySelector('.emerson-features');
+    if (!featuresSection) return;
+    
+    const cards = featuresSection.querySelectorAll('.emerson-features__card');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('emerson-features__card--visible');
+        }
+      });
+    }, { threshold: 0.2 });
+    
+    cards.forEach(card => observer.observe(card));
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Emerson Features",
+  "tag": "section",
+  "class": "emerson-features-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Why Choose Emerson by Avery"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Every purchase supports a young artist's dream"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card Background",
+      "default": "#FDFBF9"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#E85D75"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon (emoji)",
+          "default": "🎨"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Original Art"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description",
+          "default": "Every design comes straight from Avery's imagination"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Emerson Features",
+      "category": "Custom",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "🎨",
+            "title": "Original Art",
+            "text": "Every design comes straight from Avery's imagination"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "🌱",
+            "title": "Eco-Friendly",
+            "text": "Sustainable materials and responsible production"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "📦",
+            "title": "Gift Ready",
+            "text": "Beautifully packaged and ready to give"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "💝",
+            "title": "Gives Back",
+            "text": "Portion of proceeds supports children's art programs"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

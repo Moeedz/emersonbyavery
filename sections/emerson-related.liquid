@@ -1,0 +1,231 @@
+{% comment %}
+  EMERSON BY AVERY — RELATED PRODUCTS SECTION
+  You May Also Like / Related Products
+{% endcomment %}
+
+{{ 'section-emerson-related.css' | asset_url | stylesheet_tag }}
+
+<section class="emerson-related">
+  <div class="emerson-related__container">
+    
+    <!-- Header -->
+    <div class="emerson-related__header">
+      {% if section.settings.heading != blank %}
+        <h2 class="emerson-related__heading">{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.subheading != blank %}
+        <p class="emerson-related__subheading">{{ section.settings.subheading }}</p>
+      {% endif %}
+    </div>
+    
+    <!-- Products Grid -->
+    <div class="emerson-related__grid">
+      {% if section.settings.collection != blank %}
+        {% assign products = section.settings.collection.products | default: collections.all.products %}
+        {% for product in products limit: section.settings.products_limit %}
+          <div class="emerson-related__card" style="--delay: {{ forloop.index0 | times: 0.1 }}s">
+            <a href="{{ product.url }}" class="emerson-related__card-link">
+              
+              <div class="emerson-related__image">
+                {% if product.featured_image != blank %}
+                  {{ product.featured_image | image_url: width: 500 | image_tag:
+                    loading: 'lazy',
+                    class: 'emerson-related__img',
+                    alt: product.featured_image.alt | default: product.title
+                  }}
+                {% else %}
+                  <div class="emerson-related__placeholder">🎨</div>
+                {% endif %}
+                
+                {% if product.compare_at_price > product.price %}
+                  <span class="emerson-related__badge emerson-related__badge--sale">Sale</span>
+                {% elsif product.tags contains 'new' %}
+                  <span class="emerson-related__badge emerson-related__badge--new">New</span>
+                {% elsif product.tags contains 'bestseller' or product.tags contains 'best-seller' %}
+                  <span class="emerson-related__badge emerson-related__badge--bestseller">Best Seller</span>
+                {% endif %}
+                
+                <button class="emerson-related__wishlist" aria-label="Add to wishlist">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                  </svg>
+                </button>
+                
+                <div class="emerson-related__quick-add">
+                  <span>Quick View</span>
+                </div>
+              </div>
+              
+              <div class="emerson-related__info">
+                <h3 class="emerson-related__title">{{ product.title }}</h3>
+                <div class="emerson-related__price">
+                  <span class="emerson-related__price-current">{{ product.price | money }}</span>
+                  {% if product.compare_at_price > product.price %}
+                    <span class="emerson-related__price-compare">{{ product.compare_at_price | money }}</span>
+                  {% endif %}
+                </div>
+              </div>
+              
+            </a>
+          </div>
+        {% endfor %}
+      {% else %}
+        <!-- Placeholder cards when no collection selected -->
+        {% for i in (1..4) %}
+          {% assign emojis = '🦋,🌻,🌈❤️,⭐' | split: ',' %}
+          {% assign colors = '#E8F5FF,#FFF8E1,#E8FFE8,#F3E8FF' | split: ',' %}
+          {% assign titles = 'Butterfly Dreams Print,Sunshine Flower Print,Rainbow Heart Tote Bag,Shooting Star Note Cards' | split: ',' %}
+          {% assign prices = '$22.99,$24.99,$18.99,$14.99' | split: ',' %}
+          
+          <div class="emerson-related__card" style="--delay: {{ forloop.index0 | times: 0.1 }}s">
+            <a href="#" class="emerson-related__card-link">
+              <div class="emerson-related__image">
+                <div class="emerson-related__placeholder" style="background: linear-gradient(135deg, {{ colors[forloop.index0] }} 0%, #FFF5F7 100%);">
+                  {{ emojis[forloop.index0] }}
+                </div>
+                {% if forloop.index == 1 %}
+                  <span class="emerson-related__badge emerson-related__badge--new">New</span>
+                {% elsif forloop.index == 3 %}
+                  <span class="emerson-related__badge emerson-related__badge--bestseller">Best Seller</span>
+                {% endif %}
+                <button class="emerson-related__wishlist" aria-label="Add to wishlist">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                  </svg>
+                </button>
+              </div>
+              <div class="emerson-related__info">
+                <h3 class="emerson-related__title">{{ titles[forloop.index0] }}</h3>
+                <div class="emerson-related__price">
+                  <span class="emerson-related__price-current">{{ prices[forloop.index0] }}</span>
+                </div>
+              </div>
+            </a>
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+    
+    <!-- View All Button -->
+    {% if section.settings.view_all_label != blank %}
+      <div class="emerson-related__footer">
+        <a href="{{ section.settings.view_all_link | default: section.settings.collection.url }}" class="emerson-related__view-all">
+          {{ section.settings.view_all_label }}
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    {% endif %}
+    
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const relatedSection = document.querySelector('.emerson-related');
+    if (!relatedSection) return;
+    
+    const cards = relatedSection.querySelectorAll('.emerson-related__card');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('emerson-related__card--visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    cards.forEach(card => observer.observe(card));
+    
+    // Wishlist button click (prevent navigation)
+    relatedSection.querySelectorAll('.emerson-related__wishlist').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        this.classList.toggle('emerson-related__wishlist--active');
+      });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Emerson Related",
+  "tag": "section",
+  "class": "emerson-related-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "You May Also Like"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "More colorful creations from Avery's imagination"
+    },
+    {
+      "type": "header",
+      "content": "Products"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_limit",
+      "label": "Products to Show",
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "view_all_label",
+      "label": "View All Button Label",
+      "default": "View All Products"
+    },
+    {
+      "type": "url",
+      "id": "view_all_link",
+      "label": "View All Link (optional)"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#E85D75"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Emerson Related",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

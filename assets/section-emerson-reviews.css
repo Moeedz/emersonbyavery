@@ -1,0 +1,313 @@
+/* ═══════════════════════════════════════════════════════════════
+   EMERSON BY AVERY — REVIEWS SECTION
+   Premium customer reviews with animations
+   ═══════════════════════════════════════════════════════════════ */
+
+.emerson-reviews {
+  background: #FDFBF9;
+  padding: 80px 20px;
+}
+
+.emerson-reviews__container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ═══ HEADER ═══ */
+.emerson-reviews__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.emerson-reviews__heading {
+  font-family: 'DM Sans', -apple-system, sans-serif;
+  font-size: clamp(26px, 4vw, 32px);
+  font-weight: 700;
+  color: #1F1A14;
+  margin: 0 0 12px 0;
+}
+
+.emerson-reviews__summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.emerson-reviews__stars {
+  display: flex;
+  gap: 2px;
+}
+
+.emerson-reviews__star {
+  color: #FFB800;
+  font-size: 20px;
+}
+
+.emerson-reviews__rating {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1F1A14;
+}
+
+.emerson-reviews__count {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: #756758;
+}
+
+.emerson-reviews__btn {
+  padding: 12px 24px;
+  background: white;
+  border: 2px solid #E8E3DD;
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1F1A14;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.emerson-reviews__btn:hover {
+  border-color: #E85D75;
+  color: #E85D75;
+  background: #FFF5F7;
+}
+
+/* ═══ GRID ═══ */
+.emerson-reviews__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* ═══ CARDS ═══ */
+.emerson-reviews__card {
+  background: white;
+  padding: 28px;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(31, 26, 20, 0.04);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.emerson-reviews__card--visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: var(--delay, 0s);
+}
+
+.emerson-reviews__card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(31, 26, 20, 0.1);
+}
+
+.emerson-reviews__card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.emerson-reviews__reviewer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.emerson-reviews__avatar {
+  width: 46px;
+  height: 46px;
+  background: linear-gradient(135deg, #FFD6DD 0%, #FFF5F7 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #E85D75;
+}
+
+.emerson-reviews__reviewer-name {
+  display: block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1F1A14;
+}
+
+.emerson-reviews__verified {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  color: #756758;
+}
+
+.emerson-reviews__card-stars {
+  display: flex;
+  gap: 1px;
+}
+
+.emerson-reviews__card-stars .emerson-reviews__star {
+  font-size: 14px;
+}
+
+.emerson-reviews__star--filled {
+  color: #FFB800;
+}
+
+.emerson-reviews__text {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: #5A5047;
+  line-height: 1.7;
+  margin: 0 0 20px 0;
+  font-style: italic;
+}
+
+/* Product Info */
+.emerson-reviews__product {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: #FDFBF9;
+  border-radius: 12px;
+}
+
+.emerson-reviews__product-img {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #FFF5F7 0%, #FFE8ED 100%);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  overflow: hidden;
+}
+
+.emerson-reviews__product-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.emerson-reviews__product-name {
+  display: block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #1F1A14;
+}
+
+.emerson-reviews__product-variant {
+  display: block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  color: #756758;
+}
+
+/* ═══ FOOTER ═══ */
+.emerson-reviews__footer {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.emerson-reviews__view-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #E85D75;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.emerson-reviews__view-all:hover {
+  color: #D64D65;
+}
+
+.emerson-reviews__view-all svg {
+  transition: transform 0.3s ease;
+}
+
+.emerson-reviews__view-all:hover svg {
+  transform: translateX(4px);
+}
+
+/* ═══ MOBILE RESPONSIVE ═══ */
+@media (max-width: 1024px) {
+  .emerson-reviews__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 700px) {
+  .emerson-reviews {
+    padding: 60px 16px;
+  }
+  
+  .emerson-reviews__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  
+  .emerson-reviews__heading {
+    font-size: 24px;
+  }
+  
+  .emerson-reviews__btn {
+    width: 100%;
+    text-align: center;
+    padding: 14px 24px;
+  }
+  
+  .emerson-reviews__grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .emerson-reviews__card {
+    padding: 24px 20px;
+  }
+}
+
+@media (max-width: 400px) {
+  .emerson-reviews__card-header {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .emerson-reviews__summary {
+    gap: 8px;
+  }
+  
+  .emerson-reviews__star {
+    font-size: 16px;
+  }
+  
+  .emerson-reviews__rating {
+    font-size: 16px;
+  }
+  
+  .emerson-reviews__count {
+    font-size: 12px;
+    width: 100%;
+  }
+}

@@ -1,0 +1,172 @@
+/* ═══════════════════════════════════════════════════════════════
+   EMERSON BY AVERY — FEATURES SECTION
+   Premium feature cards with animations
+   ═══════════════════════════════════════════════════════════════ */
+
+.emerson-features {
+  background: white;
+  padding: 80px 20px;
+}
+
+.emerson-features__container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ═══ HEADER ═══ */
+.emerson-features__header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.emerson-features__heading {
+  font-family: 'DM Sans', -apple-system, sans-serif;
+  font-size: clamp(28px, 4vw, 36px);
+  font-weight: 700;
+  color: #1F1A14;
+  margin: 0 0 12px 0;
+}
+
+.emerson-features__subheading {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  color: #756758;
+  margin: 0;
+}
+
+/* ═══ GRID ═══ */
+.emerson-features__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+/* ═══ CARDS ═══ */
+.emerson-features__card {
+  text-align: center;
+  padding: 36px 24px;
+  background: #FDFBF9;
+  border-radius: 20px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.emerson-features__card--visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: var(--delay, 0s);
+}
+
+.emerson-features__card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px rgba(31, 26, 20, 0.1);
+  background: white;
+}
+
+.emerson-features__icon {
+  width: 72px;
+  height: 72px;
+  background: linear-gradient(135deg, #FFF5F7 0%, #FFE8ED 100%);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  margin: 0 auto 20px;
+  transition: all 0.3s ease;
+}
+
+.emerson-features__card:hover .emerson-features__icon {
+  transform: scale(1.1) rotate(5deg);
+  background: linear-gradient(135deg, #FFE8ED 0%, #FFCCD5 100%);
+}
+
+.emerson-features__title {
+  font-family: 'DM Sans', -apple-system, sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: #1F1A14;
+  margin: 0 0 10px 0;
+}
+
+.emerson-features__text {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: #756758;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ═══ MOBILE RESPONSIVE ═══ */
+@media (max-width: 1024px) {
+  .emerson-features__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .emerson-features {
+    padding: 60px 16px;
+  }
+  
+  .emerson-features__header {
+    margin-bottom: 36px;
+  }
+  
+  .emerson-features__heading {
+    font-size: 24px;
+  }
+  
+  .emerson-features__subheading {
+    font-size: 14px;
+  }
+  
+  .emerson-features__grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .emerson-features__card {
+    padding: 28px 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+    gap: 20px;
+  }
+  
+  .emerson-features__icon {
+    width: 60px;
+    height: 60px;
+    min-width: 60px;
+    margin: 0;
+    font-size: 28px;
+    border-radius: 16px;
+  }
+  
+  .emerson-features__card-content {
+    flex: 1;
+  }
+  
+  .emerson-features__title {
+    font-size: 16px;
+    margin-bottom: 6px;
+  }
+  
+  .emerson-features__text {
+    font-size: 13px;
+  }
+}
+
+/* ═══ ALTERNATE LAYOUT FOR 3 CARDS ═══ */
+.emerson-features__grid:has(.emerson-features__card:nth-child(3):last-child) {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 768px) {
+  .emerson-features__grid:has(.emerson-features__card:nth-child(3):last-child) {
+    grid-template-columns: 1fr;
+  }
+}
