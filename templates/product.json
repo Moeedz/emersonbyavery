@@ -73,16 +73,6 @@
             "margin_bottom": 10
           }
         },
-        "a7717974-ed85-4cde-80ef-4751178acf57": {
-          "type": "text-with-icon",
-          "disabled": true,
-          "settings": {
-            "icon": "truck",
-            "text": "Ship within 3 days",
-            "link": "",
-            "margin_bottom": 10
-          }
-        },
         "2f3ddc8d-6514-403d-a884-88c9a0294300": {
           "type": "stock-level-indicator",
           "disabled": true,
@@ -172,7 +162,6 @@
         "f0f0e917-92a5-4957-a68e-2d0bb38d7819",
         "options",
         "quantity",
-        "a7717974-ed85-4cde-80ef-4751178acf57",
         "2f3ddc8d-6514-403d-a884-88c9a0294300",
         "buy_buttons",
         "fbfe241f-1b44-41cd-ae22-e866bdad9aaf",
@@ -183,7 +172,7 @@
       ],
       "custom_css": [
         "button#AddToCart {font-size: 15px !important; font-weight: 600 !important; border-radius: 12px;}",
-        "@media screen and (max-width: 767px) {button#AddToCart {font-size: 11.5px !important;}}"
+        "@media screen and (max-width: 767px) {button#AddToCart {font-size: 11.5px !important; }}"
       ],
       "settings": {
         "enable_sticky": true,
