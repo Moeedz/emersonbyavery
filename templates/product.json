@@ -222,118 +222,146 @@
         "accent_color": "#E85D75"
       }
     },
-    "template_product_recommendations_GxgAUN": {
-      "type": "template--product--recommendations",
+    "emerson_features_RpCCpY": {
+      "type": "emerson-features",
       "blocks": {
-        "product_card_image_agxVCQ": {
-          "type": "product_card_image",
+        "feature_EXENiP": {
+          "type": "feature",
           "settings": {
-            "enable_quick_shop": false,
-            "disable_quick_shop_mobile": true
+            "icon": "🎨",
+            "title": "Original Art",
+            "text": "Every design comes straight from Avery's imagination"
           }
         },
-        "product_card_title_4C3xCe": {
-          "type": "product_card_title",
+        "feature_GyAU8p": {
+          "type": "feature",
           "settings": {
-            "product_card_title__font": "body"
+            "icon": "🌱",
+            "title": "Eco-Friendly",
+            "text": "Sustainable materials and responsible production"
           }
         },
-        "product_card_price_prB3Li": {
-          "type": "product_card_price",
+        "feature_jgHp9c": {
+          "type": "feature",
           "settings": {
-            "product_card_price__font": "body"
+            "icon": "📦",
+            "title": "Gift Ready",
+            "text": "Beautifully packaged and ready to give"
           }
         },
-        "product_card_vendor_pW7PVU": {
-          "type": "product_card_vendor",
-          "disabled": true,
+        "feature_jfUQrc": {
+          "type": "feature",
           "settings": {
-            "product_card_vendor__font": "body"
+            "icon": "💝",
+            "title": "Gives Back",
+            "text": "Portion of proceeds supports children's art programs"
           }
-        },
-        "product_card_quick_shop_Xcew36": {
-          "type": "product_card_quick_shop",
-          "disabled": true,
-          "settings": {}
         }
       },
       "block_order": [
-        "product_card_image_agxVCQ",
-        "product_card_title_4C3xCe",
-        "product_card_price_prB3Li",
-        "product_card_vendor_pW7PVU",
-        "product_card_quick_shop_Xcew36"
+        "feature_EXENiP",
+        "feature_GyAU8p",
+        "feature_jgHp9c",
+        "feature_jfUQrc"
       ],
-      "custom_css": [
-        "h2 {font-size: 14px; text-align: left;}"
-      ],
+      "name": "Emerson Features",
       "settings": {
-        "product_recommendations_heading": "You may also like"
+        "heading": "Why Choose Emerson by Avery",
+        "subheading": "Every purchase supports a young artist's dream",
+        "background_color": "#FFFFFF",
+        "card_background": "#FDFBF9",
+        "accent_color": "#E85D75"
+      }
+    },
+    "emerson_reviews_mxn3jc": {
+      "type": "emerson-reviews",
+      "blocks": {
+        "review_EpYqz8": {
+          "type": "review",
+          "settings": {
+            "reviewer_name": "Sarah M.",
+            "verified": true,
+            "avatar_color": "#ffd6dd",
+            "stars": 5,
+            "review_text": "Absolutely precious! Bought this for my daughter's nursery and it's the perfect touch of color and joy. The quality is amazing!",
+            "product_emoji": "🌈❤️",
+            "product_name": "Rainbow Heart Art Print",
+            "product_variant": "8×10\" · Natural Wood Frame"
+          }
+        },
+        "review_c9ENMD": {
+          "type": "review",
+          "settings": {
+            "reviewer_name": "Jennifer K.",
+            "verified": true,
+            "avatar_color": "#d6e8ff",
+            "stars": 5,
+            "review_text": "This print brought tears to my eyes! Such pure, joyful art. Fast shipping and it arrived perfectly packaged.",
+            "product_emoji": "🌈❤️",
+            "product_name": "Rainbow Heart Art Print",
+            "product_variant": "11×14\" · Print Only"
+          }
+        },
+        "review_xtPb9b": {
+          "type": "review",
+          "settings": {
+            "reviewer_name": "Mike T.",
+            "verified": true,
+            "avatar_color": "#d6ffd6",
+            "stars": 5,
+            "review_text": "Bought this for my wife for Valentine's Day. She absolutely loved it! The colors are even more vibrant in person. Great job, Avery! 🌈",
+            "product_emoji": "🌈❤️",
+            "product_name": "Rainbow Heart Art Print",
+            "product_variant": "16×20\" · Black Frame"
+          }
+        }
+      },
+      "block_order": [
+        "review_EpYqz8",
+        "review_c9ENMD",
+        "review_xtPb9b"
+      ],
+      "name": "Emerson Reviews",
+      "settings": {
+        "heading": "Customer Reviews",
+        "rating": "5.0",
+        "review_count": "128",
+        "button_label": "Write a Review",
+        "button_link": "",
+        "view_all_link": "",
+        "background_color": "#FDFBF9",
+        "card_background": "#FFFFFF",
+        "star_color": "#FFB800"
+      }
+    },
+    "emerson_related_4Ty3et": {
+      "type": "emerson-related",
+      "name": "Emerson Related",
+      "settings": {
+        "heading": "You May Also Like",
+        "subheading": "More colorful creations from Avery's imagination",
+        "collection": "",
+        "products_limit": 4,
+        "view_all_label": "View All Products",
+        "view_all_link": "",
+        "background_color": "#FFFFFF",
+        "accent_color": "#E85D75"
       }
     },
     "product-description": {
       "type": "template--product--description",
       "disabled": true,
       "settings": {
-        "enable_readmore": false
-      }
-    },
-    "advanced_layout_custom_liquid_GUPqc7": {
-      "type": "advanced-layout--custom-liquid",
-      "disabled": true,
-      "custom_css": [],
-      "settings": {
-        "custom_liquid": "<div style='text-align:LEFT; padding: 0px 0;font-size:14px'><div class=\"wrapper-padded\"></h2><p>Recently Viewed</p></div></div>"
-      }
-    },
-    "template_product_recently_viewed_6yGbwX": {
-      "type": "template--product--recently-viewed",
-      "blocks": {
-        "product_card_image_D6DJii": {
-          "type": "product_card_image",
-          "settings": {
-            "enable_quick_shop": false,
-            "disable_quick_shop_mobile": true
-          }
-        },
-        "product_card_title_YdwdWx": {
-          "type": "product_card_title",
-          "settings": {
-            "product_card_title__font": "body"
-          }
-        },
-        "product_card_price_pJkTF3": {
-          "type": "product_card_price",
-          "settings": {
-            "product_card_price__font": "body"
-          }
-        },
-        "product_card_quick_shop_Jp8z7Q": {
-          "type": "product_card_quick_shop",
-          "disabled": true,
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "product_card_image_D6DJii",
-        "product_card_title_YdwdWx",
-        "product_card_price_pJkTF3",
-        "product_card_quick_shop_Jp8z7Q"
-      ],
-      "custom_css": [
-        "h2 {font-size: 14px; text-align: left;}"
-      ],
-      "settings": {
-        "recently_viewed_title": "Recently viewed"
+        "enable_readmore": true
       }
     }
   },
   "order": [
     "product-form",
     "emerson_artist_QqFf3E",
-    "template_product_recommendations_GxgAUN",
-    "product-description",
-    "advanced_layout_custom_liquid_GUPqc7",
-    "template_product_recently_viewed_6yGbwX"
+    "emerson_features_RpCCpY",
+    "emerson_reviews_mxn3jc",
+    "emerson_related_4Ty3et",
+    "product-description"
   ]
 }
