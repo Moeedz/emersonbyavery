@@ -119,6 +119,42 @@
             "margin_bottom": 20
           }
         },
+        "collapsible_tab_UAgRrD": {
+          "type": "collapsible-tab",
+          "settings": {
+            "icon": "info",
+            "heading": "Product details",
+            "open_close_icon": "plus_minus",
+            "text": "{{ product.description }}",
+            "page": "",
+            "open_by_default": true,
+            "margin_bottom": 0
+          }
+        },
+        "collapsible_tab_r9g6YE": {
+          "type": "collapsible-tab",
+          "settings": {
+            "icon": "truck",
+            "heading": "Shipping & Returns",
+            "open_close_icon": "plus_minus",
+            "text": "<p>Share some information about your product</p>",
+            "page": "",
+            "open_by_default": false,
+            "margin_bottom": 0
+          }
+        },
+        "collapsible_tab_QmYcxm": {
+          "type": "collapsible-tab",
+          "settings": {
+            "icon": "heart",
+            "heading": "About the Artist",
+            "open_close_icon": "plus_minus",
+            "text": "<p>Share some information about your product</p>",
+            "page": "",
+            "open_by_default": false,
+            "margin_bottom": 20
+          }
+        },
         "4fdb087c-4728-4785-b270-a71a092b7898": {
           "type": "social_sharing",
           "settings": {
@@ -138,6 +174,9 @@
         "2f3ddc8d-6514-403d-a884-88c9a0294300",
         "buy_buttons",
         "fbfe241f-1b44-41cd-ae22-e866bdad9aaf",
+        "collapsible_tab_UAgRrD",
+        "collapsible_tab_r9g6YE",
+        "collapsible_tab_QmYcxm",
         "4fdb087c-4728-4785-b270-a71a092b7898"
       ],
       "custom_css": [],
