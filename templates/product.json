@@ -73,6 +73,13 @@
             "margin_bottom": 10
           }
         },
+        "custom_liquid_bt3aVD": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<div class=\"trust-badges\" style=\"\n    display: grid;\n    grid-template-columns: repeat(3, 1fr);\n    gap: 16px;\n    padding: 24px;\n    background: #FDFBF9;\n    border-radius: 16px;\n    margin-bottom: 24px;\n\">\n        <div class=\"trust-badge\" style=\"\n    text-align: center;\n\">\n          <div class=\"trust-icon\" style=\"\n    font-size: 24px;\n    margin-bottom: 8px;\n\">🚚</div>\n          <div class=\"trust-text\" style=\"\n    font-size: 12px;\n    font-weight: 600;\n    color: #1F1A14;\n\">Free Shipping</div>\n          <div class=\"trust-subtext\" style=\"\n    font-size: 11px;\n    color: #756758;\n\">On all orders</div>\n        </div>\n        <div class=\"trust-badge\" style=\"\n    text-align: center;\n\">\n          <div class=\"trust-icon\" style=\"\n    font-size: 24px;\n    margin-bottom: 8px;\n\">🎁</div>\n          <div class=\"trust-text\" style=\"\n    font-size: 12px;\n    font-weight: 600;\n    color: #1F1A14;\n\">Gift Ready</div>\n          <div class=\"trust-subtext\" style=\"\n    font-size: 11px;\n    color: #756758;\n\">Beautiful packaging</div>\n        </div>\n        <div class=\"trust-badge\" style=\"\n    text-align: center;\n\">\n          <div class=\"trust-icon\" style=\"\n    font-size: 24px;\n    margin-bottom: 8px;\n\">💖</div>\n          <div class=\"trust-text\" style=\"\n    font-size: 12px;\n    font-weight: 600;\n    color: #1F1A14;\n\">Made with Love</div>\n          <div class=\"trust-subtext\" style=\"\n    font-size: 11px;\n    color: #756758;\n\">By a 7-year-old artist</div>\n        </div>\n      </div>",
+            "margin_bottom": 20
+          }
+        },
         "2f3ddc8d-6514-403d-a884-88c9a0294300": {
           "type": "stock-level-indicator",
           "disabled": true,
@@ -162,6 +169,7 @@
         "f0f0e917-92a5-4957-a68e-2d0bb38d7819",
         "options",
         "quantity",
+        "custom_liquid_bt3aVD",
         "2f3ddc8d-6514-403d-a884-88c9a0294300",
         "buy_buttons",
         "fbfe241f-1b44-41cd-ae22-e866bdad9aaf",
