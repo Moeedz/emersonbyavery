@@ -180,6 +180,7 @@
       ],
       "custom_css": [
         "button#AddToCart {font-size: 15px !important; font-weight: 600 !important; border-radius: 12px;}",
+        "@media screen and (min-width: 768px) {.product-section {padding-top: 70px !important;}}",
         "@media screen and (max-width: 767px) {button#AddToCart {font-size: 11.5px !important; }}"
       ],
       "settings": {
