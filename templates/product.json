@@ -45,6 +45,16 @@
             "margin_bottom": 15
           }
         },
+        "a55b9011-1b1a-4353-9d97-7bdcd60949f2": {
+          "type": "product-description",
+          "settings": {
+            "collapsible_tab": false,
+            "icon": "none",
+            "heading": "Description",
+            "open_close_icon": "plus_minus",
+            "margin_bottom": 20
+          }
+        },
         "options": {
           "type": "options",
           "settings": {
@@ -96,16 +106,6 @@
             "margin_bottom": 20
           }
         },
-        "a55b9011-1b1a-4353-9d97-7bdcd60949f2": {
-          "type": "product-description",
-          "settings": {
-            "collapsible_tab": false,
-            "icon": "none",
-            "heading": "Description",
-            "open_close_icon": "plus_minus",
-            "margin_bottom": 20
-          }
-        },
         "fbfe241f-1b44-41cd-ae22-e866bdad9aaf": {
           "type": "cross-sells",
           "settings": {
@@ -131,12 +131,12 @@
         "star_rating_Uh8Wtb",
         "price",
         "f0f0e917-92a5-4957-a68e-2d0bb38d7819",
+        "a55b9011-1b1a-4353-9d97-7bdcd60949f2",
         "options",
         "quantity",
         "a7717974-ed85-4cde-80ef-4751178acf57",
         "2f3ddc8d-6514-403d-a884-88c9a0294300",
         "buy_buttons",
-        "a55b9011-1b1a-4353-9d97-7bdcd60949f2",
         "fbfe241f-1b44-41cd-ae22-e866bdad9aaf",
         "4fdb087c-4728-4785-b270-a71a092b7898"
       ],
