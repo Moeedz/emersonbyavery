@@ -19,6 +19,17 @@
             "margin_bottom": 0
           }
         },
+        "star_rating_Uh8Wtb": {
+          "type": "star_rating",
+          "settings": {
+            "star_color": "#e68819",
+            "star_size": 16,
+            "show_numerical_value": true,
+            "rating_product": "",
+            "no_reviews_label": "No reviews",
+            "margin_bottom": 20
+          }
+        },
         "price": {
           "type": "price",
           "settings": {
@@ -80,7 +91,7 @@
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
-            "show_smart_checkout": true,
+            "show_smart_checkout": false,
             "enable_gift_card_recipient_form": true,
             "margin_bottom": 20
           }
@@ -117,6 +128,7 @@
       },
       "block_order": [
         "title",
+        "star_rating_Uh8Wtb",
         "price",
         "f0f0e917-92a5-4957-a68e-2d0bb38d7819",
         "options",
@@ -133,7 +145,7 @@
         "enable_sticky": true,
         "show_out_of_stock_email": true,
         "image_size": "medium",
-        "image-display": "full-size",
+        "image-display": "thumbnails",
         "thumbnail_position": "left",
         "enable_video_loop": true,
         "app_margin_bottom": 17
