@@ -336,6 +336,9 @@
     },
     "emerson_related_4Ty3et": {
       "type": "emerson-related",
+      "custom_css": [
+        "img {object-fit: contain;}"
+      ],
       "name": "Emerson Related",
       "settings": {
         "heading": "You May Also Like",
