@@ -182,7 +182,7 @@
         "4fdb087c-4728-4785-b270-a71a092b7898"
       ],
       "custom_css": [
-        "button#AddToCart {font-size: 15px !important; font-weight: 600 !important;}"
+        "button#AddToCart {font-size: 15px !important; font-weight: 600 !important; border-radius: 12px;}"
       ],
       "settings": {
         "enable_sticky": true,
