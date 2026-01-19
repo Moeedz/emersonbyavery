@@ -182,7 +182,8 @@
         "4fdb087c-4728-4785-b270-a71a092b7898"
       ],
       "custom_css": [
-        "button#AddToCart {font-size: 15px !important; font-weight: 600 !important; border-radius: 12px;}"
+        "button#AddToCart {font-size: 15px !important; font-weight: 600 !important; border-radius: 12px;}",
+        "@media screen and (max-width: 767px) {button#AddToCart {font-size: 11.5px !important;}}"
       ],
       "settings": {
         "enable_sticky": true,
