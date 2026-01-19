@@ -376,6 +376,7 @@
 
                       {%- when 'quantity' -%}
                         <div class="{{ spacing_classes }} {% if section.settings.image_size == 'large' %}col-md-12{% else %}col-md-6{% endif %} col-sm-12 col-xs-12" style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px" {{ block.shopify_attributes }}>
+                          <div class="custom-qty-by-moeed">
                           <label for="Quantity" class="quantity-selector product-sub-label label-font">{{ 'products.product.quantity' | t }}</label>
 
                           <div class="js-qty">
@@ -411,6 +412,8 @@
                               value="1"
                             >
                           </noscript>
+
+                        </div>
                            {%- if product.gift_card? and block.settings.enable_gift_card_recipient_form and product.available -%}
                             {% render 'gift-card-recipient-form' %}
                           {%- endif -%}
