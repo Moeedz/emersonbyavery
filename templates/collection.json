@@ -26,7 +26,6 @@
         "title_rtWKdX",
         "19eeeda1-0ae2-47d0-ab8d-2c7a043f0c67"
       ],
-      "disabled": true,
       "settings": {}
     },
     "product-grid": {
@@ -67,9 +66,9 @@
         "desktop-products-per-row": 4,
         "mobile-products-per-row": "1",
         "pagination_options": "pagination_infinite_scrolling",
-        "desktop_position": "topbar",
-        "enable_collection_title": true,
-        "enable_collection_description": true,
+        "desktop_position": "sidebar",
+        "enable_collection_title": false,
+        "enable_collection_description": false,
         "enable_filtering": true,
         "show_swatch_filter_labels": true,
         "enable_sorting": true
