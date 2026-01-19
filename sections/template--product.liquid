@@ -411,10 +411,7 @@
                               value="1"
                             >
                           </noscript>
-                        </div>
-
-                        <div class="{{ spacing_classes }}" style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px" {{ block.shopify_attributes }}>
-                          {%- if product.gift_card? and block.settings.enable_gift_card_recipient_form and product.available -%}
+                           {%- if product.gift_card? and block.settings.enable_gift_card_recipient_form and product.available -%}
                             {% render 'gift-card-recipient-form' %}
                           {%- endif -%}
 
@@ -441,7 +438,12 @@
                               {{ form | payment_button }}
                             {% endif %}
                           </div>
+
                         </div>
+
+                        
+                         
+                        
 
                       {%- when 'buy_buttons' -%}
                         <div class="{{ spacing_classes }}" style="--custom-margin-bottom: {{ block.settings.margin_bottom }}px" {{ block.shopify_attributes }}>
