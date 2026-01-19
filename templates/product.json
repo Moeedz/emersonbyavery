@@ -206,6 +206,7 @@
       "type": "emerson-artist",
       "name": "Emerson Artist",
       "settings": {
+        "image": "shopify://shop_images/mail.google.jpg",
         "show_badge": true,
         "badge_icon": "🌟",
         "badge_title": "500+ Happy Customers",
