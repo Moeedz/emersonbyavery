@@ -137,7 +137,7 @@
             "icon": "truck",
             "heading": "Shipping & Returns",
             "open_close_icon": "plus_minus",
-            "text": "<p>Share some information about your product</p>",
+            "text": "<p>Standard shipping within the US takes 3-5 business days. International orders typically arrive within 7-14 business days. All orders ship free because spreading joy shouldn't cost extra!</p>",
             "page": "",
             "open_by_default": false,
             "margin_bottom": 0
@@ -149,7 +149,7 @@
             "icon": "heart",
             "heading": "About the Artist",
             "open_close_icon": "plus_minus",
-            "text": "<p>Share some information about your product</p>",
+            "text": "<h3>Meet Avery</h3><p>What started as doodles on a napkin has blossomed into a world of colorful creations. At just 7 years old, Avery sees magic in everyday moments and transforms that wonder into art that makes people smile.</p><p>Every brushstroke is filled with imagination, every color chosen with joy. This isn't just art, it's a window into a child's pure, unfiltered creativity.</p>",
             "page": "",
             "open_by_default": false,
             "margin_bottom": 20
