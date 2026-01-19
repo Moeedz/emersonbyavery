@@ -32,19 +32,23 @@
      Does NOT override visibility/hover behavior
      ═══════════════════════════════════════════════════ */
   
+  /* HOVER GAP FIX - Invisible padding above menu creates hover bridge */
   [data-mega-menu-block-id="{{ block.id }}"] {
-    background: white !important;
-    border-radius: 24px !important;
-    box-shadow: 0 25px 80px rgba(31, 26, 20, 0.18) !important;
+    padding-top: 25px !important;
+    margin-top: -10px !important;
+    background: transparent !important;
     border: none !important;
-    padding: 0 !important;
-    overflow: hidden;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    overflow: visible !important;
   }
   
+  /* The actual visible menu container */
   [data-mega-menu-block-id="{{ block.id }}"] .emerson-mega-wrapper {
-    border-radius: 24px;
-    overflow: hidden;
     background: white;
+    border-radius: 24px;
+    box-shadow: 0 25px 80px rgba(31, 26, 20, 0.18);
+    overflow: hidden;
   }
   
   [data-mega-menu-block-id="{{ block.id }}"] .emerson-mega-inner {
