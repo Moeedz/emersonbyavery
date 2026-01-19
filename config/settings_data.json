@@ -58,7 +58,7 @@
     "ajax_cart_method": "added",
     "giftwrap_gift_note": true,
     "product-grid": "square",
-    "hover-effect": true,
+    "hover-effect": false,
     "show_badges": true,
     "product_card_text_alignment": "left",
     "sm_instagram_link": "http://instagram.com/emersonbyavery",
