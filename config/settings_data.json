@@ -23,6 +23,7 @@
     "header-transparent-background": "#323131",
     "mobile-menu-text": "#323131",
     "mobile-menu-text-hover": "#757575",
+    "mobile-menu-bg": "#fdf9f6",
     "color_primary_button_background": "#e85d75",
     "color_primary_button_text": "#ffffff",
     "color_primary_button_background_hover": "#d55168",
