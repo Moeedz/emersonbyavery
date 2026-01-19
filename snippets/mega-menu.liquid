@@ -31,26 +31,52 @@
      EMERSON PREMIUM MEGA MENU
      ═══════════════════════════════════════════════════ */
   
+  /* HOVER FIX - Works with JavaScript */
+  [data-mega-menu-block-id="{{ block.id }}"] {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s ease;
+    transform: translateY(-10px);
+  }
+  
+  /* Show on parent hover OR when .is-visible class is added by JS */
+  .site-nav > li:hover [data-mega-menu-block-id="{{ block.id }}"],
+  [data-mega-menu-block-id="{{ block.id }}"].is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  
+  /* Invisible bridge above mega menu */
+  [data-mega-menu-block-id="{{ block.id }}"]::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: transparent;
+  }
+  
   [data-mega-menu-block-id="{{ block.id }}"] {
     background: white !important;
     border-radius: 24px !important;
     box-shadow: 0 25px 80px rgba(31, 26, 20, 0.18) !important;
     border: none !important;
     padding: 0 !important;
-    overflow: hidden;
-    animation: emersonMegaSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    overflow: visible !important;
     display: block !important;
+    position: absolute;
+    margin-top: 0 !important;
   }
   
-  @keyframes emersonMegaSlideIn {
-    from {
-      opacity: 0;
-      transform: translateY(-15px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  /* Animation removed - using CSS transitions instead */
+  
+  /* Inner container keeps rounded corners */
+  [data-mega-menu-block-id="{{ block.id }}"] .emerson-mega-wrapper {
+    border-radius: 24px;
+    overflow: hidden;
+    background: white;
   }
   
   [data-mega-menu-block-id="{{ block.id }}"] .emerson-mega-inner {
@@ -307,6 +333,7 @@
     </p>
   {% else %}
   
+  <div class="emerson-mega-wrapper">
   <div class="emerson-mega-inner">
     
     {% comment %} ═══════════════════════════════════════
@@ -417,5 +444,6 @@
     
   </div>
   
+  </div><!-- .emerson-mega-wrapper -->
   {% endif %}
 </div>

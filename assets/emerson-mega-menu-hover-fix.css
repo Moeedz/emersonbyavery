@@ -1,0 +1,73 @@
+/* ═══════════════════════════════════════════════════════════════
+   EMERSON MEGA MENU — HOVER FIX
+   Add this CSS to fix the gap between nav and dropdown
+   ═══════════════════════════════════════════════════════════════ */
+
+/* 1. Keep dropdown visible with transition delay */
+.site-nav > li .mega-menu-block,
+.site-nav > li .site-nav__dropdown {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  transition-delay: 0.05s; /* Small delay before hiding */
+}
+
+.site-nav > li:hover .mega-menu-block,
+.site-nav > li:hover .site-nav__dropdown {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0s; /* No delay when showing */
+}
+
+/* 2. Create invisible hover bridge on the nav item */
+.site-nav > li {
+  position: relative;
+}
+
+.site-nav > li > a {
+  position: relative;
+}
+
+/* Extend clickable/hoverable area downward */
+.site-nav > li > a::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background: transparent;
+}
+
+/* 3. Alternative: Extend the nav item's hoverable area */
+.site-nav > li::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: -10px;
+  right: -10px;
+  height: 25px;
+  background: transparent;
+}
+
+/* 4. Make sure mega menu has no gap */
+.mega-menu-block {
+  margin-top: 0 !important;
+  top: 100% !important;
+}
+
+/* 5. Pointer events fix - keep menu interactive */
+.site-nav > li:hover::before {
+  pointer-events: auto;
+}
+
+.mega-menu-block {
+  pointer-events: auto;
+}
+
+/* 6. Ensure the dropdown wrapper extends to meet the nav */
+.site-nav__dropdown-wrapper,
+.mega-menu-wrapper {
+  padding-top: 10px;
+  margin-top: -10px;
+}
