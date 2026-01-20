@@ -26,7 +26,7 @@
           "type": "menu",
           "settings": {
             "menu_title": "SHOP",
-            "footer_linklist": "footer"
+            "footer_linklist": "footer-shop-menu"
           }
         },
         "5c637888-418b-4cc8-baea-a83083df2e8c": {
@@ -50,7 +50,7 @@
         "social_nDGBrJ"
       ],
       "custom_css": [
-        "@media screen and (min-width: 768px) {.grid__item.large--one-quarter.medium--one-half.small--one-whole.links-footer * {text-align: -webkit-center !important; } .grid__item.large--one-quarter.medium--one-half.small--one-whole.social-media-footer * {text-align: -webkit-center !important;}}"
+        "@media screen and (min-width: 768px) {.grid__item.large--one-quarter.medium--one-half.small--one-whole.links-footer * {text-align: -webkit-center !important; } .grid__item.large--one-quarter.medium--one-half.small--one-whole.social-media-footer * {text-align: -webkit-center !important; }}"
       ],
       "settings": {
         "alignment": "left"
