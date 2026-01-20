@@ -290,14 +290,37 @@
     },
     "emerson_instagram_AV4P49": {
       "type": "emerson-instagram",
+      "disabled": true,
       "name": "📸 Instagram Feed",
       "settings": {
+        "access_token": "",
         "instagram_handle": "emersonbyavery",
         "posts_count": 6,
         "eyebrow": "Follow Along",
         "heading": "Join Our Creative Journey",
         "button_text": "Follow on Instagram",
         "bg_color": "#ffffff"
+      }
+    },
+    "products_featured_product_rwWmY3": {
+      "type": "products--featured-product",
+      "name": "t:sections.products--featured-product.presets.name",
+      "settings": {
+        "title": "",
+        "richtext": "",
+        "featured_product": "art",
+        "title_font": "h1",
+        "price_font": "h2",
+        "variant_style": "swatches",
+        "hide_out_of_stock_variants": false,
+        "show-giftwrap": false,
+        "show-vendor": false,
+        "show_product_description": true,
+        "show_quantity_selector": true,
+        "show_add_to_cart": true,
+        "show_smart_checkout": false,
+        "image-placement": "left",
+        "enable_video_loop": false
       }
     },
     "emerson_faq_GGQ6Tj": {
@@ -455,6 +478,7 @@
     "emerson_products_VHH8bB",
     "emerson_testimonials_xXEVpF",
     "emerson_instagram_AV4P49",
+    "products_featured_product_rwWmY3",
     "emerson_faq_GGQ6Tj",
     "emerson_newsletter_C6HAWD",
     "emerson_trust_xABaN9"
