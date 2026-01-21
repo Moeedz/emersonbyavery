@@ -188,7 +188,7 @@
         "subtitle": "Because art should feel alive — and shared.",
         "text": "Each product in our shop brings a piece of Avery's world into yours. From fine art prints to playful onesies, we hope these designs make you smile, spark conversations, and brighten someone's day.",
         "button_label": "Explore Products",
-        "button_link": ""
+        "button_link": "shopify://collections/apparel"
       }
     },
     "avery_cta_hA6Myk": {
@@ -200,7 +200,7 @@
         "text_1": "Every time you choose one of Avery's creations, you're not just buying something cute — you're investing in a young artist's dreams. You're encouraging her to keep dreaming big… and drawing even bigger.",
         "highlight": "Who knows? Your new favorite piece of art might be drying on her easel right now. ❤️",
         "button_label": "Shop Avery's Collection",
-        "button_link": "",
+        "button_link": "shopify://collections/featured-products",
         "background_color": "#1F1A14",
         "button_color": "#E85D75"
       }
