@@ -1,1 +1,299 @@
-{"sections":{"94a50e02-c7cb-4f8e-8809-f281c98044d2":{"type":"image--image-with-text-overlay","settings":{"image_height":"40vw","bg_image_overlay_opacity":0,"parallax":false,"text":"","colors":"dark","textPosition":"center","textAlignment":"center","heading--text-size":50,"text--text-size":24,"link":"","button_label":""}},"main":{"type":"template--page","disabled":true,"settings":{"page_title_enabled":true,"page_width":"narrow"}},"63d055aa-9706-43b0-b3c8-49b4a2e53ef9":{"type":"text--rich-text","blocks":{"a52c67a4-24a0-4020-93a2-4b06cdc1c155":{"type":"richtext","settings":{"text_size":20}}},"block_order":["a52c67a4-24a0-4020-93a2-4b06cdc1c155"],"settings":{"colors":"white","section_width":"narrow","text_alignment_desktop":"center","text_alignment_mobile":"left"}},"33dd17bc-338f-4bf8-860d-044c9b3a8f5d":{"type":"collage-builder","blocks":{"template--14773137178694__33dd17bc-338f-4bf8-860d-044c9b3a8f5d-1686321770f98f078e-5":{"type":"image","settings":{"heading":"","heading_size":30,"button_label":"","url":"","desktop_position":"md-min-align-center md-min-justify-center","mobile_position":"md-max-align-center md-max-justify-center"}}},"block_order":["template--14773137178694__33dd17bc-338f-4bf8-860d-044c9b3a8f5d-1686321770f98f078e-5"],"settings":{"color_scheme":"white","title":"","description":"","remove_spacing":false,"section_width":"full","width_1":"1","height_1":"6","width_2":"3","height_2":"3","width_3":"3","height_3":"3","width_4":"2","height_4":"2","width_5":"2","height_5":"2","width_6":"1","height_6":"6","block_alignment":"center"}},"410e0db0-6d01-4d70-8356-6c6849fcdadc":{"type":"template--product--info-columns","blocks":{"template--14773137178694__410e0db0-6d01-4d70-8356-6c6849fcdadc-1686321924a56b1582-0":{"type":"image_and_text","settings":{"grid_image_size":"square"}},"template--14773137178694__410e0db0-6d01-4d70-8356-6c6849fcdadc-1686321924a56b1582-1":{"type":"image_and_text","settings":{"grid_image_size":"square"}},"b8b1f231-a59c-4b75-9a90-a5badf60b192":{"type":"image_and_text","settings":{"grid_image_size":"square"}},"4e0dc6d9-55a1-44c4-9305-dfad1ed65478":{"type":"image_and_text","settings":{"grid_image_size":"square"}}},"block_order":["template--14773137178694__410e0db0-6d01-4d70-8356-6c6849fcdadc-1686321924a56b1582-0","template--14773137178694__410e0db0-6d01-4d70-8356-6c6849fcdadc-1686321924a56b1582-1","b8b1f231-a59c-4b75-9a90-a5badf60b192","4e0dc6d9-55a1-44c4-9305-dfad1ed65478"],"settings":{"colors":"white","heading":"Meet the team","description":"<p>Showcase your talented team<\/p>","columns_per_row":4,"text_alignment":"center","vertical_alignment":"top"}},"8e700b4c-da55-45f7-9f69-8263da89d7a8":{"type":"template--product--info-columns","blocks":{"template--14773137178694__8e700b4c-da55-45f7-9f69-8263da89d7a8-1686321924a56b1582-0":{"type":"image_and_text","settings":{"grid_image_size":"square"}},"template--14773137178694__8e700b4c-da55-45f7-9f69-8263da89d7a8-1686321924a56b1582-1":{"type":"image_and_text","settings":{"grid_image_size":"square"}},"63cc8e24-38f9-49c8-af78-5c6b3961c78c":{"type":"image_and_text","settings":{"grid_image_size":"square"}},"537c5daf-2647-4d9a-9244-83f6ef7c9203":{"type":"image_and_text","settings":{"grid_image_size":"square"}}},"block_order":["template--14773137178694__8e700b4c-da55-45f7-9f69-8263da89d7a8-1686321924a56b1582-0","template--14773137178694__8e700b4c-da55-45f7-9f69-8263da89d7a8-1686321924a56b1582-1","63cc8e24-38f9-49c8-af78-5c6b3961c78c","537c5daf-2647-4d9a-9244-83f6ef7c9203"],"settings":{"colors":"white","heading":"","description":"","columns_per_row":4,"text_alignment":"center","vertical_alignment":"top"}},"aad2a20b-3385-48aa-9079-393f0f4a6ad5":{"type":"collage-builder","blocks":{"template--14773137178694__aad2a20b-3385-48aa-9079-393f0f4a6ad5-1686321770f98f078e-5":{"type":"image","settings":{"heading":"","heading_size":18,"button_label":"","url":"","desktop_position":"md-min-align-center md-min-justify-center","mobile_position":"md-max-align-center md-max-justify-center"}}},"block_order":["template--14773137178694__aad2a20b-3385-48aa-9079-393f0f4a6ad5-1686321770f98f078e-5"],"settings":{"color_scheme":"white","title":"","description":"","remove_spacing":false,"section_width":"full","width_1":"1","height_1":"6","width_2":"3","height_2":"3","width_3":"3","height_3":"3","width_4":"2","height_4":"2","width_5":"2","height_5":"2","width_6":"1","height_6":"6","block_alignment":"center"}},"e6a03a56-ff97-4d48-99d0-0b9156a3b02d":{"type":"template--product--info-columns","blocks":{"template--14773137178694__e6a03a56-ff97-4d48-99d0-0b9156a3b02d-1686321924a56b1582-0":{"type":"image_and_text","settings":{"grid_image_size":"natural"}},"template--14773137178694__e6a03a56-ff97-4d48-99d0-0b9156a3b02d-1686321924a56b1582-1":{"type":"image_and_text","settings":{"grid_image_size":"natural"}},"59287d78-99ec-44b1-a130-3306b031be63":{"type":"image_and_text","settings":{"grid_image_size":"natural"}},"db95411e-77ab-45e4-aa83-e8c3775c3288":{"type":"image_and_text","settings":{"grid_image_size":"natural"}}},"block_order":["template--14773137178694__e6a03a56-ff97-4d48-99d0-0b9156a3b02d-1686321924a56b1582-0","template--14773137178694__e6a03a56-ff97-4d48-99d0-0b9156a3b02d-1686321924a56b1582-1","59287d78-99ec-44b1-a130-3306b031be63","db95411e-77ab-45e4-aa83-e8c3775c3288"],"settings":{"colors":"white","columns_per_row":4,"text_alignment":"left","vertical_alignment":"top"}},"58a12040-d534-4682-b1b7-5479f4052864":{"type":"store-information--map","settings":{"colors":"white","layout":"right"}},"f33a0dde-7961-4114-a8ff-6e5c2a459969":{"type":"section--contact-form","blocks":{"template--14773137178694__f33a0dde-7961-4114-a8ff-6e5c2a459969-168632303920a5f9ea-0":{"type":"name_input","settings":{"required":true,"input_width":"partial"}},"template--14773137178694__f33a0dde-7961-4114-a8ff-6e5c2a459969-168632303920a5f9ea-1":{"type":"email_input","settings":{"required":true,"input_width":"partial"}},"template--14773137178694__f33a0dde-7961-4114-a8ff-6e5c2a459969-168632303920a5f9ea-2":{"type":"tel_input","settings":{"required":true,"input_width":"full"}},"template--14773137178694__f33a0dde-7961-4114-a8ff-6e5c2a459969-168632303920a5f9ea-3":{"type":"message_input","settings":{"required":true,"input_width":"full"}}},"block_order":["template--14773137178694__f33a0dde-7961-4114-a8ff-6e5c2a459969-168632303920a5f9ea-0","template--14773137178694__f33a0dde-7961-4114-a8ff-6e5c2a459969-168632303920a5f9ea-1","template--14773137178694__f33a0dde-7961-4114-a8ff-6e5c2a459969-168632303920a5f9ea-2","template--14773137178694__f33a0dde-7961-4114-a8ff-6e5c2a459969-168632303920a5f9ea-3"],"settings":{"section_color_scheme":"white","form_width":"narrow"}},"16c77c63-79ef-4e35-be30-ea87725968de":{"type":"image--logo-list","blocks":{"template--14773137178694__16c77c63-79ef-4e35-be30-ea87725968de-1686323103b740650d-2":{"type":"logo_image","settings":{}},"template--14773137178694__16c77c63-79ef-4e35-be30-ea87725968de-1686323103b740650d-0":{"type":"logo_image","settings":{}},"template--14773137178694__16c77c63-79ef-4e35-be30-ea87725968de-1686323103b740650d-3":{"type":"logo_image","settings":{}},"28ae0150-769d-4d17-a6c3-751dcfe6f0b2":{"type":"logo_image","settings":{}},"template--14773137178694__16c77c63-79ef-4e35-be30-ea87725968de-1686323103b740650d-1":{"type":"logo_image","settings":{}}},"block_order":["template--14773137178694__16c77c63-79ef-4e35-be30-ea87725968de-1686323103b740650d-2","template--14773137178694__16c77c63-79ef-4e35-be30-ea87725968de-1686323103b740650d-0","template--14773137178694__16c77c63-79ef-4e35-be30-ea87725968de-1686323103b740650d-3","28ae0150-769d-4d17-a6c3-751dcfe6f0b2","template--14773137178694__16c77c63-79ef-4e35-be30-ea87725968de-1686323103b740650d-1"],"settings":{"colors":"light","width":100,"title":"Contact us through our socials"}},"744d98e2-004e-44b9-a03d-ecb59f18bc52":{"type":"template--product--info-columns","blocks":{"template--14773137178694__744d98e2-004e-44b9-a03d-ecb59f18bc52-1686321924a56b1582-0":{"type":"image_and_text","settings":{"grid_image_size":"natural"}},"template--14773137178694__744d98e2-004e-44b9-a03d-ecb59f18bc52-1686321924a56b1582-1":{"type":"image_and_text","settings":{"grid_image_size":"natural"}},"2ecdd5ca-7f5d-41e4-955d-06a9d09b406b":{"type":"image_and_text","settings":{"grid_image_size":"natural"}}},"block_order":["template--14773137178694__744d98e2-004e-44b9-a03d-ecb59f18bc52-1686321924a56b1582-0","template--14773137178694__744d98e2-004e-44b9-a03d-ecb59f18bc52-1686321924a56b1582-1","2ecdd5ca-7f5d-41e4-955d-06a9d09b406b"],"settings":{"colors":"white","heading":"","description":"","columns_per_row":3,"text_alignment":"center","vertical_alignment":"top"}}},"order":["94a50e02-c7cb-4f8e-8809-f281c98044d2","main","63d055aa-9706-43b0-b3c8-49b4a2e53ef9","33dd17bc-338f-4bf8-860d-044c9b3a8f5d","410e0db0-6d01-4d70-8356-6c6849fcdadc","8e700b4c-da55-45f7-9f69-8263da89d7a8","aad2a20b-3385-48aa-9079-393f0f4a6ad5","e6a03a56-ff97-4d48-99d0-0b9156a3b02d","58a12040-d534-4682-b1b7-5479f4052864","f33a0dde-7961-4114-a8ff-6e5c2a459969","16c77c63-79ef-4e35-be30-ea87725968de","744d98e2-004e-44b9-a03d-ecb59f18bc52"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "template--page",
+      "disabled": true,
+      "settings": {
+        "page_title_enabled": true,
+        "page_width": "narrow"
+      }
+    },
+    "avery_hero_dNP4X8": {
+      "type": "avery-hero",
+      "blocks": {
+        "stat_yBqWxN": {
+          "type": "stat",
+          "settings": {
+            "number": "7",
+            "label": "Years Old"
+          }
+        },
+        "stat_LQm7aM": {
+          "type": "stat",
+          "settings": {
+            "number": "45+",
+            "label": "Original Designs"
+          }
+        },
+        "stat_7N66e4": {
+          "type": "stat",
+          "settings": {
+            "number": "500+",
+            "label": "Happy Customers"
+          }
+        }
+      },
+      "block_order": [
+        "stat_yBqWxN",
+        "stat_LQm7aM",
+        "stat_7N66e4"
+      ],
+      "name": "Avery Hero",
+      "settings": {
+        "tag_icon": "👋",
+        "tag": "Meet the Artist",
+        "title": "The Artist Behind <span>Emerson by Avery</span>",
+        "subtitle": "At just 7 years old, Avery isn't just coloring inside the lines — she's redefining them.",
+        "button_label": "",
+        "button_link": "",
+        "show_stats": true,
+        "show_floating_cards": true,
+        "float_1_icon": "🖼️",
+        "float_1_text": "Fine Art Prints",
+        "float_2_icon": "🌈",
+        "float_2_text": "Bold Colors",
+        "float_3_icon": "💖",
+        "float_3_text": "Made with Love"
+      }
+    },
+    "avery_story_n3erp3": {
+      "type": "avery-story",
+      "name": "Avery Story",
+      "settings": {
+        "tag": "The Beginning",
+        "title": "What started as simple doodles has grown into something magical",
+        "text_1": "Whether she's painting at art school, sketching on the living room floor, or turning popcorn kernels into pumpkin notecards (yep, that happened), Avery pours her whole heart into every creation.",
+        "text_2": "Each design captures a moment of joy, curiosity, and childhood wonder — bold strokes, bright colors, and unfiltered imagination.",
+        "highlight_text": "Some pieces come from spontaneous bursts of inspiration, while others are carefully shaped during art class, where she's learning to blend technique with heart."
+      }
+    },
+    "avery_creative_TkGiMQ": {
+      "type": "avery-creative",
+      "blocks": {
+        "feature_eDVxzF": {
+          "type": "feature",
+          "settings": {
+            "icon": "🎨",
+            "text": "Bold Strokes"
+          }
+        },
+        "feature_Ji4wcM": {
+          "type": "feature",
+          "settings": {
+            "icon": "🌈",
+            "text": "Bright Colors"
+          }
+        },
+        "feature_FLJtUk": {
+          "type": "feature",
+          "settings": {
+            "icon": "✨",
+            "text": "Pure Joy"
+          }
+        },
+        "feature_Ecyibe": {
+          "type": "feature",
+          "settings": {
+            "icon": "💫",
+            "text": "Unfiltered Magic"
+          }
+        }
+      },
+      "block_order": [
+        "feature_eDVxzF",
+        "feature_Ji4wcM",
+        "feature_FLJtUk",
+        "feature_Ecyibe"
+      ],
+      "name": "Avery Creative",
+      "settings": {
+        "tag": "Creative Spirit",
+        "title": "Tiny Hands, Endless Imagination",
+        "text_1": "Every stroke of Avery's brush tells a story. From rainbows that seem to leap off the page to hearts that radiate warmth, her art is a window into the pure, unfiltered creativity of childhood.",
+        "text_2": "She draws what she feels, paints what she dreams, and creates what makes her heart sing.",
+        "float_1": "🌸",
+        "float_2": "🦋",
+        "float_3": "⭐"
+      }
+    },
+    "avery_why_xYfxVt": {
+      "type": "avery-why",
+      "blocks": {
+        "product_category_hF3Nht": {
+          "type": "product_category",
+          "settings": {
+            "icon": "🖼️",
+            "name": "Art Prints",
+            "link": ""
+          }
+        },
+        "product_category_RTnUw8": {
+          "type": "product_category",
+          "settings": {
+            "icon": "💌",
+            "name": "Note Cards",
+            "link": ""
+          }
+        },
+        "product_category_wBCRna": {
+          "type": "product_category",
+          "settings": {
+            "icon": "👕",
+            "name": "Apparel",
+            "link": ""
+          }
+        },
+        "product_category_igNF7h": {
+          "type": "product_category",
+          "settings": {
+            "icon": "👜",
+            "name": "Tote Bags",
+            "link": ""
+          }
+        },
+        "product_category_qUy8mE": {
+          "type": "product_category",
+          "settings": {
+            "icon": "🎁",
+            "name": "Gifts",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_category_hF3Nht",
+        "product_category_RTnUw8",
+        "product_category_wBCRna",
+        "product_category_igNF7h",
+        "product_category_qUy8mE"
+      ],
+      "name": "Avery Why",
+      "settings": {
+        "tag": "Our Mission",
+        "title": "Why Emerson by Avery?",
+        "subtitle": "Because art should feel alive — and shared.",
+        "text": "Each product in our shop brings a piece of Avery's world into yours. From fine art prints to playful onesies, we hope these designs make you smile, spark conversations, and brighten someone's day.",
+        "button_label": "Explore Products",
+        "button_link": ""
+      }
+    },
+    "avery_cta_hA6Myk": {
+      "type": "avery-cta",
+      "name": "Avery CTA",
+      "settings": {
+        "emoji": "💝",
+        "title": "You Are Part of This Story",
+        "text_1": "Every time you choose one of Avery's creations, you're not just buying something cute — you're investing in a young artist's dreams. You're encouraging her to keep dreaming big… and drawing even bigger.",
+        "highlight": "Who knows? Your new favorite piece of art might be drying on her easel right now. ❤️",
+        "button_label": "Shop Avery's Collection",
+        "button_link": "",
+        "background_color": "#1F1A14",
+        "button_color": "#E85D75"
+      }
+    },
+    "avery_gallery_cRD4Xc": {
+      "type": "avery-gallery",
+      "blocks": {
+        "gallery_item_xWMqjC": {
+          "type": "gallery_item",
+          "settings": {
+            "emoji": "🌈",
+            "overlay_text": "",
+            "link": ""
+          }
+        },
+        "gallery_item_LE8EwW": {
+          "type": "gallery_item",
+          "settings": {
+            "emoji": "🦋",
+            "overlay_text": "",
+            "link": ""
+          }
+        },
+        "gallery_item_p7hVk4": {
+          "type": "gallery_item",
+          "settings": {
+            "emoji": "🌻",
+            "overlay_text": "",
+            "link": ""
+          }
+        },
+        "gallery_item_9CPKpd": {
+          "type": "gallery_item",
+          "settings": {
+            "emoji": "❤️",
+            "overlay_text": "",
+            "link": ""
+          }
+        },
+        "gallery_item_m4mprq": {
+          "type": "gallery_item",
+          "settings": {
+            "emoji": "⭐",
+            "overlay_text": "",
+            "link": ""
+          }
+        },
+        "gallery_item_mxWYAQ": {
+          "type": "gallery_item",
+          "settings": {
+            "emoji": "🌸",
+            "overlay_text": "",
+            "link": ""
+          }
+        },
+        "gallery_item_P3kj8h": {
+          "type": "gallery_item",
+          "settings": {
+            "emoji": "🎨",
+            "overlay_text": "",
+            "link": ""
+          }
+        },
+        "gallery_item_jJxmeV": {
+          "type": "gallery_item",
+          "settings": {
+            "emoji": "🌺",
+            "overlay_text": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "gallery_item_xWMqjC",
+        "gallery_item_LE8EwW",
+        "gallery_item_p7hVk4",
+        "gallery_item_9CPKpd",
+        "gallery_item_m4mprq",
+        "gallery_item_mxWYAQ",
+        "gallery_item_P3kj8h",
+        "gallery_item_jJxmeV"
+      ],
+      "name": "Avery Gallery",
+      "settings": {
+        "title": "Avery's Art Gallery",
+        "subtitle": "A peek into her colorful imagination",
+        "button_label": "View All Artwork",
+        "button_link": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "avery_hero_dNP4X8",
+    "avery_story_n3erp3",
+    "avery_creative_TkGiMQ",
+    "avery_why_xYfxVt",
+    "avery_cta_hA6Myk",
+    "avery_gallery_cRD4Xc"
+  ]
+}
