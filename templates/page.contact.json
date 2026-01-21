@@ -64,51 +64,18 @@
         "form_description": "<p>Have a question, or want a product recommendation? Get in touch.</p>"
       }
     },
-    "emerson_newsletter_QWHKqK": {
-      "type": "emerson-newsletter",
-      "blocks": {
-        "perk_V4jCB7": {
-          "type": "perk",
-          "settings": {
-            "emoji": "🎁",
-            "text": "10% off first order"
-          }
-        },
-        "perk_t99Hma": {
-          "type": "perk",
-          "settings": {
-            "emoji": "📬",
-            "text": "Weekly inspiration"
-          }
-        },
-        "perk_LxxT9y": {
-          "type": "perk",
-          "settings": {
-            "emoji": "🎨",
-            "text": "Early access"
-          }
-        }
-      },
-      "block_order": [
-        "perk_V4jCB7",
-        "perk_t99Hma",
-        "perk_LxxT9y"
-      ],
-      "name": "📧 Newsletter",
+    "newsletter_newsletter_bNeG8W": {
+      "type": "newsletter--newsletter",
+      "name": "t:all.Newsletter",
       "settings": {
-        "eyebrow": "Stay Connected",
-        "heading": "Join Avery's Creative Club",
-        "text": "Be the first to see new artwork, get exclusive offers, and peek behind the scenes at Avery's creative process.",
-        "placeholder": "Enter your email",
-        "button_text": "Subscribe",
-        "success_message": "🎉 Thanks for subscribing!",
-        "show_perks": true,
-        "bg_color": "#FFFFFF"
+        "colors": "light",
+        "newsletter_heading": "Join our Mailing List",
+        "newsletter_description": ""
       }
     }
   },
   "order": [
     "057a50d5-3fee-4ea2-a832-2d38f47b959a",
-    "emerson_newsletter_QWHKqK"
+    "newsletter_newsletter_bNeG8W"
   ]
 }
