@@ -295,7 +295,7 @@
       "settings": {
         "title": "Avery's Art Gallery",
         "subtitle": "A peek into her colorful imagination",
-        "button_label": "View All Artwork",
+        "button_label": "",
         "button_link": ""
       }
     }
