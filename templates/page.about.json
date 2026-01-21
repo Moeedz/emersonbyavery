@@ -247,6 +247,7 @@
         "gallery_item_m4mprq": {
           "type": "gallery_item",
           "settings": {
+            "image": "shopify://shop_images/default_c8732a1d-d867-4eab-b20c-cee7864e6bd3.jpg",
             "emoji": "⭐",
             "overlay_text": "",
             "link": ""
@@ -255,6 +256,7 @@
         "gallery_item_mxWYAQ": {
           "type": "gallery_item",
           "settings": {
+            "image": "shopify://shop_images/default_b86fb682-f138-4584-b872-c38a0fda148a.png",
             "emoji": "🌸",
             "overlay_text": "",
             "link": ""
@@ -263,6 +265,7 @@
         "gallery_item_P3kj8h": {
           "type": "gallery_item",
           "settings": {
+            "image": "shopify://shop_images/default_f7a5c986-962b-40dd-8f86-2ff657f63364.jpg",
             "emoji": "🎨",
             "overlay_text": "",
             "link": ""
@@ -271,6 +274,7 @@
         "gallery_item_jJxmeV": {
           "type": "gallery_item",
           "settings": {
+            "image": "shopify://shop_images/default_40da46a0-c324-4c83-b63e-d28868cb803c.jpg",
             "emoji": "🌺",
             "overlay_text": "",
             "link": ""
