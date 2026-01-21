@@ -1,0 +1,219 @@
+/* ═══════════════════════════════════════════════════════════════
+   EMERSON BY AVERY — GALLERY SECTION
+   "Avery's Art Gallery"
+   ═══════════════════════════════════════════════════════════════ */
+
+.avery-gallery {
+  padding: 100px 60px;
+  background: #FDFBF9;
+}
+
+.avery-gallery__container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ═══ HEADER ═══ */
+.avery-gallery__header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.avery-gallery__title {
+  font-family: 'DM Sans', -apple-system, sans-serif;
+  font-size: clamp(28px, 4vw, 36px);
+  font-weight: 700;
+  color: #1F1A14;
+  margin: 0 0 12px 0;
+}
+
+.avery-gallery__subtitle {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  color: #756758;
+  margin: 0;
+}
+
+/* ═══ GRID ═══ */
+.avery-gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+/* ═══ ITEMS ═══ */
+.avery-gallery__item {
+  aspect-ratio: 1;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.avery-gallery__item--visible {
+  opacity: 1;
+  transform: scale(1);
+  transition-delay: var(--delay, 0s);
+}
+
+.avery-gallery__item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 40px rgba(31, 26, 20, 0.15);
+  z-index: 2;
+}
+
+.avery-gallery__item-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.avery-gallery__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.avery-gallery__item:hover .avery-gallery__img {
+  transform: scale(1.1);
+}
+
+.avery-gallery__item-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  background: linear-gradient(to top, rgba(31, 26, 20, 0.8) 0%, transparent 100%);
+  color: white;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+
+.avery-gallery__item:hover .avery-gallery__item-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.avery-gallery__item-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  background: white;
+  box-shadow: 0 4px 20px rgba(31, 26, 20, 0.06);
+  cursor: pointer;
+  transition: transform 0.5s ease;
+}
+
+.avery-gallery__item:hover .avery-gallery__item-placeholder {
+  transform: scale(1.1);
+}
+
+/* Color variations for placeholders */
+.avery-gallery__item:nth-child(1) .avery-gallery__item-placeholder { background: linear-gradient(135deg, #FFE8ED 0%, #FFF5F7 100%); }
+.avery-gallery__item:nth-child(2) .avery-gallery__item-placeholder { background: linear-gradient(135deg, #E8F5FF 0%, #F5FAFF 100%); }
+.avery-gallery__item:nth-child(3) .avery-gallery__item-placeholder { background: linear-gradient(135deg, #FFF8E1 0%, #FFFDF5 100%); }
+.avery-gallery__item:nth-child(4) .avery-gallery__item-placeholder { background: linear-gradient(135deg, #E8FFE8 0%, #F5FFF5 100%); }
+.avery-gallery__item:nth-child(5) .avery-gallery__item-placeholder { background: linear-gradient(135deg, #F3E8FF 0%, #FAF5FF 100%); }
+.avery-gallery__item:nth-child(6) .avery-gallery__item-placeholder { background: linear-gradient(135deg, #FFE8F5 0%, #FFF5FA 100%); }
+.avery-gallery__item:nth-child(7) .avery-gallery__item-placeholder { background: linear-gradient(135deg, #E8FFF5 0%, #F5FFFA 100%); }
+.avery-gallery__item:nth-child(8) .avery-gallery__item-placeholder { background: linear-gradient(135deg, #FFF5E8 0%, #FFFAF5 100%); }
+
+/* ═══ FOOTER ═══ */
+.avery-gallery__footer {
+  text-align: center;
+  margin-top: 48px;
+}
+
+.avery-gallery__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 32px;
+  background: #1F1A14;
+  color: white;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.avery-gallery__btn:hover {
+  background: #E85D75;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(232, 93, 117, 0.35);
+}
+
+.avery-gallery__btn svg {
+  transition: transform 0.3s ease;
+}
+
+.avery-gallery__btn:hover svg {
+  transform: translateX(4px);
+}
+
+/* ═══ MOBILE RESPONSIVE ═══ */
+@media (max-width: 900px) {
+  .avery-gallery {
+    padding: 60px 30px;
+  }
+  
+  .avery-gallery__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .avery-gallery {
+    padding: 48px 16px;
+  }
+  
+  .avery-gallery__header {
+    margin-bottom: 32px;
+  }
+  
+  .avery-gallery__title {
+    font-size: 24px;
+  }
+  
+  .avery-gallery__subtitle {
+    font-size: 14px;
+  }
+  
+  .avery-gallery__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  
+  .avery-gallery__item {
+    border-radius: 16px;
+    opacity: 1;
+    transform: none;
+  }
+  
+  .avery-gallery__item-placeholder {
+    font-size: 36px;
+  }
+  
+  .avery-gallery__footer {
+    margin-top: 32px;
+  }
+  
+  .avery-gallery__btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

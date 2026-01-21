@@ -1,0 +1,164 @@
+{% comment %}
+  EMERSON BY AVERY — GALLERY SECTION
+  "Avery's Art Gallery"
+{% endcomment %}
+
+{{ 'section-avery-gallery.css' | asset_url | stylesheet_tag }}
+
+<section class="avery-gallery">
+  <div class="avery-gallery__container">
+    
+    <!-- Header -->
+    <div class="avery-gallery__header">
+      {% if section.settings.title != blank %}
+        <h2 class="avery-gallery__title">{{ section.settings.title }}</h2>
+      {% endif %}
+      {% if section.settings.subtitle != blank %}
+        <p class="avery-gallery__subtitle">{{ section.settings.subtitle }}</p>
+      {% endif %}
+    </div>
+    
+    <!-- Gallery Grid -->
+    <div class="avery-gallery__grid">
+      {% for block in section.blocks %}
+        {% if block.type == 'gallery_item' %}
+          <div class="avery-gallery__item" {{ block.shopify_attributes }} style="--delay: {{ forloop.index0 | times: 0.08 }}s">
+            {% if block.settings.image != blank %}
+              <a href="{{ block.settings.link | default: '#' }}" class="avery-gallery__item-link">
+                {{ block.settings.image | image_url: width: 500 | image_tag:
+                  loading: 'lazy',
+                  class: 'avery-gallery__img'
+                }}
+                {% if block.settings.overlay_text != blank %}
+                  <div class="avery-gallery__item-overlay">
+                    <span>{{ block.settings.overlay_text }}</span>
+                  </div>
+                {% endif %}
+              </a>
+            {% else %}
+              <div class="avery-gallery__item-placeholder">
+                {{ block.settings.emoji | default: '🎨' }}
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    
+    {% if section.settings.button_label != blank %}
+      <div class="avery-gallery__footer">
+        <a href="{{ section.settings.button_link }}" class="avery-gallery__btn">
+          {{ section.settings.button_label }}
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    {% endif %}
+    
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const section = document.querySelector('.avery-gallery');
+    if (!section) return;
+    
+    const items = section.querySelectorAll('.avery-gallery__item');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('avery-gallery__item--visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    items.forEach(item => observer.observe(item));
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Avery Gallery",
+  "tag": "section",
+  "class": "avery-gallery-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Header"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Avery's Art Gallery"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "A peek into her colorful imagination"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "View All Artwork"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "gallery_item",
+      "name": "Gallery Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "emoji",
+          "label": "Emoji (if no image)",
+          "default": "🎨"
+        },
+        {
+          "type": "text",
+          "id": "overlay_text",
+          "label": "Overlay Text (optional)"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Avery Gallery",
+      "blocks": [
+        { "type": "gallery_item", "settings": { "emoji": "🌈" } },
+        { "type": "gallery_item", "settings": { "emoji": "🦋" } },
+        { "type": "gallery_item", "settings": { "emoji": "🌻" } },
+        { "type": "gallery_item", "settings": { "emoji": "❤️" } },
+        { "type": "gallery_item", "settings": { "emoji": "⭐" } },
+        { "type": "gallery_item", "settings": { "emoji": "🌸" } },
+        { "type": "gallery_item", "settings": { "emoji": "🎨" } },
+        { "type": "gallery_item", "settings": { "emoji": "🌺" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,111 @@
+{% comment %}
+  EMERSON BY AVERY — PART OF STORY SECTION
+  "You Are Part of This Story" - Dark CTA
+{% endcomment %}
+
+{{ 'section-avery-cta.css' | asset_url | stylesheet_tag }}
+
+<section class="avery-cta">
+  <div class="avery-cta__container">
+    
+    {% if section.settings.emoji != blank %}
+      <span class="avery-cta__emoji">{{ section.settings.emoji }}</span>
+    {% endif %}
+    
+    {% if section.settings.title != blank %}
+      <h2 class="avery-cta__title">{{ section.settings.title }}</h2>
+    {% endif %}
+    
+    {% if section.settings.text_1 != blank %}
+      <p class="avery-cta__text">{{ section.settings.text_1 }}</p>
+    {% endif %}
+    
+    {% if section.settings.highlight != blank %}
+      <p class="avery-cta__highlight">{{ section.settings.highlight }}</p>
+    {% endif %}
+    
+    {% if section.settings.button_label != blank %}
+      <a href="{{ section.settings.button_link }}" class="avery-cta__btn">
+        {{ section.settings.button_label }}
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    {% endif %}
+    
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Avery CTA",
+  "tag": "section",
+  "class": "avery-cta-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "emoji",
+      "label": "Emoji",
+      "default": "💝"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "You Are Part of This Story"
+    },
+    {
+      "type": "textarea",
+      "id": "text_1",
+      "label": "Text",
+      "default": "Every time you choose one of Avery's creations, you're not just buying something cute — you're investing in a young artist's dreams. You're encouraging her to keep dreaming big… and drawing even bigger."
+    },
+    {
+      "type": "text",
+      "id": "highlight",
+      "label": "Highlight Text",
+      "default": "Who knows? Your new favorite piece of art might be drying on her easel right now. ❤️"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Shop Avery's Collection"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#1F1A14"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button Color",
+      "default": "#E85D75"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Avery CTA"
+    }
+  ]
+}
+{% endschema %}

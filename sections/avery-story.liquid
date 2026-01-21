@@ -1,0 +1,154 @@
+{% comment %}
+  EMERSON BY AVERY — AVERY STORY SECTION
+  "What started as simple doodles..."
+{% endcomment %}
+
+{{ 'section-avery-story.css' | asset_url | stylesheet_tag }}
+
+<section class="avery-story">
+  <div class="avery-story__container">
+    
+    <!-- Image Grid Side -->
+    <div class="avery-story__image">
+      <div class="avery-story__image-grid">
+        {% if section.settings.image_1 != blank %}
+          <div class="avery-story__img avery-story__img--tall">
+            {{ section.settings.image_1 | image_url: width: 600 | image_tag: loading: 'lazy' }}
+          </div>
+        {% else %}
+          <div class="avery-story__img avery-story__img--tall avery-story__img--placeholder">
+            🎨<br>👧
+          </div>
+        {% endif %}
+        
+        {% if section.settings.image_2 != blank %}
+          <div class="avery-story__img">
+            {{ section.settings.image_2 | image_url: width: 400 | image_tag: loading: 'lazy' }}
+          </div>
+        {% else %}
+          <div class="avery-story__img avery-story__img--placeholder">🖌️</div>
+        {% endif %}
+        
+        {% if section.settings.image_3 != blank %}
+          <div class="avery-story__img">
+            {{ section.settings.image_3 | image_url: width: 400 | image_tag: loading: 'lazy' }}
+          </div>
+        {% else %}
+          <div class="avery-story__img avery-story__img--placeholder">🌈</div>
+        {% endif %}
+      </div>
+    </div>
+    
+    <!-- Content Side -->
+    <div class="avery-story__content">
+      {% if section.settings.tag != blank %}
+        <span class="avery-story__tag">{{ section.settings.tag }}</span>
+      {% endif %}
+      
+      {% if section.settings.title != blank %}
+        <h2 class="avery-story__title">{{ section.settings.title }}</h2>
+      {% endif %}
+      
+      {% if section.settings.text_1 != blank %}
+        <p class="avery-story__text">{{ section.settings.text_1 }}</p>
+      {% endif %}
+      
+      {% if section.settings.text_2 != blank %}
+        <p class="avery-story__text">{{ section.settings.text_2 }}</p>
+      {% endif %}
+      
+      {% if section.settings.highlight_text != blank %}
+        <div class="avery-story__highlight">
+          <p class="avery-story__highlight-text">"{{ section.settings.highlight_text }}"</p>
+        </div>
+      {% endif %}
+    </div>
+    
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const section = document.querySelector('.avery-story');
+    if (!section) return;
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('avery-story--visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    
+    observer.observe(section);
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Avery Story",
+  "tag": "section",
+  "class": "avery-story-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image 1 (Tall)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Image 3"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "tag",
+      "label": "Tag",
+      "default": "The Beginning"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Title",
+      "default": "What started as simple doodles has grown into something magical"
+    },
+    {
+      "type": "textarea",
+      "id": "text_1",
+      "label": "Paragraph 1",
+      "default": "Whether she's painting at art school, sketching on the living room floor, or turning popcorn kernels into pumpkin notecards (yep, that happened), Avery pours her whole heart into every creation."
+    },
+    {
+      "type": "textarea",
+      "id": "text_2",
+      "label": "Paragraph 2",
+      "default": "Each design captures a moment of joy, curiosity, and childhood wonder — bold strokes, bright colors, and unfiltered imagination."
+    },
+    {
+      "type": "textarea",
+      "id": "highlight_text",
+      "label": "Highlight Quote",
+      "default": "Some pieces come from spontaneous bursts of inspiration, while others are carefully shaped during art class, where she's learning to blend technique with heart."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Avery Story"
+    }
+  ]
+}
+{% endschema %}

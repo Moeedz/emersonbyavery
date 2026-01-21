@@ -1,0 +1,187 @@
+/* ═══════════════════════════════════════════════════════════════
+   EMERSON BY AVERY — AVERY STORY SECTION
+   "What started as simple doodles..."
+   ═══════════════════════════════════════════════════════════════ */
+
+.avery-story {
+  padding: 100px 60px;
+  background: white;
+}
+
+.avery-story__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+/* ═══ IMAGE GRID ═══ */
+.avery-story__image {
+  position: relative;
+}
+
+.avery-story__image-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.avery-story__img {
+  border-radius: 20px;
+  overflow: hidden;
+  background: #FDF9F6;
+  aspect-ratio: 1;
+  transition: transform 0.4s ease;
+}
+
+.avery-story__img:hover {
+  transform: scale(1.03);
+}
+
+.avery-story__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avery-story__img--tall {
+  grid-row: span 2;
+  aspect-ratio: auto;
+}
+
+.avery-story__img--placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.avery-story__img:nth-child(1) { background: linear-gradient(135deg, #FFE8ED 0%, #FFF5F7 100%); }
+.avery-story__img:nth-child(2) { background: linear-gradient(135deg, #E8F5FF 0%, #F5FAFF 100%); }
+.avery-story__img:nth-child(3) { background: linear-gradient(135deg, #FFF8E1 0%, #FFFDF5 100%); }
+
+/* ═══ CONTENT ═══ */
+.avery-story__content {
+  max-width: 500px;
+  opacity: 0;
+  transform: translateX(40px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.avery-story--visible .avery-story__content {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.avery-story__tag {
+  display: inline-block;
+  background: #FFF5F7;
+  color: #E85D75;
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-family: 'DM Sans', -apple-system, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
+}
+
+.avery-story__title {
+  font-family: 'DM Sans', -apple-system, sans-serif;
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700;
+  color: #1F1A14;
+  line-height: 1.2;
+  margin: 0 0 24px 0;
+}
+
+.avery-story__text {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  color: #5A5047;
+  line-height: 1.8;
+  margin: 0 0 16px 0;
+}
+
+.avery-story__highlight {
+  background: linear-gradient(135deg, #FFF5F7 0%, #FDF9F6 100%);
+  padding: 24px;
+  border-radius: 16px;
+  margin-top: 28px;
+  border-left: 4px solid #E85D75;
+}
+
+.avery-story__highlight-text {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 18px;
+  font-style: italic;
+  color: #1F1A14;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ═══ MOBILE RESPONSIVE ═══ */
+@media (max-width: 1024px) {
+  .avery-story {
+    padding: 60px 30px;
+  }
+  
+  .avery-story__container {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+  
+  .avery-story__content {
+    max-width: 100%;
+    text-align: center;
+    opacity: 1;
+    transform: none;
+  }
+  
+  .avery-story__highlight {
+    text-align: left;
+  }
+  
+  .avery-story__image-grid {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .avery-story {
+    padding: 48px 16px;
+  }
+  
+  .avery-story__image-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    max-width: 280px;
+  }
+  
+  .avery-story__img--tall {
+    grid-row: auto;
+    aspect-ratio: 1;
+  }
+  
+  .avery-story__title {
+    font-size: 26px;
+  }
+  
+  .avery-story__text {
+    font-size: 15px;
+  }
+  
+  .avery-story__highlight {
+    padding: 20px;
+  }
+  
+  .avery-story__highlight-text {
+    font-size: 16px;
+  }
+}

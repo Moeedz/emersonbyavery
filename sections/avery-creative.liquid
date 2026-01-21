@@ -1,0 +1,202 @@
+{% comment %}
+  EMERSON BY AVERY — CREATIVE SPIRIT SECTION
+  "Tiny Hands, Endless Imagination"
+{% endcomment %}
+
+{{ 'section-avery-creative.css' | asset_url | stylesheet_tag }}
+
+<section class="avery-creative">
+  <div class="avery-creative__container">
+    
+    <!-- Content Side -->
+    <div class="avery-creative__content">
+      {% if section.settings.tag != blank %}
+        <span class="avery-creative__tag">{{ section.settings.tag }}</span>
+      {% endif %}
+      
+      {% if section.settings.title != blank %}
+        <h2 class="avery-creative__title">{{ section.settings.title }}</h2>
+      {% endif %}
+      
+      {% if section.settings.text_1 != blank %}
+        <p class="avery-creative__text">{{ section.settings.text_1 }}</p>
+      {% endif %}
+      
+      {% if section.settings.text_2 != blank %}
+        <p class="avery-creative__text">{{ section.settings.text_2 }}</p>
+      {% endif %}
+      
+      <!-- Feature Badges -->
+      <div class="avery-creative__features">
+        {% for block in section.blocks %}
+          {% if block.type == 'feature' %}
+            <div class="avery-creative__feature" {{ block.shopify_attributes }}>
+              <span class="avery-creative__feature-icon">{{ block.settings.icon }}</span>
+              <span class="avery-creative__feature-text">{{ block.settings.text }}</span>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+    
+    <!-- Image Side -->
+    <div class="avery-creative__image">
+      <div class="avery-creative__main-image">
+        {% if section.settings.image != blank %}
+          {{ section.settings.image | image_url: width: 800 | image_tag:
+            loading: 'lazy',
+            class: 'avery-creative__img'
+          }}
+        {% else %}
+          <span class="avery-creative__emoji">🖼️✨</span>
+        {% endif %}
+      </div>
+      
+      <!-- Floating Artwork Cards -->
+      <div class="avery-creative__artwork avery-creative__artwork--1">
+        <div class="avery-creative__artwork-inner">{{ section.settings.float_1 | default: '🌸' }}</div>
+      </div>
+      <div class="avery-creative__artwork avery-creative__artwork--2">
+        <div class="avery-creative__artwork-inner">{{ section.settings.float_2 | default: '🦋' }}</div>
+      </div>
+      <div class="avery-creative__artwork avery-creative__artwork--3">
+        <div class="avery-creative__artwork-inner">{{ section.settings.float_3 | default: '⭐' }}</div>
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const section = document.querySelector('.avery-creative');
+    if (!section) return;
+    
+    const features = section.querySelectorAll('.avery-creative__feature');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('avery-creative__feature--visible');
+        }
+      });
+    }, { threshold: 0.2 });
+    
+    features.forEach((feature, index) => {
+      feature.style.setProperty('--delay', `${index * 0.1}s`);
+      observer.observe(feature);
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Avery Creative",
+  "tag": "section",
+  "class": "avery-creative-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "tag",
+      "label": "Tag",
+      "default": "Creative Spirit"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Title",
+      "default": "Tiny Hands, Endless Imagination"
+    },
+    {
+      "type": "textarea",
+      "id": "text_1",
+      "label": "Paragraph 1",
+      "default": "Every stroke of Avery's brush tells a story. From rainbows that seem to leap off the page to hearts that radiate warmth, her art is a window into the pure, unfiltered creativity of childhood."
+    },
+    {
+      "type": "textarea",
+      "id": "text_2",
+      "label": "Paragraph 2",
+      "default": "She draws what she feels, paints what she dreams, and creates what makes her heart sing."
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Main Image"
+    },
+    {
+      "type": "header",
+      "content": "Floating Elements"
+    },
+    {
+      "type": "text",
+      "id": "float_1",
+      "label": "Float Icon 1",
+      "default": "🌸"
+    },
+    {
+      "type": "text",
+      "id": "float_2",
+      "label": "Float Icon 2",
+      "default": "🦋"
+    },
+    {
+      "type": "text",
+      "id": "float_3",
+      "label": "Float Icon 3",
+      "default": "⭐"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon",
+          "default": "🎨"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Bold Strokes"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Avery Creative",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": { "icon": "🎨", "text": "Bold Strokes" }
+        },
+        {
+          "type": "feature",
+          "settings": { "icon": "🌈", "text": "Bright Colors" }
+        },
+        {
+          "type": "feature",
+          "settings": { "icon": "✨", "text": "Pure Joy" }
+        },
+        {
+          "type": "feature",
+          "settings": { "icon": "💫", "text": "Unfiltered Magic" }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

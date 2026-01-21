@@ -1,0 +1,263 @@
+{% comment %}
+  EMERSON BY AVERY — MEET AVERY HERO SECTION
+  Premium hero with stats, floating cards, and animations
+{% endcomment %}
+
+{{ 'section-avery-hero.css' | asset_url | stylesheet_tag }}
+
+<section class="avery-hero">
+  <!-- Decorative Elements -->
+  <div class="avery-hero__decor avery-hero__decor--1">✨</div>
+  <div class="avery-hero__decor avery-hero__decor--2">🎨</div>
+  <div class="avery-hero__decor avery-hero__decor--3">🌈</div>
+  
+  <div class="avery-hero__container">
+    
+    <!-- Content Side -->
+    <div class="avery-hero__content">
+      {% if section.settings.tag != blank %}
+        <div class="avery-hero__tag">
+          <span>{{ section.settings.tag_icon }}</span>
+          {{ section.settings.tag }}
+        </div>
+      {% endif %}
+      
+      {% if section.settings.title != blank %}
+        <h1 class="avery-hero__title">
+          {{ section.settings.title }}
+        </h1>
+      {% endif %}
+      
+      {% if section.settings.subtitle != blank %}
+        <p class="avery-hero__subtitle">{{ section.settings.subtitle }}</p>
+      {% endif %}
+      
+      <!-- Stats -->
+      {% if section.settings.show_stats %}
+        <div class="avery-hero__stats">
+          {% for block in section.blocks %}
+            {% if block.type == 'stat' %}
+              <div class="avery-hero__stat" {{ block.shopify_attributes }}>
+                <span class="avery-hero__stat-number">{{ block.settings.number }}</span>
+                <span class="avery-hero__stat-label">{{ block.settings.label }}</span>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
+      
+      {% if section.settings.button_label != blank %}
+        <a href="{{ section.settings.button_link }}" class="avery-hero__btn">
+          {{ section.settings.button_label }}
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      {% endif %}
+    </div>
+    
+    <!-- Image Side -->
+    <div class="avery-hero__image-wrapper">
+      <div class="avery-hero__image">
+        <div class="avery-hero__image-main">
+          {% if section.settings.image != blank %}
+            {{ section.settings.image | image_url: width: 800 | image_tag:
+              loading: 'eager',
+              class: 'avery-hero__img',
+              alt: section.settings.image.alt | default: 'Avery the artist'
+            }}
+          {% else %}
+            <div class="avery-hero__placeholder">
+              <span class="avery-hero__placeholder-emoji">👧🎨</span>
+              <span class="avery-hero__placeholder-text">Avery's Photo</span>
+            </div>
+          {% endif %}
+        </div>
+        
+        <!-- Floating Cards -->
+        {% if section.settings.show_floating_cards %}
+          <div class="avery-hero__float avery-hero__float--1">
+            <span class="avery-hero__float-icon">{{ section.settings.float_1_icon }}</span>
+            <span class="avery-hero__float-text">{{ section.settings.float_1_text }}</span>
+          </div>
+          
+          <div class="avery-hero__float avery-hero__float--2">
+            <span class="avery-hero__float-icon">{{ section.settings.float_2_icon }}</span>
+            <span class="avery-hero__float-text">{{ section.settings.float_2_text }}</span>
+          </div>
+          
+          <div class="avery-hero__float avery-hero__float--3">
+            <span class="avery-hero__float-icon">{{ section.settings.float_3_icon }}</span>
+            <span class="avery-hero__float-text">{{ section.settings.float_3_text }}</span>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Avery Hero",
+  "tag": "section",
+  "class": "avery-hero-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "tag_icon",
+      "label": "Tag Icon",
+      "default": "👋"
+    },
+    {
+      "type": "text",
+      "id": "tag",
+      "label": "Tag Text",
+      "default": "Meet the Artist"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Title",
+      "default": "The Artist Behind <span>Emerson by Avery</span>"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "At just 7 years old, Avery isn't just coloring inside the lines — she's redefining them."
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Hero Image"
+    },
+    {
+      "type": "header",
+      "content": "Stats"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_stats",
+      "label": "Show Stats",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Floating Cards"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_floating_cards",
+      "label": "Show Floating Cards",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "float_1_icon",
+      "label": "Float 1 Icon",
+      "default": "🖼️"
+    },
+    {
+      "type": "text",
+      "id": "float_1_text",
+      "label": "Float 1 Text",
+      "default": "Fine Art Prints"
+    },
+    {
+      "type": "text",
+      "id": "float_2_icon",
+      "label": "Float 2 Icon",
+      "default": "🌈"
+    },
+    {
+      "type": "text",
+      "id": "float_2_text",
+      "label": "Float 2 Text",
+      "default": "Bold Colors"
+    },
+    {
+      "type": "text",
+      "id": "float_3_icon",
+      "label": "Float 3 Icon",
+      "default": "💖"
+    },
+    {
+      "type": "text",
+      "id": "float_3_text",
+      "label": "Float 3 Text",
+      "default": "Made with Love"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Number",
+          "default": "7"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Years Old"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Avery Hero",
+      "blocks": [
+        {
+          "type": "stat",
+          "settings": {
+            "number": "7",
+            "label": "Years Old"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "number": "45+",
+            "label": "Original Designs"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "number": "500+",
+            "label": "Happy Customers"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
