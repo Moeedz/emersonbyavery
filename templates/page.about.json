@@ -55,6 +55,7 @@
         "subtitle": "At just 7 years old, Avery isn't just coloring inside the lines — she's redefining them.",
         "button_label": "",
         "button_link": "",
+        "image": "shopify://shop_images/IMG_1913.jpg",
         "show_stats": true,
         "show_floating_cards": true,
         "float_1_icon": "🖼️",
@@ -69,6 +70,9 @@
       "type": "avery-story",
       "name": "Avery Story",
       "settings": {
+        "image_1": "shopify://shop_images/IMG_6292.jpg",
+        "image_2": "shopify://shop_images/IMG_0746.jpg",
+        "image_3": "shopify://shop_images/mail.google.jpg",
         "tag": "The Beginning",
         "title": "What started as simple doodles has grown into something magical",
         "text_1": "Whether she's painting at art school, sketching on the living room floor, or turning popcorn kernels into pumpkin notecards (yep, that happened), Avery pours her whole heart into every creation.",
@@ -120,6 +124,7 @@
         "title": "Tiny Hands, Endless Imagination",
         "text_1": "Every stroke of Avery's brush tells a story. From rainbows that seem to leap off the page to hearts that radiate warmth, her art is a window into the pure, unfiltered creativity of childhood.",
         "text_2": "She draws what she feels, paints what she dreams, and creates what makes her heart sing.",
+        "image": "shopify://shop_images/front-side_b6b510aa-7366-4fb2-99ed-153b369e4f36.jpg",
         "float_1": "🌸",
         "float_2": "🦋",
         "float_3": "⭐"
@@ -206,6 +211,7 @@
         "gallery_item_xWMqjC": {
           "type": "gallery_item",
           "settings": {
+            "image": "shopify://shop_images/default_b7aa4e5e-4379-4b83-9325-7983f734feb2.jpg",
             "emoji": "🌈",
             "overlay_text": "",
             "link": ""
@@ -214,6 +220,7 @@
         "gallery_item_LE8EwW": {
           "type": "gallery_item",
           "settings": {
+            "image": "shopify://shop_images/rainbow_heart_without_background_2.webp",
             "emoji": "🦋",
             "overlay_text": "",
             "link": ""
@@ -222,6 +229,7 @@
         "gallery_item_p7hVk4": {
           "type": "gallery_item",
           "settings": {
+            "image": "shopify://shop_images/default_0961a823-aff0-4db0-a37e-a51f38c03253.jpg",
             "emoji": "🌻",
             "overlay_text": "",
             "link": ""
@@ -230,6 +238,7 @@
         "gallery_item_9CPKpd": {
           "type": "gallery_item",
           "settings": {
+            "image": "shopify://shop_images/IMG_0369.jpg",
             "emoji": "❤️",
             "overlay_text": "",
             "link": ""
