@@ -74,13 +74,13 @@
       
       {%- if section.settings.show_signature -%}
         <div class="emerson-story__signature" data-animate="fade-up" data-delay="5">
-          <div class="emerson-story__signature-avatar">
+          {% comment %} <div class="emerson-story__signature-avatar">
             {%- if section.settings.avatar != blank -%}
               {{ section.settings.avatar | image_url: width: 120 | image_tag }}
             {%- else -%}
               👧
             {%- endif -%}
-          </div>
+          </div> {% endcomment %}
           <div class="emerson-story__signature-info">
             <div class="emerson-story__signature-name">{{ section.settings.signature_name | default: 'Avery' }}</div>
             <div class="emerson-story__signature-title">{{ section.settings.signature_title | default: 'Chief Imagination Officer' }}</div>
