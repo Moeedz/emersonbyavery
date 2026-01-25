@@ -22,7 +22,7 @@
         "heading": "Art Made with Heart",
         "subheading": "Every piece in our shop brings a slice of 7-year-old Avery's colorful world into yours.",
         "hero_image": "shopify://shop_images/rainbow_heart_without_background_2.webp",
-        "show_floating_products": true,
+        "show_floating_products": false,
         "primary_text": "Shop Now",
         "primary_link": "shopify://collections/rainbow-heart-collection",
         "secondary_text": "Meet Avery",
