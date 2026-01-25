@@ -1,14 +1,21 @@
 /* =====================================================
    EMERSON STORY (MEET AVERY) — Premium Styles
+   Single Image Layout - Mobile Optimized
    ===================================================== */
 
 .emerson-story {
-  padding: 45px 24px;
+  padding: 60px 20px;
   background: var(--section-bg, var(--emerson-cream));
   overflow: hidden;
 }
 
 @media (min-width: 768px) {
+  .emerson-story {
+    padding: 100px 48px;
+  }
+}
+
+@media (min-width: 1024px) {
   .emerson-story {
     padding: 140px 48px;
   }
@@ -17,15 +24,27 @@
 .emerson-story__container {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 56px;
+  gap: 48px;
   max-width: 1300px;
   margin: 0 auto;
   align-items: center;
 }
 
+@media (min-width: 768px) {
+  .emerson-story__container {
+    gap: 64px;
+  }
+}
+
 @media (min-width: 1024px) {
   .emerson-story__container {
     grid-template-columns: 1.1fr 1fr;
+    gap: 80px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .emerson-story__container {
     gap: 100px;
   }
 }
@@ -35,167 +54,278 @@
   position: relative;
 }
 
-.emerson-story__image-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
+.emerson-story__image-wrapper {
+  position: relative;
 }
 
 .emerson-story__image {
   border-radius: 20px;
   overflow: hidden;
   background: white;
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.05),
+    0 10px 15px -3px rgba(0, 0, 0, 0.08),
+    0 20px 25px -5px rgba(0, 0, 0, 0.06);
+  aspect-ratio: 4 / 3;
 }
 
-.emerson-story__image--main {
-  grid-column: span 2;
-  aspect-ratio: 16 / 10;
+@media (min-width: 768px) {
+  .emerson-story__image {
+    border-radius: 24px;
+    aspect-ratio: 16 / 11;
+  }
 }
 
-.emerson-story__image--small {
-  aspect-ratio: 1;
+@media (min-width: 1024px) {
+  .emerson-story__image {
+    border-radius: 28px;
+    aspect-ratio: 4 / 3;
+  }
 }
 
 .emerson-story__img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.emerson-story__image-inner {
+.emerson-story__image:hover .emerson-story__img {
+  transform: scale(1.03);
+}
+
+.emerson-story__image-placeholder {
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 64px;
+  background: linear-gradient(135deg, #FFE4E8 0%, #FFF5E6 50%, #E8F4E8 100%);
+}
+
+.emerson-story__image-placeholder span {
+  font-size: 72px;
 }
 
 @media (min-width: 768px) {
-  .emerson-story__image-inner {
-    font-size: 80px;
+  .emerson-story__image-placeholder span {
+    font-size: 96px;
   }
 }
 
 /* Floating Badge */
 .emerson-story__badge {
   position: absolute;
-  bottom: -20px;
-  right: 20px;
+  bottom: -16px;
+  right: 16px;
   background: white;
-  padding: 16px 24px;
-  border-radius: 16px;
-  box-shadow: var(--shadow-lg);
+  padding: 14px 18px;
+  border-radius: 14px;
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.08),
+    0 10px 15px -3px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
   gap: 12px;
+  z-index: 10;
 }
 
 @media (min-width: 768px) {
   .emerson-story__badge {
-    bottom: 30px;
-    right: -30px;
+    bottom: -20px;
+    right: 24px;
+    padding: 16px 24px;
+    border-radius: 16px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .emerson-story__badge {
+    bottom: 24px;
+    right: -24px;
   }
 }
 
 .emerson-story__badge-icon {
-  width: 48px;
-  height: 48px;
-  background: var(--emerson-accent);
+  width: 44px;
+  height: 44px;
+  background: var(--emerson-accent, #FFF5E6);
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+  .emerson-story__badge-icon {
+    width: 48px;
+    height: 48px;
+    font-size: 24px;
+  }
 }
 
 .emerson-story__badge-text {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
-  color: var(--emerson-text);
+  color: var(--emerson-text, #2D2A26);
+  line-height: 1.3;
+}
+
+@media (min-width: 768px) {
+  .emerson-story__badge-text {
+    font-size: 14px;
+  }
 }
 
 .emerson-story__badge-text span {
   display: block;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 400;
-  color: var(--emerson-text-muted);
+  color: var(--emerson-text-muted, #8B8680);
+  margin-top: 2px;
+}
+
+@media (min-width: 768px) {
+  .emerson-story__badge-text span {
+    font-size: 12px;
+  }
 }
 
 /* Content Side */
 .emerson-story__content {
   text-align: center;
+  padding: 0 4px;
+}
+
+@media (min-width: 768px) {
+  .emerson-story__content {
+    padding: 0 20px;
+  }
 }
 
 @media (min-width: 1024px) {
   .emerson-story__content {
     text-align: left;
+    padding: 0;
   }
 }
 
 .emerson-story__text {
-  font-size: 17px;
-  line-height: 1.85;
-  color: var(--emerson-text-light);
-  margin-bottom: 24px;
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--emerson-text-light, #5C5A56);
+  margin-bottom: 20px;
 }
 
 @media (min-width: 768px) {
+  .emerson-story__text {
+    font-size: 17px;
+    line-height: 1.85;
+    margin-bottom: 24px;
+  }
+}
+
+@media (min-width: 1024px) {
   .emerson-story__text {
     font-size: 18px;
   }
 }
 
+.emerson-story__text:last-of-type {
+  margin-bottom: 0;
+}
+
 /* Quote */
 .emerson-story__quote {
   position: relative;
-  padding: 32px;
+  padding: 28px 24px;
   background: white;
-  border-radius: 24px;
-  margin: 32px 0;
-  box-shadow: var(--shadow-sm);
+  border-radius: 20px;
+  margin: 28px 0;
+  box-shadow: 
+    0 1px 3px rgba(0, 0, 0, 0.04),
+    0 4px 6px rgba(0, 0, 0, 0.04);
+}
+
+@media (min-width: 768px) {
+  .emerson-story__quote {
+    padding: 32px;
+    border-radius: 24px;
+    margin: 32px 0;
+  }
 }
 
 .emerson-story__quote-mark {
   position: absolute;
-  top: -20px;
-  left: 28px;
-  font-family: var(--font-display);
-  font-size: 120px;
-  color: var(--emerson-primary);
+  top: -16px;
+  left: 24px;
+  font-family: var(--font-display, Georgia, serif);
+  font-size: 100px;
+  color: var(--emerson-primary, #E8B4BC);
   opacity: 0.12;
   line-height: 1;
-}
-
-.emerson-story__quote p {
-  font-family: var(--font-display);
-  font-size: 24px;
-  font-style: italic;
-  color: var(--emerson-text);
-  margin: 0 0 12px 0;
-  position: relative;
+  pointer-events: none;
 }
 
 @media (min-width: 768px) {
+  .emerson-story__quote-mark {
+    top: -20px;
+    left: 28px;
+    font-size: 120px;
+  }
+}
+
+.emerson-story__quote p {
+  font-family: var(--font-display, Georgia, serif);
+  font-size: 20px;
+  font-style: italic;
+  color: var(--emerson-text, #2D2A26);
+  margin: 0 0 12px 0;
+  position: relative;
+  line-height: 1.5;
+}
+
+@media (min-width: 768px) {
+  .emerson-story__quote p {
+    font-size: 24px;
+  }
+}
+
+@media (min-width: 1024px) {
   .emerson-story__quote p {
     font-size: 28px;
   }
 }
 
 .emerson-story__quote cite {
-  font-family: var(--font-accent);
-  font-size: 22px;
+  font-family: var(--font-accent, 'Caveat', cursive);
+  font-size: 20px;
   font-style: normal;
-  color: var(--emerson-primary);
+  color: var(--emerson-primary, #E8B4BC);
+}
+
+@media (min-width: 768px) {
+  .emerson-story__quote cite {
+    font-size: 22px;
+  }
 }
 
 /* Signature */
 .emerson-story__signature {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
   justify-content: center;
-  margin-top: 32px;
+  margin-top: 28px;
+}
+
+@media (min-width: 768px) {
+  .emerson-story__signature {
+    gap: 16px;
+    margin-top: 32px;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -205,15 +335,24 @@
 }
 
 .emerson-story__signature-avatar {
-  width: 56px;
-  height: 56px;
+  width: 52px;
+  height: 52px;
   background: linear-gradient(135deg, #FFE4E8, #FFF5E6);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 28px;
+  font-size: 26px;
   overflow: hidden;
+  flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+  .emerson-story__signature-avatar {
+    width: 56px;
+    height: 56px;
+    font-size: 28px;
+  }
 }
 
 .emerson-story__signature-avatar img {
@@ -227,12 +366,61 @@
 }
 
 .emerson-story__signature-name {
-  font-family: var(--font-accent);
-  font-size: 22px;
-  color: var(--emerson-text);
+  font-family: var(--font-accent, 'Caveat', cursive);
+  font-size: 20px;
+  color: var(--emerson-text, #2D2A26);
+}
+
+@media (min-width: 768px) {
+  .emerson-story__signature-name {
+    font-size: 22px;
+  }
 }
 
 .emerson-story__signature-title {
-  font-size: 13px;
-  color: var(--emerson-text-muted);
+  font-size: 12px;
+  color: var(--emerson-text-muted, #8B8680);
+  margin-top: 2px;
 }
+
+@media (min-width: 768px) {
+  .emerson-story__signature-title {
+    font-size: 13px;
+  }
+}
+
+/* Animation States */
+[data-animate] {
+  opacity: 0;
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-animate="fade-up"] {
+  transform: translateY(30px);
+}
+
+[data-animate="fade-right"] {
+  transform: translateX(-30px);
+}
+
+[data-animate="clip-up"] {
+  transform: translateY(20px);
+}
+
+[data-animate="scale-up"] {
+  transform: scale(0.9);
+}
+
+[data-animate].in-view {
+  opacity: 1;
+  transform: translateY(0) translateX(0) scale(1);
+}
+
+/* Animation Delays */
+[data-delay="1"] { transition-delay: 0.1s; }
+[data-delay="2"] { transition-delay: 0.2s; }
+[data-delay="3"] { transition-delay: 0.3s; }
+[data-delay="4"] { transition-delay: 0.4s; }
+[data-delay="5"] { transition-delay: 0.5s; }
+[data-delay="6"] { transition-delay: 0.6s; }

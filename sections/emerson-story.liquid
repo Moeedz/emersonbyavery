@@ -1,7 +1,7 @@
 {% comment %}
   ════════════════════════════════════════════════════════════════
   EMERSON BY AVERY — MEET AVERY (STORY SECTION)
-  Split layout with image grid and animated reveals
+  Split layout with image and animated reveals
   ════════════════════════════════════════════════════════════════
 {% endcomment %}
 
@@ -15,35 +15,14 @@
   <div class="emerson-story__container">
     <!-- Visual Side -->
     <div class="emerson-story__visual" data-animate="fade-right">
-      <div class="emerson-story__image-grid">
+      <div class="emerson-story__image-wrapper">
         <!-- Main Image -->
-        <div class="emerson-story__image emerson-story__image--main" data-animate="clip-up">
+        <div class="emerson-story__image" data-animate="clip-up">
           {%- if section.settings.main_image != blank -%}
-            {{ section.settings.main_image | image_url: width: 1000 | image_tag: loading: 'lazy', class: 'emerson-story__img' }}
+            {{ section.settings.main_image | image_url: width: 1200 | image_tag: loading: 'lazy', class: 'emerson-story__img' }}
           {%- else -%}
-            <div class="emerson-story__image-inner" style="background: linear-gradient(135deg, #FFE4E8 0%, #FFF5E6 100%);">
-              👧🎨
-            </div>
-          {%- endif -%}
-        </div>
-        
-        <!-- Small Images -->
-        <div class="emerson-story__image emerson-story__image--small" data-animate="clip-up" data-delay="1">
-          {%- if section.settings.small_image_1 != blank -%}
-            {{ section.settings.small_image_1 | image_url: width: 500 | image_tag: loading: 'lazy', class: 'emerson-story__img' }}
-          {%- else -%}
-            <div class="emerson-story__image-inner" style="background: linear-gradient(135deg, #E8F4E8 0%, #F0F8E8 100%);">
-              🖍️
-            </div>
-          {%- endif -%}
-        </div>
-        
-        <div class="emerson-story__image emerson-story__image--small" data-animate="clip-up" data-delay="2">
-          {%- if section.settings.small_image_2 != blank -%}
-            {{ section.settings.small_image_2 | image_url: width: 500 | image_tag: loading: 'lazy', class: 'emerson-story__img' }}
-          {%- else -%}
-            <div class="emerson-story__image-inner" style="background: linear-gradient(135deg, #E8EEF8 0%, #F0F4FF 100%);">
-              🌟
+            <div class="emerson-story__image-placeholder">
+              <span>👧🎨</span>
             </div>
           {%- endif -%}
         </div>
@@ -51,7 +30,7 @@
       
       <!-- Floating Badge -->
       {%- if section.settings.show_badge -%}
-        <div class="emerson-story__badge" data-animate="scale-up" data-delay="3">
+        <div class="emerson-story__badge" data-animate="scale-up" data-delay="2">
           <div class="emerson-story__badge-icon">{{ section.settings.badge_emoji | default: '⭐' }}</div>
           <div class="emerson-story__badge-text">
             {{ section.settings.badge_text | default: '500+ Happy Customers' }}
@@ -147,25 +126,13 @@
   "settings": [
     {
       "type": "header",
-      "content": "Images"
+      "content": "Image"
     },
     {
       "type": "image_picker",
       "id": "main_image",
       "label": "Main image",
-      "info": "Recommended: 1000x600px"
-    },
-    {
-      "type": "image_picker",
-      "id": "small_image_1",
-      "label": "Small image 1",
-      "info": "Recommended: 500x500px"
-    },
-    {
-      "type": "image_picker",
-      "id": "small_image_2",
-      "label": "Small image 2",
-      "info": "Recommended: 500x500px"
+      "info": "Recommended: 1200x800px or similar aspect ratio"
     },
     {
       "type": "header",
