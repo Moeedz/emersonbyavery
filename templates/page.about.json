@@ -55,7 +55,7 @@
         "subtitle": "At just 7 years old, Avery isn't just coloring inside the lines — she's redefining them.",
         "button_label": "",
         "button_link": "",
-        "image": "shopify://shop_images/IMG_1913.jpg",
+        "image": "shopify://shop_images/BeFunky_Pic_of_Avery_8f7cf8f9-747a-4267-a088-f8fb0f063d54.jpg",
         "show_stats": true,
         "show_floating_cards": true,
         "float_1_icon": "🖼️",
@@ -70,9 +70,9 @@
       "type": "avery-story",
       "name": "Avery Story",
       "settings": {
-        "image_1": "shopify://shop_images/IMG_6292.jpg",
-        "image_2": "shopify://shop_images/IMG_0746.jpg",
-        "image_3": "shopify://shop_images/mail.google.jpg",
+        "image_1": "shopify://shop_images/front-side_b1c46481-f26d-474d-b246-346b5194a2e5.jpg",
+        "image_2": "shopify://shop_images/IMG_1037.jpg",
+        "image_3": "shopify://shop_images/IMG_5016.jpg",
         "tag": "The Beginning",
         "title": "What started as simple doodles has grown into something magical",
         "text_1": "Whether she's painting at art school, sketching on the living room floor, or turning popcorn kernels into pumpkin notecards (yep, that happened), Avery pours her whole heart into every creation.",
@@ -201,8 +201,8 @@
         "highlight": "Who knows? Your new favorite piece of art might be drying on her easel right now. ❤️",
         "button_label": "Shop Avery's Collection",
         "button_link": "shopify://collections/featured-products",
-        "background_color": "#1F1A14",
-        "button_color": "#E85D75"
+        "background_color": "#1f1a14",
+        "button_color": "#e85d75"
       }
     },
     "avery_gallery_cRD4Xc": {
