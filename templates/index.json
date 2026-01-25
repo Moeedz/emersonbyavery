@@ -165,10 +165,10 @@
           "type": "stat",
           "settings": {
             "animate_number": true,
-            "number": 12,
+            "number": 2000,
             "static_value": "",
             "suffix": "+",
-            "label": "Countries Shipped"
+            "label": "Orders Fulfilled"
           }
         },
         "stat_FTH4cJ": {
