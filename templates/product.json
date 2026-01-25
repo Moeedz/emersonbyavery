@@ -266,8 +266,7 @@
         "feature_jfUQrc"
       ],
       "custom_css": [
-        "section.emerson-features {padding-bottom: 0 !important;}",
-        "section.emerson-related {padding-top: 0 !important;}"
+        "section.emerson-features {padding-bottom: 0 !important;}"
       ],
       "name": "Emerson Features",
       "settings": {
@@ -363,7 +362,8 @@
     "emerson_related_4Ty3et": {
       "type": "emerson-related",
       "custom_css": [
-        "img {object-fit: contain;}"
+        "img {object-fit: contain;}",
+        "section.emerson-related {padding-top: 0 !important;}"
       ],
       "name": "Emerson Related",
       "settings": {
