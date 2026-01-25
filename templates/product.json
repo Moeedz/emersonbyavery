@@ -265,6 +265,10 @@
         "feature_jgHp9c",
         "feature_jfUQrc"
       ],
+      "custom_css": [
+        "section.emerson-features {padding-bottom: 0 !important;}",
+        "section.emerson-related {padding-top: 0 !important;}"
+      ],
       "name": "Emerson Features",
       "settings": {
         "heading": "Why Choose Emerson by Avery",
