@@ -1,0 +1,325 @@
+{% comment %}
+  EMERSON BY AVERY — STOCKISTS SECTION
+  Premium "Find Us Near You" stockists display
+{% endcomment %}
+
+{{ 'section-emerson-stockists.css' | asset_url | stylesheet_tag }}
+
+<section class="emerson-stockists">
+  <div class="emerson-stockists__container">
+    
+    <!-- Header -->
+    <div class="emerson-stockists__header">
+      {% if section.settings.tag != blank %}
+        <span class="emerson-stockists__tag">{{ section.settings.tag }}</span>
+      {% endif %}
+      
+      {% if section.settings.title != blank %}
+        <h1 class="emerson-stockists__title">{{ section.settings.title }}</h1>
+      {% endif %}
+      
+      {% if section.settings.subtitle != blank %}
+        <p class="emerson-stockists__subtitle">{{ section.settings.subtitle }}</p>
+      {% endif %}
+    </div>
+    
+    <!-- Region Label -->
+    {% if section.settings.region_label != blank %}
+      <div class="emerson-stockists__region">
+        <span class="emerson-stockists__region-icon">📍</span>
+        <span class="emerson-stockists__region-text">{{ section.settings.region_label }}</span>
+      </div>
+    {% endif %}
+    
+    <!-- Stockists Grid -->
+    <div class="emerson-stockists__grid">
+      {% for block in section.blocks %}
+        {% if block.type == 'stockist' %}
+          <div class="emerson-stockists__card" {{ block.shopify_attributes }} style="--delay: {{ forloop.index0 | times: 0.1 }}s">
+            
+            <!-- Store Image/Icon -->
+            <div class="emerson-stockists__card-image">
+              {% if block.settings.image != blank %}
+                {{ block.settings.image | image_url: width: 400 | image_tag:
+                  loading: 'lazy',
+                  class: 'emerson-stockists__img'
+                }}
+              {% else %}
+                <div class="emerson-stockists__placeholder">
+                  {{ block.settings.icon | default: '🏪' }}
+                </div>
+              {% endif %}
+            </div>
+            
+            <!-- Store Info -->
+            <div class="emerson-stockists__card-content">
+              <h3 class="emerson-stockists__name">{{ block.settings.name }}</h3>
+              
+              {% if block.settings.type != blank %}
+                <span class="emerson-stockists__type">{{ block.settings.type }}</span>
+              {% endif %}
+              
+              {% if block.settings.address != blank %}
+                <p class="emerson-stockists__address">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                    <circle cx="12" cy="10" r="3"/>
+                  </svg>
+                  {{ block.settings.address }}
+                </p>
+              {% endif %}
+              
+              {% if block.settings.hours != blank %}
+                <p class="emerson-stockists__hours">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12 6 12 12 16 14"/>
+                  </svg>
+                  {{ block.settings.hours }}
+                </p>
+              {% endif %}
+              
+              <!-- Actions -->
+              <div class="emerson-stockists__actions">
+                {% if block.settings.website != blank %}
+                  <a href="{{ block.settings.website }}" target="_blank" rel="noopener" class="emerson-stockists__btn emerson-stockists__btn--primary">
+                    Visit Website
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                      <polyline points="15 3 21 3 21 9"/>
+                      <line x1="10" y1="14" x2="21" y2="3"/>
+                    </svg>
+                  </a>
+                {% endif %}
+                
+                {% if block.settings.directions != blank %}
+                  <a href="{{ block.settings.directions }}" target="_blank" rel="noopener" class="emerson-stockists__btn emerson-stockists__btn--secondary">
+                    Directions
+                  </a>
+                {% endif %}
+              </div>
+            </div>
+            
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    
+    <!-- Become a Stockist CTA -->
+    {% if section.settings.show_cta %}
+      <div class="emerson-stockists__cta">
+        <div class="emerson-stockists__cta-content">
+          <span class="emerson-stockists__cta-emoji">{{ section.settings.cta_emoji | default: '🤝' }}</span>
+          <h3 class="emerson-stockists__cta-title">{{ section.settings.cta_title | default: 'Want to carry Emerson by Avery?' }}</h3>
+          <p class="emerson-stockists__cta-text">{{ section.settings.cta_text | default: "We'd love to partner with your store! Get in touch to learn about wholesale opportunities." }}</p>
+          {% if section.settings.cta_button_label != blank %}
+            <a href="{{ section.settings.cta_button_link }}" class="emerson-stockists__cta-btn">
+              {{ section.settings.cta_button_label }}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
+    
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const section = document.querySelector('.emerson-stockists');
+    if (!section) return;
+    
+    const cards = section.querySelectorAll('.emerson-stockists__card');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('emerson-stockists__card--visible');
+        }
+      });
+    }, { threshold: 0.15 });
+    
+    cards.forEach(card => observer.observe(card));
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Emerson Stockists",
+  "tag": "section",
+  "class": "emerson-stockists-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Header"
+    },
+    {
+      "type": "text",
+      "id": "tag",
+      "label": "Tag",
+      "default": "Shop Local"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Find Us Near You"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Avery's artwork is available at these wonderful local shops"
+    },
+    {
+      "type": "text",
+      "id": "region_label",
+      "label": "Region Label",
+      "default": "Greater Boston Area, Massachusetts"
+    },
+    {
+      "type": "header",
+      "content": "Become a Stockist CTA"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cta",
+      "label": "Show CTA Section",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "cta_emoji",
+      "label": "CTA Emoji",
+      "default": "🤝"
+    },
+    {
+      "type": "text",
+      "id": "cta_title",
+      "label": "CTA Title",
+      "default": "Want to carry Emerson by Avery?"
+    },
+    {
+      "type": "textarea",
+      "id": "cta_text",
+      "label": "CTA Text",
+      "default": "We'd love to partner with your store! Get in touch to learn about wholesale opportunities."
+    },
+    {
+      "type": "text",
+      "id": "cta_button_label",
+      "label": "CTA Button Label",
+      "default": "Become a Stockist"
+    },
+    {
+      "type": "url",
+      "id": "cta_button_link",
+      "label": "CTA Button Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stockist",
+      "name": "Stockist",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Store Image"
+        },
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon (if no image)",
+          "default": "🏪"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Store Name",
+          "default": "Store Name"
+        },
+        {
+          "type": "text",
+          "id": "type",
+          "label": "Store Type",
+          "default": "Gift Shop"
+        },
+        {
+          "type": "textarea",
+          "id": "address",
+          "label": "Address",
+          "default": "123 Main Street, City, State"
+        },
+        {
+          "type": "text",
+          "id": "hours",
+          "label": "Hours (optional)"
+        },
+        {
+          "type": "url",
+          "id": "website",
+          "label": "Website URL"
+        },
+        {
+          "type": "url",
+          "id": "directions",
+          "label": "Google Maps Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Emerson Stockists",
+      "blocks": [
+        {
+          "type": "stockist",
+          "settings": {
+            "icon": "🎨",
+            "name": "Arts On Centre",
+            "type": "Artist Co-op",
+            "address": "1766 Centre Street, West Roxbury, MA 02132",
+            "hours": "Sat & Sun 11AM-5PM",
+            "website": "https://www.artsoncentre.org/"
+          }
+        },
+        {
+          "type": "stockist",
+          "settings": {
+            "icon": "👗",
+            "name": "Diversity Consignment",
+            "type": "Consignment & Local Artists",
+            "address": "416 Centre Street, Jamaica Plain, MA 02130",
+            "website": "https://diversityconsignment.com/"
+          }
+        },
+        {
+          "type": "stockist",
+          "settings": {
+            "icon": "💇‍♀️",
+            "name": "Miss Laura's",
+            "type": "Beauty Parlor & Gift Shop",
+            "address": "46 South Street, Jamaica Plain, MA 02130",
+            "website": "https://www.instagram.com/miss_lauras/"
+          }
+        },
+        {
+          "type": "stockist",
+          "settings": {
+            "icon": "🌸",
+            "name": "Sweet Pea & Sage",
+            "type": "Florist & Gifts",
+            "address": "166 South Street, Jamaica Plain, MA 02130",
+            "hours": "Wed-Sat 10AM-6PM, Sun-Mon 11AM-5PM",
+            "website": "https://sweetpeaandsagejp.com/"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
