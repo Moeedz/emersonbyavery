@@ -1,0 +1,414 @@
+/* ═══════════════════════════════════════════════════════════════
+   EMERSON BY AVERY — STOCKISTS SECTION
+   Premium "Find Us Near You" display
+   ═══════════════════════════════════════════════════════════════ */
+
+.emerson-stockists {
+  padding: 80px 60px 100px;
+  background: linear-gradient(135deg, #FFFCFA 0%, #FFF5F7 100%);
+  min-height: 100vh;
+}
+
+.emerson-stockists__container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ═══ HEADER ═══ */
+.emerson-stockists__header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.emerson-stockists__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #E85D75;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-family: 'DM Sans', -apple-system, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
+}
+
+.emerson-stockists__title {
+  font-family: 'DM Sans', -apple-system, sans-serif;
+  font-size: clamp(36px, 6vw, 56px);
+  font-weight: 700;
+  color: #1F1A14;
+  line-height: 1.1;
+  margin: 0 0 16px 0;
+}
+
+.emerson-stockists__subtitle {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 18px;
+  color: #5A5047;
+  line-height: 1.6;
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+/* ═══ REGION LABEL ═══ */
+.emerson-stockists__region {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 40px;
+  padding: 16px 28px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(31, 26, 20, 0.06);
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.emerson-stockists__region-icon {
+  font-size: 24px;
+}
+
+.emerson-stockists__region-text {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1F1A14;
+}
+
+/* ═══ GRID ═══ */
+.emerson-stockists__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
+/* ═══ CARDS ═══ */
+.emerson-stockists__card {
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(31, 26, 20, 0.06);
+  display: flex;
+  flex-direction: row;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.emerson-stockists__card--visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: var(--delay, 0s);
+}
+
+.emerson-stockists__card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px rgba(232, 93, 117, 0.15);
+}
+
+/* Card Image */
+.emerson-stockists__card-image {
+  width: 180px;
+  min-width: 180px;
+  background: linear-gradient(135deg, #FFF5F7 0%, #FFE8ED 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.emerson-stockists__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.emerson-stockists__placeholder {
+  font-size: 56px;
+  transition: transform 0.3s ease;
+}
+
+.emerson-stockists__card:hover .emerson-stockists__placeholder {
+  transform: scale(1.15) rotate(5deg);
+}
+
+/* Card Content */
+.emerson-stockists__card-content {
+  padding: 28px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.emerson-stockists__name {
+  font-family: 'DM Sans', -apple-system, sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #1F1A14;
+  margin: 0 0 8px 0;
+  line-height: 1.2;
+}
+
+.emerson-stockists__type {
+  display: inline-block;
+  background: #FFF5F7;
+  color: #E85D75;
+  padding: 4px 12px;
+  border-radius: 50px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 16px;
+  width: fit-content;
+}
+
+.emerson-stockists__address,
+.emerson-stockists__hours {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: #5A5047;
+  margin: 0 0 8px 0;
+  line-height: 1.5;
+}
+
+.emerson-stockists__address svg,
+.emerson-stockists__hours svg {
+  margin-top: 3px;
+  flex-shrink: 0;
+  color: #E85D75;
+}
+
+/* Actions */
+.emerson-stockists__actions {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 16px;
+}
+
+.emerson-stockists__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.emerson-stockists__btn--primary {
+  background: #1F1A14;
+  color: white;
+}
+
+.emerson-stockists__btn--primary:hover {
+  background: #E85D75;
+  transform: translateY(-2px);
+}
+
+.emerson-stockists__btn--secondary {
+  background: #F5F0EB;
+  color: #1F1A14;
+}
+
+.emerson-stockists__btn--secondary:hover {
+  background: #E8E3DD;
+}
+
+/* ═══ CTA SECTION ═══ */
+.emerson-stockists__cta {
+  margin-top: 60px;
+  background: linear-gradient(135deg, #1F1A14 0%, #3D3530 100%);
+  border-radius: 28px;
+  padding: 60px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.emerson-stockists__cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+.emerson-stockists__cta-content {
+  position: relative;
+  z-index: 1;
+}
+
+.emerson-stockists__cta-emoji {
+  font-size: 48px;
+  display: block;
+  margin-bottom: 20px;
+  animation: ctaPulse 2s ease-in-out infinite;
+}
+
+@keyframes ctaPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.emerson-stockists__cta-title {
+  font-family: 'DM Sans', -apple-system, sans-serif;
+  font-size: clamp(24px, 4vw, 32px);
+  font-weight: 700;
+  color: white;
+  margin: 0 0 12px 0;
+}
+
+.emerson-stockists__cta-text {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.7;
+  margin: 0 auto 28px;
+  max-width: 500px;
+}
+
+.emerson-stockists__cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 32px;
+  background: #E85D75;
+  color: white;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.emerson-stockists__cta-btn:hover {
+  background: #FF7B93;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(232, 93, 117, 0.4);
+}
+
+.emerson-stockists__cta-btn svg {
+  transition: transform 0.3s ease;
+}
+
+.emerson-stockists__cta-btn:hover svg {
+  transform: translateX(4px);
+}
+
+/* ═══ MOBILE RESPONSIVE ═══ */
+@media (max-width: 1024px) {
+  .emerson-stockists {
+    padding: 60px 30px 80px;
+  }
+  
+  .emerson-stockists__grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  
+  .emerson-stockists__card {
+    flex-direction: row;
+  }
+  
+  .emerson-stockists__card-image {
+    width: 140px;
+    min-width: 140px;
+  }
+}
+
+@media (max-width: 600px) {
+  .emerson-stockists {
+    padding: 48px 16px 60px;
+  }
+  
+  .emerson-stockists__title {
+    font-size: 32px;
+  }
+  
+  .emerson-stockists__subtitle {
+    font-size: 16px;
+  }
+  
+  .emerson-stockists__region {
+    padding: 12px 20px;
+  }
+  
+  .emerson-stockists__region-text {
+    font-size: 14px;
+  }
+  
+  .emerson-stockists__card {
+    flex-direction: column;
+    opacity: 1;
+    transform: none;
+  }
+  
+  .emerson-stockists__card-image {
+    width: 100%;
+    min-width: 100%;
+    height: 140px;
+  }
+  
+  .emerson-stockists__placeholder {
+    font-size: 48px;
+  }
+  
+  .emerson-stockists__card-content {
+    padding: 24px 20px;
+  }
+  
+  .emerson-stockists__name {
+    font-size: 20px;
+  }
+  
+  .emerson-stockists__actions {
+    flex-direction: column;
+  }
+  
+  .emerson-stockists__btn {
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .emerson-stockists__cta {
+    padding: 40px 24px;
+    border-radius: 20px;
+    margin-top: 48px;
+  }
+  
+  .emerson-stockists__cta-emoji {
+    font-size: 40px;
+  }
+  
+  .emerson-stockists__cta-title {
+    font-size: 22px;
+  }
+  
+  .emerson-stockists__cta-text {
+    font-size: 14px;
+  }
+  
+  .emerson-stockists__cta-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
