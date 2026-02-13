@@ -11,13 +11,87 @@
   "sections": {
     "main": {
       "type": "template--page",
+      "disabled": true,
       "settings": {
         "page_title_enabled": true,
         "page_width": "full-width"
       }
+    },
+    "emerson_stockists_kNRaTQ": {
+      "type": "emerson-stockists",
+      "blocks": {
+        "stockist_GPtmRL": {
+          "type": "stockist",
+          "settings": {
+            "icon": "🎨",
+            "name": "Arts On Centre",
+            "type": "Artist Co-op",
+            "address": "1766 Centre Street, West Roxbury, MA 02132",
+            "hours": "Sat & Sun 11AM-5PM",
+            "website": "https://www.artsoncentre.org/",
+            "directions": ""
+          }
+        },
+        "stockist_bBUVg3": {
+          "type": "stockist",
+          "settings": {
+            "icon": "👗",
+            "name": "Diversity Consignment",
+            "type": "Consignment & Local Artists",
+            "address": "416 Centre Street, Jamaica Plain, MA 02130",
+            "hours": "",
+            "website": "https://diversityconsignment.com/",
+            "directions": ""
+          }
+        },
+        "stockist_PnAx9f": {
+          "type": "stockist",
+          "settings": {
+            "icon": "💇‍♀️",
+            "name": "Miss Laura's",
+            "type": "Beauty Parlor & Gift Shop",
+            "address": "46 South Street, Jamaica Plain, MA 02130",
+            "hours": "",
+            "website": "https://www.instagram.com/miss_lauras/",
+            "directions": ""
+          }
+        },
+        "stockist_V7TMLh": {
+          "type": "stockist",
+          "settings": {
+            "icon": "🌸",
+            "name": "Sweet Pea & Sage",
+            "type": "Florist & Gifts",
+            "address": "166 South Street, Jamaica Plain, MA 02130",
+            "hours": "Wed-Sat 10AM-6PM, Sun-Mon 11AM-5PM",
+            "website": "https://sweetpeaandsagejp.com/",
+            "directions": ""
+          }
+        }
+      },
+      "block_order": [
+        "stockist_GPtmRL",
+        "stockist_bBUVg3",
+        "stockist_PnAx9f",
+        "stockist_V7TMLh"
+      ],
+      "name": "Emerson Stockists",
+      "settings": {
+        "tag": "Shop Local",
+        "title": "Find Us Near You",
+        "subtitle": "Avery's artwork is available at these wonderful local shops",
+        "region_label": "Greater Boston Area, Massachusetts",
+        "show_cta": true,
+        "cta_emoji": "🤝",
+        "cta_title": "Want to carry Emerson by Avery?",
+        "cta_text": "We'd love to partner with your store! Get in touch to learn about wholesale opportunities.",
+        "cta_button_label": "Become a Stockist",
+        "cta_button_link": ""
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "emerson_stockists_kNRaTQ"
   ]
 }
