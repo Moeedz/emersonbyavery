@@ -163,7 +163,7 @@
           "type": "stat",
           "settings": {
             "animate_number": true,
-            "number": 2000,
+            "number": 500,
             "static_value": "",
             "suffix": "+",
             "label": "Orders Fulfilled"
