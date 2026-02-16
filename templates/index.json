@@ -227,9 +227,9 @@
         "testimonial_QYDfCj": {
           "type": "testimonial",
           "settings": {
-            "author": "Mike R.",
+            "author": "Mary Mas",
             "subtitle": "Verified Buyer",
-            "quote": "Bought cards for everyone on my holiday list. They're so unique and heartfelt — nothing like them anywhere else. Will definitely be back!",
+            "quote": "It was hard for me to place the order as I do all my orders by phone, but couldn’t find yours! You are getting 5 stars because I got my granddaughter to do it and it was quick.",
             "product_name": "Happy Sun Cards",
             "product_price": "$18.00",
             "product_emoji": "☀️"
@@ -238,27 +238,28 @@
         "testimonial_Vqj3QR": {
           "type": "testimonial",
           "settings": {
-            "author": "Lisa K.",
+            "author": "Mary Mas",
             "subtitle": "Verified Buyer",
-            "quote": "Beautiful artwork that brings so much joy! You can feel the happiness in every piece. It's hanging proudly in our living room now.",
-            "product_name": "Purple Tree Print",
-            "product_price": "$35.00",
+            "quote": "I’m giving the Flower House 5 stars now and expect it to keep the 5 stars when the person I got it for opens it on Christmas morning!",
+            "product_name": "Cathy’s Flower House",
+            "product_price": "$40.00",
             "product_emoji": "🌳"
           }
         },
         "testimonial_FnGMNe": {
           "type": "testimonial",
           "settings": {
-            "author": "Jessica W.",
+            "author": "Hollice Flynn",
             "subtitle": "Verified Buyer",
-            "quote": "I'm obsessed with my new tote! It's colorful, well-made, and I get compliments every time I use it. Supporting young artists is the best!",
-            "product_name": "Rainbow Heart Tote",
-            "product_price": "$28.00",
+            "quote": "Thank you for the beautiful wrapping and delightful love bag. My friend was delighted!",
+            "product_name": "Rainbow Heart - Carry Joy Everywhere",
+            "product_price": "$27.99",
             "product_emoji": "🌈"
           }
         },
         "testimonial_WBgPdw": {
           "type": "testimonial",
+          "disabled": true,
           "settings": {
             "author": "David T.",
             "subtitle": "Verified Buyer",
