@@ -355,6 +355,7 @@
         },
         "faq_jtYXHP": {
           "type": "faq",
+          "disabled": true,
           "settings": {
             "question": "Are products eco-friendly?",
             "answer": "<p>We care about the planet! Our packaging is made from recycled materials and we take care to minimize waste wherever possible. Art that’s good for the soul and kinder to the Earth.</p>"
