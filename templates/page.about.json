@@ -118,6 +118,9 @@
         "feature_FLJtUk",
         "feature_Ecyibe"
       ],
+      "custom_css": [
+        ".avery-creative__feature-icon {display: none;}"
+      ],
       "name": "Avery Creative",
       "settings": {
         "tag": "Creative Spirit",
