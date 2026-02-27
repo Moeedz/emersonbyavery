@@ -55,25 +55,12 @@
             "website": "https://www.instagram.com/miss_lauras/",
             "directions": ""
           }
-        },
-        "stockist_V7TMLh": {
-          "type": "stockist",
-          "settings": {
-            "icon": "🌸",
-            "name": "Sweet Pea & Sage",
-            "type": "Florist & Gifts",
-            "address": "166 South Street, Jamaica Plain, MA 02130",
-            "hours": "Wed-Sat 10AM-6PM, Sun-Mon 11AM-5PM",
-            "website": "https://sweetpeaandsagejp.com/",
-            "directions": ""
-          }
         }
       },
       "block_order": [
         "stockist_GPtmRL",
         "stockist_bBUVg3",
-        "stockist_PnAx9f",
-        "stockist_V7TMLh"
+        "stockist_PnAx9f"
       ],
       "name": "Emerson Stockists",
       "settings": {
